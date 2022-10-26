@@ -1,1 +1,44 @@
 @charset "UTF-8";
+
+
+.container{
+	width: 1200px;
+	height: 900px;
+	margin: 100px auto;
+}
+
+.sign_up_box{
+	width: 600px;
+	height: 100%;
+	margin: 0 auto;
+	padding-top: 100px; 
+	text-align: center;
+	border: 1px solid #ccc;
+	box-shadow: 2px 2px 5px 2px #f2f2f2;
+}
+
+.su_title{
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	border: 1px solid #ccc;
+}
+
+.info_box{
+	margin: 150px auto;
+}
+
+.info_box td{
+	border: 1px solid #ccc;
+}
+
+
+.sign_up_btn{
+	
+	background: #fae100;
+	width: 400px;
+	height: 55px;
+	color: #fff;
+	font-weight: bold;
+	
+}
