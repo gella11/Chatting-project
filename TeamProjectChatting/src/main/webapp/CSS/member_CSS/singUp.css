@@ -3,8 +3,8 @@
 
 .container{
 	width: 1200px;
-	height: 900px;
-	margin: 100px auto;
+	height: 800px;
+	margin: 50px auto;
 }
 
 .sign_up_box{
@@ -18,27 +18,39 @@
 }
 
 .su_title{
-	font-size: 20px;
+	font-size: 27px;
 	font-weight: bold;
 	text-align: center;
-	border: 1px solid #ccc;
 }
 
 .info_box{
-	margin: 150px auto;
+	margin-top: 50px;
 }
 
 .info_box td{
 	border: 1px solid #ccc;
 }
 
+.btn_box{
+	margin-top: 50px;
+}
 
 .sign_up_btn{
 	
-	background: #fae100;
+	background: #fccb4e;
 	width: 400px;
 	height: 55px;
 	color: #fff;
 	font-weight: bold;
+	font-size: 18px;
 	
 }
+
+.form-floating{
+	margin-left: 100px;
+}
+
+.form-control{	/* 인풋 박스 사이즈 */
+	width: 80%;
+}
+
