@@ -44,9 +44,10 @@ public class memberDao  extends SuperDao_M{
 			ps.setString(2, user_pw);
 			ps.setString(3, user_email);
 			ps.setString(4, user_phone);
-			ps.executeUpdate();
-			return true;
-			
+			int count = ps.executeUpdate();
+			if( count == 1 ) {
+				return true;
+			}
 		} catch (Exception e) {
 			System.out.println("회원가입 메소드 오류 : "+e);
 		}
