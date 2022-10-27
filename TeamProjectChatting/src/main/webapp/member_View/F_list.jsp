@@ -22,12 +22,9 @@
 			<div class="col-sm-4">	<!-- 접속회원목록 -->
 			</div>
 			<div class="col-sm-8">  							<!--  친구목록 창 -->
-				<div class="f_list my-3">
-				d
-				d
-				d
-				d
-				</div> 
+				<table class="f_list my-3">
+		
+				</table> 
 			</div>
 		</div> <!-- 채팅 구역 end  -->
 		

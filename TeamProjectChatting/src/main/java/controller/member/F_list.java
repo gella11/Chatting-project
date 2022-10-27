@@ -40,15 +40,14 @@ public class F_list extends HttpServlet {
 		// DAO
 		// 나의 회원번호로 --> 내 친구들의 회원번호 호출,
 		// 각 친구번호의   --> ( 회원번호 / 이름 / 프로필 ) 호출
-		int my_num = memberDao.getInstacnDao().user_num(my_email);
+		// int my_num = memberDao.getInstacnDao().user_num(my_email);
+		int my_num = 1;
 		
 		
-		
-		ArrayList<F_list_Dto> friend_num  = chattingDao.getInstacnDao().getinfolist(my_num);
-		
-		
-		ArrayList<singUp_Dto> list = chattingDao.getInstacnDao().f_list_info(friend_num);
-		
+		ArrayList<Integer> friendlist  = chattingDao.getInstacnDao().getinfolist(my_num);
+	      
+	    ArrayList<singUp_Dto> list = chattingDao.getInstacnDao().f_list_info(friendlist);
+	  
 		// JSON
 		JSONArray array = new JSONArray();
 		for( int i = 0  ; i<list.size() ; i++ ) {
@@ -56,12 +55,11 @@ public class F_list extends HttpServlet {
 			object.put("user_num", 		list.get(i).getUser_num() );
 			object.put("user_name", 	list.get(i).getUser_name() );
 			object.put("user_profile",  list.get(i).getUser_profile() );
+			object.put("user_msg",		list.get(i).getUser_msg() );
 			array.add(object);
 		}
 		
-		// 나의 회원번호 세션에 등록
-		HttpSession 세션 = request.getSession();
-		세션.setAttribute("my_num", my_num );	
+		System.out.println(array);
 		
 		
 		response.setCharacterEncoding("UTF-8");

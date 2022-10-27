@@ -11,19 +11,15 @@ function f_list(){
 		url : "/TeamProjectChatting/F_list",
 		//data : {"user_email" : user_email},
 		success : function(re){
-			alert(re)
-			console.log('asdasd')
-			
-			
 			let list = JSON.parse(re)
 			let html = document.querySelector('.f_list').innerHTML
 			for(let i = 0 ; i<list.length; i++){
 				let l = list[i]
 				html += '<tr onclick="모달()" value='+l.user_num+' id='+l.user_num+' >'
-						+	'<td>'+l.profile+' </td>'
+						+	'<td>'+l.user_profile+' </td> '
 						+	'<td>'+l.user_name+'</td>'
-						+	'<td>마지막대화내용 추후에</td>'
-						+'</tr>';
+						+	'<td>'+l.user_msg+'</td> '
+						+'</tr> <br>';
 			}
 			document.querySelector('.f_list').innerHTML = html;
 		}

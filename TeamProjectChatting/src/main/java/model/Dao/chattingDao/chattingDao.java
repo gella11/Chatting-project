@@ -16,39 +16,47 @@ public class chattingDao extends SuperDao_C{
 	private static chattingDao cdao =new chattingDao();
 	public static chattingDao getInstacnDao() {return cdao;}
 	
+
 	
-	Connection con;
-	PreparedStatement ps;
-	ResultSet rs;
-	
-	public chattingDao() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/cacao", "root", "1234");
-		} catch (Exception e) { System.out.println("DB오류:"+e);}
-	}
-	
-	
-	// 상진  
-		// 친구목록
-		// 2-1) 내 친구 회원번호 출력 
-		public ArrayList<F_list_Dto> getinfolist(int my_num){
-			ArrayList<F_list_Dto> list = new ArrayList<>();
-			String sql = "select friend_num from friend where 회원번호 = "+my_num+"; ";
-			try {
-				ps = con.prepareStatement(sql);
-				rs = ps.executeQuery();
-				while(rs.next()){
-					F_list_Dto dto = new F_list_Dto(
-							rs.getInt(2)
-							);
-					list.add(dto);
-				}
-				return list;
-			} catch (Exception e) {	System.out.println(e);	}
-			return list;
-		}
+	// 세션에 등록된 나의 회원번호로
+	// 친구 목록 가져와서
+	// 친구들의 정보(회원번호 이름 프로필 상태메시지) 가져오기 - 상진
+	public ArrayList<Integer> getinfolist(int my_num){
+        ArrayList<Integer> list = new ArrayList<>();
+        String sql = "select friend_num from friend where user_num = "+my_num;
+        try {
+           ps = con.prepareStatement(sql);
+           rs = ps.executeQuery();
+           while(rs.next()){
+              list.add(rs.getInt(1));
+           }
+           return list;
+        } catch (Exception e) {   System.out.println(e);   }
+        return list;
+     }
+     public ArrayList<singUp_Dto> f_list_info(ArrayList<Integer> list){
+        ArrayList<singUp_Dto> friendlist = new ArrayList<>();
+        for(int a : list) {
+           singUp_Dto dto = null;
+           String sql = "select user_num , user_name , user_profile , user_msg from user where user_num="+a;
+           try {
+              ps = con.prepareStatement(sql);
+              rs = ps.executeQuery();
+              while(rs.next()){
+                 dto = new singUp_Dto(
+                       rs.getInt(1),
+                       rs.getString(2),
+                       rs.getString(3),
+                       rs.getString(4)
+                       );
+                 friendlist.add(dto);
+              }
+              continue;
+           } catch (Exception e) {   System.out.println(e);   }
+        }   
+        return friendlist;      
+     }
+		
 		
 		
 }
