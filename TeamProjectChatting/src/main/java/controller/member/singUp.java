@@ -44,6 +44,7 @@ public class singUp extends HttpServlet {
 	
 		
 		boolean result = new memberDao().getInstence().sign_up(user_name, user_pw, user_email, user_phone);
+		
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().print(result);
 		
