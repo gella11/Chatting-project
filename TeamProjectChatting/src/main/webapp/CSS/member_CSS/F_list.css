@@ -1,1 +1,15 @@
-@charset "UTF-8";
+
+*{
+	margin: 0px;	/* 바깐 여백 0*/
+	padding: 0px;	/* 안쪽 여백 0*/
+	text-decoration: none;/*밑줄제거*/
+	list-style: none;/*글머리*/
+	color: black;/*글꼴 색상*/
+	font-family: '맑은 고딕';
+}
+
+.f_list{ 
+	width : 600px;
+	height : 1000px;
+	background-color: skyblue;
+}
