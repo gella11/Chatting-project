@@ -1,1 +1,25 @@
 @charset "UTF-8";
+
+*{
+	padding: 0;
+	margin: 0;
+}
+.box{
+	width: 600px;
+	margin: 400px auto;
+}
+.title{
+	font-size: 60px;
+	text-align: center;
+}
+.btn{
+	size:200px;
+	margin-left: 250px;
+}
+.result{
+	text-align:center;
+	padding-top: 50px;
+	border-bottom: 1px solid;
+    border-radius: 50%;
+    transition :1s
+}
