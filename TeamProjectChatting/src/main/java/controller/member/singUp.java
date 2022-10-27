@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Dao.memberDao.memberDao;
+
 /**
  * Servlet implementation class singUp
  */
-@WebServlet("/singUp")
+@WebServlet("/member/singUp")
 public class singUp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,8 +36,18 @@ public class singUp extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		String user_name = request.getParameter("user_name");
+		String user_phone = request.getParameter("user_phone");
+		String user_email = request.getParameter("user_email");
+		String user_pw = request.getParameter("user_pw");
+	
+		
+		boolean result = new memberDao().getInstence().sign_up(user_name, user_pw, user_email, user_phone);
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().print(result);
+		
+	
 	}
 
 }
