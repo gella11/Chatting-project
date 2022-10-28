@@ -11,6 +11,7 @@ function f_list(){
 			let html = document.querySelector('.f_list').innerHTML
 			for(let i = 0 ; i<list.length; i++){
 				let l = list[i]
+				alert(l)
 				html += '<tr onclick="chatting('+l.user_num+')"  id='+l.user_num+' >'
 						+	'<td>'+l.user_profile+' </td> '
 						+	'<td>'+l.user_name+'</td>'
