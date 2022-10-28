@@ -16,18 +16,20 @@ public class login extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String mid = request.getParameter("mid"); // http서버에 ajax로 통신한 아이디값 요청
+		String user_email = request.getParameter("mid"); // http서버에 ajax로 통신한 아이디값 요청
 		String mpassword = request.getParameter("mpassword");// http서버에 ajax로 통신한 비밀번호값 요청
 		
-		System.out.println("아이디"+mid);System.out.println("비밀번호"+mpassword);
-		int result = memberDao.getInstance().login(mid, mpassword);
+		System.out.println("아이디"+user_email);System.out.println("비밀번호"+mpassword);
+		int result = memberDao.getInstance().login(user_email, mpassword);
 
 		if (result == 1) { // 리턴값이 1이면 일치하는 아이디가 있으면 
+			int user_num=memberDao.getInstance().user_num(user_email); // 회원번호 Dao접근
+			
 			HttpSession session = request.getSession();// 세션값 요청객체
 			
-			session.setAttribute("mid", mid); //세션에 mid값 저장 
+			session.setAttribute("user_num", user_num); //세션에 회원번호 값 저장 
 		}
-		System.out.println("서블렛..."+result);
+	
 		response.getWriter().print(result); //결과 전송
 	}
 

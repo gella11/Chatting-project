@@ -13,26 +13,8 @@ public class memberDao  extends SuperDao_M{
 
 	
 	private static memberDao mdao =new memberDao();
-	public static memberDao getInstacnDao() {return mdao;}
+	public static memberDao getInstance() {return mdao;}
 
-	
-	
-	// 상진
-	// 1. 이메일 세션으로 나의 회원번호 출력
-	public int user_num(String my_num) {
-		String sql ="select (user_num) from user where user_email = ?";
-		int user_num = 0;
-		try {
-			ps = con.prepareStatement(sql);
-			ps.setString(1 , my_num);
-			rs = ps.executeQuery();
-			
-			if(rs.next()) { user_num = rs.getInt(1); }
-			
-				return user_num;
-			}catch (Exception e) {System.out.println(e);}
-		return -1;
-		} 
 
 	
 	// 회원가입 - 혜영
