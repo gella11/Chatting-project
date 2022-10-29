@@ -28,26 +28,18 @@ public class F_list extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		System.out.println("asdasd");
-		System.out.println("asdasd");
-		System.out.println("asdasd");
-		System.out.println("asdasd");
-		// 요청 
-		// 세션에 저장된 이메일로 --> 회원번호 호출
-		String my_email = (String)request.getSession().getAttribute("user_email");
 
+	
+	    		
+	    		
+		// 요청 
+		int my_num = (Integer)request.getSession().getAttribute("user_num");
 		// DAO
-		// 나의 회원번호로 --> 내 친구들의 회원번호 호출,
-		// 각 친구번호의   --> ( 회원번호 / 이름 / 프로필 ) 호출
-		// int my_num = memberDao.getInstacnDao().user_num(my_email);
-		int my_num = 1;
-		
-		
 		ArrayList<Integer> friendlist  = chattingDao.getInstacnDao().getinfolist(my_num);
-	      
 	    ArrayList<singUp_Dto> list = chattingDao.getInstacnDao().f_list_info(friendlist);
-	  
+	    
+	    
+	    
 		// JSON
 		JSONArray array = new JSONArray();
 		for( int i = 0  ; i<list.size() ; i++ ) {
@@ -58,18 +50,73 @@ public class F_list extends HttpServlet {
 			object.put("user_msg",		list.get(i).getUser_msg() );
 			array.add(object);
 		}
-		
 		System.out.println(array);
-		
-		
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().print(array);
 		
+		
+		
 	}
 
+	
+	
+	
+	
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		
+		
+		// 도현 상진
+		// [10/28]
+		// 끝방번호
+		int endroom = chattingDao.getInstacnDao().endroom();
+		System.out.println("끝방번호 : " + endroom);
+		// 도현 상진
+		// [10/28]
+		// 내 번호
+		int user_num = (Integer)request.getSession().getAttribute("user_num");
+		System.out.println("내 회원번호 : "+user_num);
+		// 도현 상진
+		// [10/28]
+		// 친구 번호
+	    int f_num = Integer.parseInt(request.getParameter("chattingnum"));
+	    System.out.println("친구 회원번호 :"+f_num);
+	    // 도현 상진
+		// [10/28]
+	    // 이름 가져오기
+	    String myname = chattingDao.getInstacnDao().findname(user_num);
+	    String f_name = chattingDao.getInstacnDao().findname(f_num);
+	    System.out.println("내 이름 : "+myname);
+	    System.out.println("친구 이름 : "+f_name);
+	    // 도현 상진
+		// [10/28]
+	    // 이름 합치기
+	    String c_name = myname+','+f_name;
+	    System.out.println("이름 합치기 : " +c_name);
+	    // 도현 상진
+		// [10/28]
+	    // 채팅방 추가 , 회원번호 넣기
+	    boolean result1 = chattingDao.getInstacnDao().chattingroom(endroom, user_num);
+	    boolean result2 = chattingDao.getInstacnDao().chattingroom(endroom, f_num);
+	    System.out.println("내 이름 채팅방 insert : "+ result1);
+	    System.out.println("친구 이름 채팅방 insert :"+result2);
+	    // 도현 상진
+		// [10/28]
+	    // 채팅방 이름 넣기
+	    boolean result3 = chattingDao.getInstacnDao().chattingroomname(endroom,c_name);
+	    System.out.println("채팅창 이름 넣기"+result3);
+	    
+	    response.setCharacterEncoding("UTF-8");
+		response.getWriter().print(endroom+1);
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }

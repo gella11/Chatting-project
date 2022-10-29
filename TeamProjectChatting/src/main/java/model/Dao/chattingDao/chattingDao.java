@@ -17,10 +17,9 @@ public class chattingDao extends SuperDao_C{
 	public static chattingDao getInstacnDao() {return cdao;}
 	
 
-	
-	// 세션에 등록된 나의 회원번호로
-	// 친구 목록 가져와서
-	// 친구들의 정보(회원번호 이름 프로필 상태메시지) 가져오기 - 상진
+	// 도현 상진
+	// [10/28]
+	// 1. 내 회원번호로 친구목록 가져온 뒤, 
 	public ArrayList<Integer> getinfolist(int my_num){
         ArrayList<Integer> list = new ArrayList<>();
         String sql = "select friend_num from friend where user_num = "+my_num;
@@ -31,9 +30,12 @@ public class chattingDao extends SuperDao_C{
               list.add(rs.getInt(1));
            }
            return list;
-        } catch (Exception e) {   System.out.println(e);   }
+        } catch (Exception e) {   System.out.println("내 회원번호로 친구목록 가져오기 오류 || chatting dao : 1번 "+e);   }
         return list;
      }
+	// 도현 상진
+	// [10/28]
+	// 1-2 친구들의 정보(회원번호 이름 프로필 상태메시지) 가져오기
      public ArrayList<singUp_Dto> f_list_info(ArrayList<Integer> list){
         ArrayList<singUp_Dto> friendlist = new ArrayList<>();
         for(int a : list) {
@@ -52,11 +54,69 @@ public class chattingDao extends SuperDao_C{
                  friendlist.add(dto);
               }
               continue;
-           } catch (Exception e) {   System.out.println(e);   }
+           } catch (Exception e) {   System.out.println("친구 정보가져오기 오류 || chatting dao : 1-2번"+e);   }
         }   
         return friendlist;      
      }
-		
-		
+	
+   // 도현 상진
+   // [10/28]
+   // 3. 끝방 찾기
+ 	public int endroom() {
+ 		String sql = "select * from chattingroom order by c_num desc";
+ 		try {
+ 			ps = con.prepareStatement(sql);
+ 			rs = ps.executeQuery();
+ 			if(rs.next()){
+ 				return  rs.getInt(2);
+ 				} 
+ 		} catch (Exception e) {System.out.println("끝방찾기 오류 || chatting dao : 3번"+e);}
+ 		return 0;
+ 	}
+ 	
+    // 도현 상진
+ 	// [10/28]
+ 	// 4. 회원번호로 이름 가져오기
+ 	public String findname(int num) {
+ 		String sql = "select user_name from user where user_num = "+num;
+ 		try {
+ 			ps = con.prepareStatement(sql);
+ 			rs = ps.executeQuery();
+ 			if(rs.next()){
+ 				return  rs.getString(1);
+ 				} 
+ 		} catch (Exception e) {System.out.println("회원번호로 이름 가져오기 오류 || chatting dao : 4번"+e);}
+ 		return null;
+ 	}
+    // 도현 상진
+ 	// [10/28]
+ 	// 5. 채팅방 생성 
+ 	public boolean chattingroom (int endroom , int num) {
+ 		String sql="insert into chattingroom(c_num , user_num) value(?, ?);";
+ 		try {
+ 			ps = con.prepareStatement(sql);
+ 			ps.setInt(1, endroom+1 );
+ 			ps.setInt(2, num );
+ 			ps.executeUpdate();
+ 			return true;
+ 		} catch (Exception e) {System.out.println("채팅방 insert 오류 || chatting dao : 5번"+e);}
+ 		return false;
+ 				
+ 	}
+    // 도현 상진
+ 	// [10/28]
+ 	// 6. 채팅방 이름에 회원 이름 넣기
+  	public boolean chattingroomname (int endroom , String c_name) {
+  		String sql="insert into chattingname(c_num , c_name) value(?, ?)";
+  		try {
+  			ps = con.prepareStatement(sql);
+  			ps.setInt(1, endroom+1 );
+  			ps.setString(2, c_name );
+  			ps.executeUpdate();
+  			return true;
+  		} catch (Exception e) {System.out.println("채팅방 이름 넣기 오류 || chatting dao : 6번"+e);}
+  		return false;
+  	}
+ 	
 		
 }
