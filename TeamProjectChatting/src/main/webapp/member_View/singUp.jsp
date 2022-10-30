@@ -62,7 +62,7 @@
 					
 					<!-- 비밀번호확인 -->
 					<div class="form-floating mb-3">
-						<input type="text" class="form-control" id="user_pw_confirm" name="user_pw_confirm" placeholder="Password Check">
+						<input type="text" class="form-control" id="user_pw_confirm" name="user_pw_confirm" onkeyup="pw_check2()"placeholder="Password Check">
 						<label for="user_pw_confirm"> Password Check </label>
 						<div class="check_icon5">  </div>
 					</div>
