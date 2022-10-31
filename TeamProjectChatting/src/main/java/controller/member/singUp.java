@@ -28,8 +28,19 @@ public class singUp extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// [10-30] 허혜영 - 핸드폰&이메일 중복 검사
+				String user_phone = request.getParameter("user_phone"); // 핸드폰 중복 검사 값 가져오기
+				String user_email = request.getParameter("user_email"); // 이메일 중복 검사 값 가져오기
+				response.setCharacterEncoding("UTF-8");
+
+				if( user_phone != null ) { // 핸드폰 번호가 기존에 등록되어있는지 확인
+					boolean result = new memberDao().getInstance().phone_check( user_phone );
+					response.getWriter().print(result);
+				}
+				if ( user_email != null ) { // 이메일이 기존에 등록되어있는지 확인
+					boolean result = new memberDao().getInstance().email_check( user_email );
+					response.getWriter().print(result);
+				}
 	}
 
 	/**
