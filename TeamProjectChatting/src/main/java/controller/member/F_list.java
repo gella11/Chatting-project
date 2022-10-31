@@ -30,8 +30,9 @@ public class F_list extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	
+	    
 	    		
-	    		
+	    
 		// 요청 
 		int my_num = (Integer)request.getSession().getAttribute("user_num");
 		// DAO
@@ -66,50 +67,67 @@ public class F_list extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		int option = Integer.parseInt(request.getParameter("option"));
+		if(option == 1) {
+
+			// 도현 상진
+			// [10/28]
+			// 끝방번호
+			int endroom = chattingDao.getInstacnDao().endroom();
+			System.out.println("끝방번호 : " + endroom);
+			// 도현 상진
+			// [10/28]
+			// 내 번호
+			int user_num = (Integer)request.getSession().getAttribute("user_num");
+			System.out.println("내 회원번호 : "+user_num);
+			// 도현 상진
+			// [10/28]
+			// 친구 번호
+		    int f_num = Integer.parseInt(request.getParameter("chattingnum"));
+		    System.out.println("친구 회원번호 :"+f_num);
+		    // 도현 상진
+			// [10/28]
+		    // 이름 가져오기
+		    String myname = chattingDao.getInstacnDao().findname(user_num);
+		    String f_name = chattingDao.getInstacnDao().findname(f_num);
+		    System.out.println("내 이름 : "+myname);
+		    System.out.println("친구 이름 : "+f_name);
+		    // 도현 상진
+			// [10/28]
+		    // 이름 합치기
+		    String c_name = myname+','+f_name;
+		    System.out.println("이름 합치기 : " +c_name);
+		    // 도현 상진
+			// [10/28]
+		    // 채팅방 추가 , 회원번호 넣기
+		    boolean result1 = chattingDao.getInstacnDao().chattingroom(endroom, user_num);
+		    boolean result2 = chattingDao.getInstacnDao().chattingroom(endroom, f_num);
+		    System.out.println("내 이름 채팅방 insert : "+ result1);
+		    System.out.println("친구 이름 채팅방 insert :"+result2);
+		    // 도현 상진
+			// [10/28]
+		    // 채팅방 이름 넣기
+		    boolean result3 = chattingDao.getInstacnDao().chattingroomname(endroom,c_name);
+		    System.out.println("채팅창 이름 넣기"+result3);
+		    
+		    HttpSession session = request.getSession();// 세션값 요청객체
+			session.setAttribute("c_name", c_name);
+			session.setAttribute("roomnumber", endroom+1);
+			
+		    response.setCharacterEncoding("UTF-8");
+			response.getWriter().print(endroom+1);
+		}else if( option == 2) {
+			response.setCharacterEncoding("UTF-8");
+			int roomnumber = (Integer)request.getSession().getAttribute("roomnumber");
+			String cname = (String)request.getSession().getAttribute("c_name");
+			JSONObject object = new JSONObject();
+			object.put("roomnumber", roomnumber);
+			object.put("cname", cname);
+			
+			response.getWriter().print(object);
+			
+		}
 		
-		
-		// 도현 상진
-		// [10/28]
-		// 끝방번호
-		int endroom = chattingDao.getInstacnDao().endroom();
-		System.out.println("끝방번호 : " + endroom);
-		// 도현 상진
-		// [10/28]
-		// 내 번호
-		int user_num = (Integer)request.getSession().getAttribute("user_num");
-		System.out.println("내 회원번호 : "+user_num);
-		// 도현 상진
-		// [10/28]
-		// 친구 번호
-	    int f_num = Integer.parseInt(request.getParameter("chattingnum"));
-	    System.out.println("친구 회원번호 :"+f_num);
-	    // 도현 상진
-		// [10/28]
-	    // 이름 가져오기
-	    String myname = chattingDao.getInstacnDao().findname(user_num);
-	    String f_name = chattingDao.getInstacnDao().findname(f_num);
-	    System.out.println("내 이름 : "+myname);
-	    System.out.println("친구 이름 : "+f_name);
-	    // 도현 상진
-		// [10/28]
-	    // 이름 합치기
-	    String c_name = myname+','+f_name;
-	    System.out.println("이름 합치기 : " +c_name);
-	    // 도현 상진
-		// [10/28]
-	    // 채팅방 추가 , 회원번호 넣기
-	    boolean result1 = chattingDao.getInstacnDao().chattingroom(endroom, user_num);
-	    boolean result2 = chattingDao.getInstacnDao().chattingroom(endroom, f_num);
-	    System.out.println("내 이름 채팅방 insert : "+ result1);
-	    System.out.println("친구 이름 채팅방 insert :"+result2);
-	    // 도현 상진
-		// [10/28]
-	    // 채팅방 이름 넣기
-	    boolean result3 = chattingDao.getInstacnDao().chattingroomname(endroom,c_name);
-	    System.out.println("채팅창 이름 넣기"+result3);
-	    
-	    response.setCharacterEncoding("UTF-8");
-		response.getWriter().print(endroom+1);
 		
 		
 		
