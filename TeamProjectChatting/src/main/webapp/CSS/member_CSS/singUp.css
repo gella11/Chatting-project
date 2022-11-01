@@ -9,7 +9,7 @@
 
 /* 회원가입 박스 크기 */
 .sign_up_box{
-	width: 600px;
+	width: 500px;
 	height: 100%;
 	margin: 0 auto;
 	padding-top: 100px; 
@@ -21,8 +21,9 @@
 /* 회원가입 타이틀 */
 .su_title{
 	font-size: 27px;
-	font-weight: bold;
 	text-align: center;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 600;
 }
 
 /* 회원가입 정보 입력 박스 */
@@ -41,16 +42,18 @@
 
 /* 회원가입 버튼 */
 .sign_up_btn{
-	background: #fccb4e;
-	width: 400px;
+	background: #efefef;
+	width: 65%;
 	height: 55px;
-	color: #fff;
-	font-weight: bold;
-	font-size: 18px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	color: rgb(51, 51, 51);
+	font-size: 15px;
 }
 
+
 .form-floating{
-	margin-left: 100px;
+	margin-left: 80px;
 }
 
 .form-control{	/* 인풋 박스 사이즈 */
