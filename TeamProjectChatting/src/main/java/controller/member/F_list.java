@@ -66,8 +66,6 @@ public class F_list extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
-		
 		// 도현 상진
 		// [10/28]
 		// 끝방번호

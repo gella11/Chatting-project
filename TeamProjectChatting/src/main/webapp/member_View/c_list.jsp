@@ -8,6 +8,7 @@
 </head>
 <body>
 
+	<%@include file="header.jsp"%>
 
 <input style='display: none;' class='mid' value='7'></input>
 
