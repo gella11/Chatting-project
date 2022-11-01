@@ -12,10 +12,7 @@
 
 </head>
 <body>
-	
-				
-	<input style='display: none;' class='mid' value='7'></input>
-	
+	<%@include file="header.jsp"%>
 	<div class="col-sm-6 offset-3 chattingbox"> <!--  채팅 구역  -->
 	
 	

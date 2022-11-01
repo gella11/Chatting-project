@@ -5,20 +5,34 @@
 var clientsocket = null;
 var roomnumber= null;
 var mid = document.querySelector('.mid').value;
-
+let html = '<tr>채팅방 이름</tr><br>';
 
 c_list() 
 function c_list(){
 	$.ajax({
 		url : "/TeamProjectChatting/F_list",
-		data:{"option":2},
+		data:{"option":3 ,"user_num":mid},
 		type:"POST",
 		success : function(re){
 			let json = JSON.parse(re)
-			html='<tr><th>채팅방 이름</th></tr>';
-			html+=`<tr class="roomnumber" value="${json.roomnumber}"><th>${json.cname}</th></tr>`;
-			roomnumber=json.roomnumber;
+			console.log(json)
+			json.forEach(c=>{
+				html+= `<tr class="roomnumber" value="${c.c_num}">${c.c_name}<button onclick='gochat(${c.c_num})'>채팅</button></tr><br>`;
+			})
 			document.querySelector('.clist').innerHTML=html;
+			gochat(0)
+		}
+	})
+}
+
+function gochat(c_num){
+	$.ajax({
+		url : "/TeamProjectChatting/F_list",
+		data:{"option":2 , "c_num":c_num},
+		type:"POST",
+		success : function(re){
+			let json = JSON.parse(re)
+			roomnumber=json.roomnumber;
 			document.querySelector('.btn-primary').click()
 			socket()
 		}
