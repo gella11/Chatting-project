@@ -7,7 +7,6 @@ function f_list(){
 		url : "/TeamProjectChatting/F_list",
 		success : function(re){
 			let list = JSON.parse(re)
-			console.log(re)
 			let html = document.querySelector('.f_list').innerHTML
 			for(let i = 0 ; i<list.length; i++){
 				let l = list[i]
@@ -26,15 +25,10 @@ function chatting(num){
    let chattingnum = num;
    $.ajax({
       url : "/TeamProjectChatting/F_list",
-      data : {"chattingnum" : chattingnum},
+      data : {"chattingnum" : chattingnum, "option" : 1},
       type:"POST",
       success : function(re){
-          let endroom = re
-          document.querySelector('.모델에 넣을 곳').innerHTML = endroom;
-          
-          document.querySelector(".updatemodalhtn").click()
-          
-          
+          location.href='/TeamProjectChatting/member_View/c_list.jsp';
          }
    })
 }

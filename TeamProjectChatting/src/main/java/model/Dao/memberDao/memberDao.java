@@ -31,6 +31,7 @@ public class memberDao extends SuperDao_M {
 		}
 		return false;
 	} // sign_up e
+	
 
 	// [10-30] 회원가입 시 핸드폰 번호 중복 체크 - 허혜영
 	public boolean phone_check( String user_phone ) { // 핸드폰 번호 받아오기

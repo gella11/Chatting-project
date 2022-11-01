@@ -15,9 +15,16 @@
 </head>
 <body>
 	
+	<%@include file="header.jsp"%>
+	
 	<div class="col-sm-6 offset-3 chattingbox"> <!--  채팅 구역  -->
 	
-	
+		<div  class="row">
+			<table class="chattinglist">
+
+			</table>
+		</div>
+		
 		<div class="row"> 
 			<div class="col-sm-4">	<!-- 접속회원목록 -->
 			</div>

@@ -57,7 +57,7 @@ function sign_up() { // [10-26] 허혜영 - 회원가입
 	else if (check.check_icon4 !== '') {
 		document.querySelector('.check_icon4').innerHTML = '입력하신 비밀번호가 올바르지 않습니다'
 	}
-	
+		
 	// [10-30] 허혜영 - 회원가입 최종 검사
 	// 모든 innerHTML이 공백(유효성 검사에서 틀린 것이 없을 때)일 경우 회원 가입 완료
 	else if (  document.querySelector('.check_icon1').innerHTML == ''
@@ -73,18 +73,20 @@ function sign_up() { // [10-26] 허혜영 - 회원가입
 				if (result === 'true') {
 					alert('회원가입이 완료되었습니다.')
 					location.href="../member_View/login.jsp"; // 로그인 페이지로 이동
-				} else {
+				}else {
 					alert('정보를 모두 입력해주세요.');
 
 				}
 			}
 		})
 	}
-} // sign_up e
+} // sign_up e			
 
-
-/* ---- 정규표현식 ---- */
-
+	/* ---- 유효성 검사 ---- */
+	// 메일주소랑 핸드폰번호가 등록되어 있으면 가입안되게 코드 추가 예정
+	
+	/* ---- 정규표현식 ---- */
+	
 // 1. 이름 검사
 function name_check() {
 	let user_name = document.querySelector('#user_name').value;
@@ -155,7 +157,7 @@ function pw_check1() {
 		document.querySelector('.check_icon4').innerHTML = '영문 대소문자와 숫자를 포함한 8~20글자로 입력해 주세요.';
 	}
 }
-
+	
 // 5. 비밀번호 확인 검사
 function pw_check2() {
 	let user_pw = document.querySelector('#user_pw').value;
@@ -166,8 +168,5 @@ function pw_check2() {
 		document.querySelector('.check_icon5').innerHTML = '';
 	}
 }
-
-
-
 
 
