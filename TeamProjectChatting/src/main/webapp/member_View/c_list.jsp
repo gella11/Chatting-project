@@ -13,7 +13,6 @@
 </head>
 <body>
 	
-	
 				
 	<input style='display: none;' class='mid' value='7'></input>
 	
@@ -31,8 +30,8 @@
 		</div> <!-- 채팅 구역 end  -->
 		
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modalasdasd
+<button type="button" style='display: none' class="btn btn-primary modalbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+	강제클릭버튼 안보여야합니다.
 </button>
 
 <!-- Modal -->
@@ -44,7 +43,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <div class='contentbox'>
+        	채팅방 구현할자리.
+        </div>
+        <textarea onkeyup="enterkey()" class='msgbox form-control' rows="" cols=""></textarea>
+        <button class="form-control" type="button" onclick="send()">보내기</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
