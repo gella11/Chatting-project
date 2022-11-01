@@ -28,7 +28,9 @@ function chatting(num){
       data : {"chattingnum" : chattingnum, "option" : 1},
       type:"POST",
       success : function(re){
-          location.href='/TeamProjectChatting/member_View/c_list.jsp';
+
+		location.href='/TeamProjectChatting/member_View/c_list.jsp';
+
          }
    })
 }
