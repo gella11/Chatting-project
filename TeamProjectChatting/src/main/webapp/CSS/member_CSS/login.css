@@ -1,20 +1,36 @@
 @charset "UTF-8";
 
-*{
-	padding: 0;
-	margin: 0;
-}
+
 .box{
-	width: 600px;
-	margin: 400px auto;
+	width: 1200px;
+	height: 800px;
+	margin: 50px auto;
+	background-image: url("2152067 (2).jpg");
 }
+
+.form-control{
+	width: 80%;
+}
+.in_box_two{
+	margin: 0 auto;
+}
+.in_box{
+	width: 500px;
+	height: 100%;
+	margin: 0 auto;
+	padding-top: 100px; 
+	text-align: center;
+	border: 1px solid #ccc;
+	box-shadow: 2px 2px 5px 2px #f2f2f2;
+}
+
 .title{
 	font-size: 60px;
 	text-align: center;
 }
 .btn{
 	size:200px;
-	margin-left: 250px;
+	margin-left: 200px;
 }
 .result{
 	text-align:center;
@@ -22,4 +38,10 @@
 	border-bottom: 1px solid;
     border-radius: 50%;
     transition :1s
+}
+.form-floating{
+	margin-left: 85px
+}
+.logout_box{
+	margin-right: 200px;
 }

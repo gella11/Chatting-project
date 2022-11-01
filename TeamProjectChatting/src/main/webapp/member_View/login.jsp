@@ -10,25 +10,30 @@
 </head>
 <body>
 		
-		
 	<div class="box">
-		<p class="font-monospace title">We are cacaoTalk</p>
-		<p class="font-monospace title">Welcome.</p>
-		
-		<div class="form-floating mb-3">
-			  <input type="email" class="form-control mid" id="floatingInput" placeholder="name@example.com">
- 				 <label for="floatingInput">Email </label>
- 		</div>
- 		
- 		<div class="form-floating mb-3">
- 			 <input type="password" class="form-control mpassword" id="floatingInput" placeholder="name@example.com">
- 			 <label for="floatingInput">password </label>
-		</div>
-		
-			 <button type="button" class="btn btn-secondary btn-lg" onclick="login()">Enter</button>		
-		
-		<div class="font-monospace result">
-			<span style=""></span>
+		<div class="in_box">
+			<p class="font-monospace title">We are cacaoTalk</p>
+			<p class="font-monospace title">Welcome.</p>
+			<div class="in_box_two">
+				<div class="form-floating mb-3">
+					<input type="email" class="form-control mid" id="floatingInput"
+						placeholder="name@example.com"> <label for="floatingInput">Email
+					</label>
+				</div>
+
+				<div class="form-floating mb-3">
+					<input type="password" class="form-control mpassword"
+						id="floatingInput" placeholder="name@example.com"> <label
+						for="floatingInput">password </label>
+				</div>
+				<div class="logout_box">
+					<button type="button" class="btn btn-secondary btn-lg"onclick="login()">Enter</button>
+				</div>
+			</div>
+
+			<div class="font-monospace result">
+				<span style=""></span>
+			</div>
 		</div>
 	</div>
 		
