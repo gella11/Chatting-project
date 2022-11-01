@@ -20,7 +20,7 @@ function c_list(){
 				html+= `<tr class="roomnumber" value="${c.c_num}">${c.c_name}<button onclick='gochat(${c.c_num})'>채팅</button></tr><br>`;
 			})
 			document.querySelector('.clist').innerHTML=html;
-			gochat(0)
+			socket()
 		}
 	})
 }
@@ -34,13 +34,11 @@ function gochat(c_num){
 			let json = JSON.parse(re)
 			roomnumber=json.roomnumber;
 			document.querySelector('.btn-primary').click()
-			socket()
 		}
 	})
 }
 
 function socket(){
-	alert(roomnumber)
 	if (mid != 'null') {
 		// 웹소켓에 서버소켓으로 연결[매핑]
 		clientsocket = new WebSocket('ws://localhost:8081/TeamProjectChatting/chatting/'+mid);
@@ -49,12 +47,14 @@ function socket(){
 		clientsocket.onclose = function(e) { onclose(e) }
 		clientsocket.onmessage = function(e) { onmessage(e) }
 		clientsocket.onerror = function(e) { onerror(e) }
-	} else { alert('로그인이 필요합니다.'); location.href = '../member/login.jsp'; }
-	function onopen(e) { alert(e) }
-	function onclose(e) { alert(e) }  
+	}
+	function onopen(e) {}
+	function onclose(e) {}  
 }
-
-
+ 
+function socketclose(){
+	location.reload();
+}
 
 function send() {
 	let msg = { // 전송할 데이터 객체
@@ -62,6 +62,7 @@ function send() {
 		content: document.querySelector('.msgbox').value, // 작성내용
 		mid: mid,  // 보낸 사람 
 	}
+	
 	clientsocket.send(JSON.stringify(msg));
 	document.querySelector('.msgbox').value = '';
 }
@@ -71,7 +72,7 @@ function enterkey() { if (window.event.keyCode == 13) { send() } }
 function onmessage(e) {
 	let msg = JSON.parse(e.data) // 받은 데이터 객체
 
-	if (msg.type == roomnumber) { //전송타입이 메시지 이면 
+	if (msg.type === roomnumber) { //전송타입이 현재방번호 
 		if (msg.mid == mid) { // 본인 글이면  // 보낸사람 아이디와 접속된 아이디가 동일하면
 			let html = document.querySelector('.contentbox').innerHTML;
 
@@ -91,7 +92,6 @@ function onmessage(e) {
 				'		<div class="recontent"> ' +
 				'			<div class="name">' + msg.mid + '</div>' +
 				'			<span class="content">' + msg.content + '</span>' +
-				'			<span class="date">' + msg.date + '</span>' +
 				'		</div>' +
 				'	</div>' +
 				'</div>';
@@ -99,13 +99,7 @@ function onmessage(e) {
 		}
 		//////////////////////////////////////////////////////////////
 	} 
-	else if (msg.type == 'alarm') {
-		let html = document.querySelector('.contentbox').innerHTML
-		html += '<div class=alarm>' +
-			'				<span>' + msg.content + ' </span>' +
-			'			</div>';
-		document.querySelector('.contentbox').innerHTML = html
-	}
+	
 
 	////////////////////////스크롤 고정 /////////////////////////////// 
 	let top = document.querySelector('.contentbox').scrollTop;
@@ -114,6 +108,6 @@ function onmessage(e) {
 	= document.querySelector('.contentbox').scrollHeight;
 }
 
-function onerror(e) { alert(e) }
+function onerror(e) { }
 
 

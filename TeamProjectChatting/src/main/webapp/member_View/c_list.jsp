@@ -47,7 +47,7 @@
         <button class="form-control" type="button" onclick="send()">보내기</button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" onclick='socketclose()' class="btn btn-secondary">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
