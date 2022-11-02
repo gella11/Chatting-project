@@ -34,11 +34,12 @@ function chatting(num){
       data : {"chattingnum" : chattingnum, "option" : 1},
       type:"POST",
       success : function(re){
-          location.href='/TeamProjectChatting/member_View/c_list.jsp';
+
+		location.href='/TeamProjectChatting/member_View/c_list.jsp';
+
          }
    })
 }
-
 
 // 친구목록 & 채팅방 하단 탭 
 let icon_box = document.querySelector('.icon_box')

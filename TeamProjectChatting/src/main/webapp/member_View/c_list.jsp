@@ -1,33 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<<link rel="stylesheet" href="../CSS/member_CSS/F_list.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
 </head>
 <body>
-
 	<%@include file="header.jsp"%>
-
-<input style='display: none;' class='mid' value='7'></input>
-
-	<div class="col-sm-6 offset-3 chattingbox"> <!--  Ã¤ÆÃ ±¸¿ª  -->
-
-
+	<div class="col-sm-6 offset-3 chattingbox"> <!--  ì±„íŒ… êµ¬ì—­  -->
+	
+	
 		<div class="row"> 
-			<div class="col-sm-4">	<!-- Á¢¼ÓÈ¸¿ø¸ñ·Ï -->
+			<div class="col-sm-4">	<!-- ì ‘ì†íšŒì›ëª©ë¡ -->
 			</div>
-			<div class="col-sm-8">  							<!--  Ä£±¸¸ñ·Ï Ã¢ -->
+			<div class="col-sm-8">  							<!--  ì¹œêµ¬ëª©ë¡ ì°½ -->
 				<table class="f_list my-3 clist">
-
+					
 				</table> 
 			</div>
-		</div> <!-- Ã¤ÆÃ ±¸¿ª end  -->
-
+		</div> <!-- ì±„íŒ… êµ¬ì—­ end  -->
+		
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modalasdasd
+<button type="button" style='display: none' class="btn btn-primary modalbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+	ê°•ì œí´ë¦­ë²„íŠ¼ ì•ˆë³´ì—¬ì•¼í•©ë‹ˆë‹¤.
 </button>
 
 <!-- Modal -->
@@ -39,24 +40,26 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <div class='contentbox'>
+        	ì±„íŒ…ë°© êµ¬í˜„í• ìë¦¬.
+        </div>
+        <textarea onkeyup="enterkey()" class='msgbox form-control' rows="" cols=""></textarea>
+        <button class="form-control" type="button" onclick="send()">ë³´ë‚´ê¸°</button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" onclick='socketclose()' class="btn btn-secondary">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
-
-
-	</div> <!--  ÄÁÅ×ÀÌ³Ê end  -->
-
-
+		
+		
+	</div> <!--  ì»¨í…Œì´ë„ˆ end  -->
+	
+	
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 	<script src="../member_JS/c_list.js" type="text/javascript"></script>
-	
-	
 </body>
 </html>

@@ -20,13 +20,13 @@
 
 </head>
 <body>
-	
+
 	<%@include file="header.jsp"%>
-	
+
 	<div class="container"> <!--  컨테이너  -->
-	
+
 		<div class="flist_box">
-		
+
 			<div class="profile_box"> 
 				<div> 
 					<div class="profile_title">
@@ -47,15 +47,15 @@
 					</div>	
 				</div>
 			</div> <!-- profile_box e -->
-			
-			
+
+
 			<div class="friend_box"> <!-- 친구 목록 출력 -->
 				<div class="friend_title">
 					친구 목록
 				</div>
-				
+
 				<div class="friendlist_box">
-					
+
 					<div class="f_list">
 						<!-- 친구 리스트 js에서 가져와서 출력되는 곳 -->
 						<div class="friend_list">
@@ -70,12 +70,12 @@
 							</div>
 						</div>
 						<!-- 친구 리스트 js에서 가져와서 출력되는 곳 e -->
-						
+
 					</div>
 				</div> <!-- friend_box e -->
 			</div>	<!-- flist_box e -->	
-			
-		
+
+
 		<!-- 하단 탭 아이콘 부분 -->	
 		<div class="icon_box">
 			<div class="side_box">
@@ -85,14 +85,15 @@
 				<div class="tab_list4"><a class="logout" href="/TeamProjectChatting/member_View/login.jsp">Logout</a></div>
 			</div>
 		</div>
-		
+
 		</div> <!-- flist_box e -->
 	</div> <!--  컨테이너 e  -->	
 
-	
+
 
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="../member_JS/F_list.js" type="text/javascript"></script>
+
 	
 </body>
 </html>
