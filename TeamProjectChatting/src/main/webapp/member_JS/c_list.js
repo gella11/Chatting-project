@@ -1,12 +1,14 @@
-/**
- * 
- */
-
-var clientsocket = null;
-var roomnumber= null;
-var mid = document.querySelector('.mid').value;
+//웹소켓
+let clientsocket = null;
+//채팅방번호 변수
+let roomnumber= null;
+//회원번호 변수
+let mid = document.querySelector('.mid').value;
+//채팅방html
 let html = '<tr>채팅방 이름</tr><br>';
 
+
+//11/1 도현 : 나의 채팅방목록 꺼내오기
 c_list() 
 function c_list(){
 	$.ajax({
@@ -24,7 +26,7 @@ function c_list(){
 		}
 	})
 }
-
+// 11/1 도현 : 채팅하기.
 function gochat(c_num){
 	$.ajax({
 		url : "/TeamProjectChatting/F_list",
@@ -37,12 +39,10 @@ function gochat(c_num){
 		}
 	})
 }
-
+// 11/1 도현 채팅소켓여는함수
 function socket(){
 	if (mid != 'null') {
-		// 웹소켓에 서버소켓으로 연결[매핑]
 		clientsocket = new WebSocket('ws://localhost:8081/TeamProjectChatting/chatting/'+mid);
-		// 아래에서 구현 메소드를 객체에 대입
 		clientsocket.onopen = function(e) { onopen(e) }
 		clientsocket.onclose = function(e) { onclose(e) }
 		clientsocket.onmessage = function(e) { onmessage(e) }
@@ -51,24 +51,32 @@ function socket(){
 	function onopen(e) {}
 	function onclose(e) {}  
 }
- 
+
+// 11/1 도현 esc로 소켓끄기 새로고침
+$(document).keyup(function(e) {
+     if (e.key === "Escape") { 
+        location.reload();
+    }
+});
+
+// 11/1 도현 소켓끄기 새로고침
 function socketclose(){
+	//clientsocket.close();
 	location.reload();
 }
-
+//  11/1 도현 메시지보내기
 function send() {
 	let msg = { // 전송할 데이터 객체
 		type: roomnumber,// 일반메시지 
 		content: document.querySelector('.msgbox').value, // 작성내용
-		mid: mid,  // 보낸 사람 
+		mid: mid,  // 보낸 사람 회원번호.
 	}
-	
 	clientsocket.send(JSON.stringify(msg));
 	document.querySelector('.msgbox').value = '';
 }
-
+//  11/1 도현 엔터키로 메시지보내기
 function enterkey() { if (window.event.keyCode == 13) { send() } }
-
+//  11/1 도현 메시지받기
 function onmessage(e) {
 	let msg = JSON.parse(e.data) // 받은 데이터 객체
 
@@ -99,15 +107,12 @@ function onmessage(e) {
 		}
 		//////////////////////////////////////////////////////////////
 	} 
-	
-
 	////////////////////////스크롤 고정 /////////////////////////////// 
-	let top = document.querySelector('.contentbox').scrollTop;
-	let Height = document.querySelector('.contentbox').scrollHeight;
-	  document.querySelector('.contentbox').scrollTop
-	= document.querySelector('.contentbox').scrollHeight;
+	let top = document.querySelector('.chattingbox').scrollTop;
+	let Height = document.querySelector('.chattingbox').scrollHeight;
+	  document.querySelector('.chattingbox').scrollTop
+	= document.querySelector('.chattingbox').scrollHeight;
 }
-
 function onerror(e) { }
 
 

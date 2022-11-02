@@ -139,6 +139,13 @@ public class F_list extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().print(array);
 		}
+		// 11/2 도현 친구추가하기 
+		else if(option == 4) {
+			int user_num = (Integer)request.getSession().getAttribute("user_num");
+			String email = (String)request.getParameter("email");
+			boolean result = chattingDao.getInstacnDao().friendadd(user_num,email);
+			response.getWriter().print(result);
+		}
 		
 		
 		
