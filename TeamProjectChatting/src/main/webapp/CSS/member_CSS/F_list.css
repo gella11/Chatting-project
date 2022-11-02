@@ -1,4 +1,8 @@
 
+body{
+	background: #384576;
+}
+
 /* 전체 크기 */
 .container{
 	width: 1200px;
@@ -11,16 +15,31 @@
 	height: 100%;
 	margin: 0 auto;
 	border: 1px solid #ececed;
-	box-shadow: 2px 2px 5px 2px #f2f2f2;
+	box-shadow: 2px 2px 5px 2px #262f51;
+	background: #fff;
 }
 
-/* 내 프로필 출력 */
+/* 내 프로필 전체 박스 */
 .profile_box{ 
 	height: 150px; /* 프로필 세로 사이즈 */
 	background: #f2f2f2;
 }
 
-.profile_title, .friend_title{
+/* 내 프로필 텍스트 & 친구추가 아이콘 박스 */
+.sub_box{
+	display: flex;
+}
+
+/* 친구추가 아이콘 */
+.friend_plus{
+	width: 25px;
+	height: 20px;
+	margin: 23px 0px 0px 350px;
+}
+
+
+/* 내 프로필 */
+.profile_title{
 	text-align: left;
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 700;
@@ -63,9 +82,21 @@
 
 
 /* 친구 목록 출력 */
+
+.friend_title{
+	text-align: left;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 700;
+	font-size: 20px;
+	padding: 15px 0px 10px 20px;
+	color: #333;
+}
+
 .friend_box{
 	width: 100%;
 	height: 570px; /* 친구 목록 출력 세로 사이즈 */
+	overflow-y: scroll;	/* 세로 스크롤 */ 
+	word-break : break-all; /* 텍스트가 가로 사이즈보다 넘어가면 자동으로 줄바꿈 */
 }
 
 .friend_list{
@@ -136,3 +167,28 @@ a :hover{
 .user:hover, .comment:hover, .more:hover{
 	color:black;
 }
+
+
+
+
+
+/* 스크롤 바 */
+.friendlist_box{
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
