@@ -4,6 +4,11 @@ body{
 }
 
 
+
+body{
+	background: #384576;
+}
+
 /* 전체 크기 */
 .container{
 	width: 1200px;
@@ -91,7 +96,7 @@ form{
 .group{ 
   position:relative; 
   margin-bottom: 25px;
-  
+
 }
 
 input{	/* 인풋박스 */
@@ -169,4 +174,3 @@ input:focus ~ .highlight {
   -moz-animation:inputHighlighter 0.3s ease;
   animation:inputHighlighter 0.3s ease;
 }
-

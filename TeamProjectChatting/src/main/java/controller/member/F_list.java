@@ -75,6 +75,7 @@ public class F_list extends HttpServlet {
 			// [10/28]
 			// 끝방번호
 			int endroom = chattingDao.getInstacnDao().endroom();
+			System.out.println(endroom+"끝방");
 
 			int user_num = (Integer)request.getSession().getAttribute("user_num");
 	
@@ -84,23 +85,34 @@ public class F_list extends HttpServlet {
 		    String f_name = chattingDao.getInstacnDao().findname(f_num);
 		
 		    String c_name = myname+','+f_name;
-		 
-		    boolean result1 = chattingDao.getInstacnDao().chattingroom(endroom, user_num);
-		    boolean result2 = chattingDao.getInstacnDao().chattingroom(endroom, f_num);
-		    System.out.println("내 이름 채팅방 insert : "+ result1);
-		    System.out.println("친구 이름 채팅방 insert :"+result2);
-		    // 도현 상진
-			// [10/28]
-		    // 채팅방 이름 넣기
-		    boolean result3 = chattingDao.getInstacnDao().chattingroomname(endroom,c_name);
-		    System.out.println("채팅창 이름 넣기"+result3);
+		    String r_name = f_name+','+myname;
+		    boolean nameresult = chattingDao.getInstacnDao().findroom(c_name , r_name);
+		    System.out.println(nameresult+"중복검사");
 		    
-		    HttpSession session = request.getSession();// 세션값 요청객체
-			session.setAttribute("c_name", c_name);
-			session.setAttribute("roomnumber", endroom+1);
-			
-		    response.setCharacterEncoding("UTF-8");
-			response.getWriter().print(endroom+1);
+		    if(nameresult == true) {
+		    	
+		    	boolean result1 = chattingDao.getInstacnDao().chattingroom(endroom, user_num);
+			    boolean result2 = chattingDao.getInstacnDao().chattingroom(endroom, f_num);
+			    System.out.println("내 이름 채팅방 insert : "+ result1);
+			    System.out.println("친구 이름 채팅방 insert :"+result2);
+			    // 도현 상진
+				// [10/28]
+			    // 채팅방 이름 넣기
+			    boolean result3 = chattingDao.getInstacnDao().chattingroomname(endroom,c_name);
+			    System.out.println("채팅창 이름 넣기"+result3);
+			    
+			    HttpSession session = request.getSession();// 세션값 요청객체
+				session.setAttribute("c_name", c_name);
+				session.setAttribute("roomnumber", endroom+1);
+				
+			    response.setCharacterEncoding("UTF-8");
+				response.getWriter().print(endroom+1);
+		    }else {
+		    	response.getWriter().print(!nameresult);
+		    }
+		    
+		    
+		    
 		}else if( option == 2) {
 			response.setCharacterEncoding("UTF-8");
 			int c_num = Integer.parseInt(request.getParameter("c_num"));
@@ -139,6 +151,13 @@ public class F_list extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().print(array);
 		}
+		// 11/2 도현 친구추가하기 
+      else if(option == 4) {
+         int user_num = (Integer)request.getSession().getAttribute("user_num");
+         String email = (String)request.getParameter("email");
+         boolean result = chattingDao.getInstacnDao().friendadd(user_num,email);
+         response.getWriter().print(result);
+      }
 		
 	}
 

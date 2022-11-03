@@ -47,31 +47,26 @@ body{
 	padding: 15px 0px 10px 20px;
 	color: #333;
 }
-
 .profile_con_box{
 	padding-left: 20px;
 	display: flex;
 }
-
 .user_profile{
 	width: 80px;
 	height: 80px;
 	background: #f5de8d;
 	border-radius: 20px;
 }
-
 .profile_text_box{
 	width: 100%;
 	padding: 5px 0px 5px 15px;
 }
-
 .user_name{ /* 프로필 이름 */
 	font-size: 18px;
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 500;
 	color: #333;
 }
-
 .user_msg{ /* 프로필 메세지 */
 	padding-top: 5px;
 	font-size: 13px;
@@ -105,30 +100,25 @@ body{
 	margin : 5px 0px;
 	background: rgb(247, 247, 247);
 }
-
 .friend_con_box{
 	display: flex;
 	padding-top: 15px;
 }
-
 .friend_img{
 	width: 60px;
 	height: 60px;
 	background: #f5de8d;
 	border-radius: 15px;
 }
-
 .friend_text_box{
 	padding: 5px 0px 0px 20px;
 }
-
 .friend_name{
 	font-size: 17px;
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 400;
 	color: #333;
 }
-
 .friend_msg{
 	padding-top: 5px;
 	font-size: 16px;
@@ -136,7 +126,6 @@ body{
 	font-weight: 300;
 	color: #818181;
 }
-
 /* 하단 탭 아이콘 부분 */
 .icon_box{
 	width: 500px;
@@ -144,17 +133,14 @@ body{
 	background: #ececed;
 	position: absolute;
 }
-
 .side_box{
 	display: flex;
 	justify-content: space-around;
 	padding-top: 25px;
 }
-
 a :hover{
 	text-decoration: none;
 }
-
 .user, .comment, .more{ /* 아이콘 모두 */
 	font-size: 30px;
 	color: #c7c8ca;
@@ -174,21 +160,5 @@ a :hover{
 
 /* 스크롤 바 */
 .friendlist_box{
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

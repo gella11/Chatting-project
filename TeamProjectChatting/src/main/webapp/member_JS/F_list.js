@@ -1,6 +1,5 @@
 
-// 도현 상진
-// [10/28]
+//10/28 도현,상진 친구리스트 가져오기.
 f_list()
 function f_list(){
 	$.ajax({
@@ -26,7 +25,7 @@ function f_list(){
 		}
 	})
 }
-
+//10/28 도현,상진 채팅방생성 후 채팅창으로 넘어가기.
 function chatting(num){
    let chattingnum = num;
    $.ajax({
@@ -34,10 +33,8 @@ function chatting(num){
       data : {"chattingnum" : chattingnum, "option" : 1},
       type:"POST",
       success : function(re){
-
 		location.href='/TeamProjectChatting/member_View/c_list.jsp';
-
-         }
+       }
    })
 }
 
@@ -48,4 +45,19 @@ let container = document.querySelector('.container')
 //변환이벤트
 function tabchange(page){
 	$(".container").load(page)// 특정 태그에 해당 파일 로드 [ jquery ]
+}
+
+//11/2 도현 모달에서 친구추가하기.
+function friendadd(){
+   let email = document.querySelector('.f_email').value;
+   $.ajax({
+      url : "/TeamProjectChatting/F_list",
+      data : {"email" : email, "option" : 4},
+      type:"POST",
+      success : function(re){
+      if(re=='true'){
+         location.reload();
+      }else{alert('이메일을 확인해주세요')}
+      }
+   })
 }
