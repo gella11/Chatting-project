@@ -1,0 +1,86 @@
+/* [11-03] 허혜영 CSS 추가 */
+
+.bodybg{
+	background: #384576;
+	color: #fff;
+}
+
+/* 전체 크기 */
+.c_container{
+	width: 1200px;
+	height: 800px;
+	margin: 50px auto;
+}
+
+.chatting_rbox{ 
+	width: 500px;
+	height: 100%;
+	margin: 0 auto;
+	border: 1px solid #ececed;
+	box-shadow: 2px 2px 5px 2px #262f51;
+	background: #fff;
+}
+
+
+
+
+
+/* 채팅방 목록 출력 */
+
+.friend_title{
+	text-align: left;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 700;
+	font-size: 20px;
+	padding: 15px 0px 10px 20px;
+	color: #333;
+}
+
+.friendlist_box{
+	width: 100%;
+	height: 670px; /* 친구 목록 출력 세로 사이즈 */
+}
+
+.f_list{
+	height: 100%;
+	overflow-y: scroll;	/* 세로 스크롤 */ 
+	word-break : break-all; /* 텍스트가 가로 사이즈보다 넘어가면 자동으로 줄바꿈 */
+}
+
+.friend_list{
+	height: 100px;	
+	padding: 5px 20px;
+	margin : 5px 0px;
+	background: #f7f7f7;
+}
+
+.friend_con_box{
+	display: flex;
+	padding-top: 15px;
+}
+
+.friend_img{
+	width: 60px;
+	height: 60px;
+	background: #f5de8d;
+	border-radius: 15px;
+}
+
+.friend_text_box{
+	padding: 5px 0px 0px 20px;
+}
+
+.friend_name{
+	font-size: 17px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	color: #333;
+}
+
+.friend_msg{
+	padding-top: 5px;
+	font-size: 16px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 300;
+	color: #818181;
+}

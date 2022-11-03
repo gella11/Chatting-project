@@ -98,9 +98,8 @@
 	height: 100px;	
 	padding: 5px 20px;
 	margin : 5px 0px;
-	background: #f7f7f7;
+	background: rgb(247, 247, 247);
 }
-
 .friend_con_box{
 	display: flex;
 	padding-top: 15px;
@@ -128,9 +127,11 @@
 	color: #818181;
 }
 
+
+
 /* 하단 탭 아이콘 부분 */
 .icon_box{
-	width: 499px;
+	width: 500px;
 	height: 80px; /* 탭 부분 세로 사이즈 */
 	background: #ececed;
 	position: absolute;
@@ -156,11 +157,3 @@ a :hover{
 	color:black;
 }
 
-
-
-
-
-/* 스크롤 바 */
-.friendlist_box{
-
-}
