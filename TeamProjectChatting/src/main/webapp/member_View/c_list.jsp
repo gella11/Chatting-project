@@ -28,38 +28,36 @@
 		
 <!-- Button trigger modal -->
 <button type="button" style='display: none' class="btn btn-primary modalbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-	강제클릭버튼 안보여야합니다.
+   강제클릭버튼 안보이는부분.
 </button>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" onclick='socketclose()' data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class='contentbox'>
-        	채팅방 구현할자리.
+           채팅방 구현할자리.
         </div>
         <textarea onkeyup="enterkey()" class='msgbox form-control' rows="" cols=""></textarea>
         <button class="form-control" type="button" onclick="send()">보내기</button>
       </div>
       <div class="modal-footer">
         <button type="button" onclick='socketclose()' class="btn btn-secondary">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
-		
-		
-	</div> <!--  컨테이너 end  -->
-	
-	
-	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-	<script src="../member_JS/c_list.js" type="text/javascript"></script>
+      
+      
+   </div> <!--  컨테이너 end  -->
+   
+   
+   <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+   <script src="../member_JS/c_list.js" type="text/javascript"></script>
 </body>
 </html>

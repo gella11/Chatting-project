@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="../CSS/member_CSS/F_list.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -28,9 +27,12 @@
 		<div class="flist_box">
 
 			<div class="profile_box"> 
-				<div> 
+				<div class="sub_box"> 
 					<div class="profile_title">
 						내 프로필
+					</div>
+					<div> <!--  친구추가 아이콘 -->
+						<img onclick="" class="friend_plus" src="../img/user_plus.png">
 					</div>
 				</div>	
 				<div class="profile_con_box">
@@ -74,7 +76,27 @@
 					</div>
 				</div> <!-- friend_box e -->
 			</div>	<!-- flist_box e -->	
-
+		
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+		  친구추가버튼(숨길예정)
+		</button>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h1 class="modal-title fs-5" id="staticBackdropLabel"> 친구를 추가하세요 ! </h1>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <span>친구 e-mail 입력 : </span> <input type="email" class='f_email'>
+		        <button class="form-control" type="button" onclick="friendadd()">친구 추가</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
 
 		<!-- 하단 탭 아이콘 부분 -->	
 		<div class="icon_box">
@@ -93,6 +115,7 @@
 
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="../member_JS/F_list.js" type="text/javascript"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 	
 </body>

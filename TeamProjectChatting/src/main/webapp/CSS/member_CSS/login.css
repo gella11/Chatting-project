@@ -1,25 +1,57 @@
 @charset "UTF-8";
 
-*{
-	padding: 0;
-	margin: 0;
+body{
+	background-color: #384576;
 }
-.box{
-	width: 600px;
-	margin: 400px auto;
+.box {
+	width: 1200px;
+	height: 800px;
+	margin: 50px auto;
 }
-.title{
-	font-size: 60px;
+
+.form-control {
+	width: 73%;
+}
+.in_box_two {
+	margin: 0 auto;
+}
+
+.in_box {
+	width: 500px;
+	height: 100%;
+	height: 800px;
+	margin: 0 auto;
+	padding-top: 100px;
 	text-align: center;
+	position: absolute;
+	border: 1px solid #ececed; box-shadow : 2px 2px 5px 2px #f2f2f2;
+	background : #fff; left : 715px;
+	opacity: 100%; /* 위에서 0만큼 떨어짐 */
+	transition: 2.0s /* [애니메이션 효과] 트랜지션 (css 변경 시간 (초)*/;
+	left: 715px;
+	box-shadow: 2px 2px 5px 2px #262f51;
+	background: #fff;
 }
-.btn{
-	size:200px;
-	margin-left: 250px;
+
+.title {
+	font-size: 47px;
+	text-align: center;
+	margin-right: 25px;
 }
-.result{
-	text-align:center;
+
+.btn {
+	size: 200px;
+	margin-left: 200px;
+}
+
+.result {
+	text-align: center;
 	padding-top: 50px;
-	border-bottom: 1px solid;
-    border-radius: 50%;
-    transition :1s
+}
+
+.form-floating {
+	margin-left: 85px
+}
+.logout_box {
+	margin-right: 216px;
 }
