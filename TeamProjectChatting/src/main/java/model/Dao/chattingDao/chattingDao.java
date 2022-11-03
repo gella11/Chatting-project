@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import model.Dto.memberDto.F_list_Dto;
+import model.Dto.memberDto.chattingDto;
 import model.Dto.memberDto.singUp_Dto;
 
 
@@ -195,7 +196,43 @@ public class chattingDao extends SuperDao_C{
      }
        return false;
     }
-  	
+    //채팅저장
+    public boolean setchat(String type , String mid , String content) {
+    	String sql = "insert into usechat(c_num,from_num,c_content) values(?,?,?);";
+    	try {
+    		ps = con.prepareStatement(sql);
+    		ps.setString(1, type );
+  			ps.setString(2, mid );
+  			ps.setString(3, content );
+  			ps.executeUpdate();
+  			return true;
+		} 
+    	catch (Exception e) {
+    		System.out.println(e);
+		}
+    	return false;
+    }
+  	//채팅가져오기
+    public ArrayList<chattingDto> getchat(int cno){
+    	ArrayList<chattingDto> list = new ArrayList<>();
+    	String sql = "select*from usechat where c_num="+cno; 
+    	try {
+    		 ps = con.prepareStatement(sql);
+             rs = ps.executeQuery();
+             while(rs.next()) {
+            	 chattingDto dto = new chattingDto(
+            			 rs.getString(1),
+            			 rs.getString(2),
+            			 rs.getString(3));
+            	 list.add(dto);
+             }
+             return list;
+		} 
+    	catch (Exception e) {
+			System.out.println(e);
+		}
+    	return null;
+    }
   	
   	
   	

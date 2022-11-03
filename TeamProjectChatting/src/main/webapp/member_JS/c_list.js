@@ -23,7 +23,6 @@ function c_list(){
 				html+= `<tr class="roomnumber" value="${c.c_num}">${c.c_name}<button onclick='gochat(${c.c_num})'>채팅</button></tr><br>`;
 			})
 			document.querySelector('.clist').innerHTML=html;
-			socket()
 		}
 	})
 }
@@ -38,6 +37,7 @@ function gochat(c_num){
 			let json = JSON.parse(re)
 			roomnumber=json.roomnumber;
 			document.querySelector('.btn-primary').click()
+			socket()
 		}
 	})
 }
@@ -62,19 +62,29 @@ $(document).keyup(function(e) {
         location.reload();
     }
 });
- 
 // 11/1 도현 소켓끄기 새로고침
 function socketclose(){
-   //clientsocket.close();
    location.reload();
 }
+
+
 //  11/1 도현 메시지보내기
 function send() {
+	let msgcontent = document.querySelector('.msgbox').value;
 	let msg = { // 전송할 데이터 객체
 		type: roomnumber,// 일반메시지 
-		content: document.querySelector('.msgbox').value, // 작성내용
+		content: msgcontent, // 작성내용
 		mid: mid,  // 보낸 사람 회원번호.
 	}
+	$.ajax({
+		url : "/TeamProjectChatting/F_list",
+		data:{"option":5 , "type":roomnumber, "content":msgcontent , "mid":mid},
+		async:false,
+		type:"POST",
+		success : function(re){
+			if(re=='false'){return;}
+		}
+	})
 	clientsocket.send(JSON.stringify(msg));
 	document.querySelector('.msgbox').value = '';
 }
@@ -83,7 +93,6 @@ function enterkey() { if (window.event.keyCode == 13) { send() } }
 //  11/1 도현 메시지받기
 function onmessage(e) {
 	let msg = JSON.parse(e.data) // 받은 데이터 객체
-
 	if (msg.type === roomnumber) { //전송타입이 현재방번호 
 		if (msg.mid == mid) { // 본인 글이면  // 보낸사람 아이디와 접속된 아이디가 동일하면
 			let aahtml = document.querySelector('.contentbox').innerHTML;

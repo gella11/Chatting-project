@@ -91,7 +91,7 @@
             </div>
             <div class="modal-body">
               <span>친구 e-mail 입력 : </span> <input type="text" class='f_email'>
-              <button class="form-control" type="button" onclick="friendadd()">친구 추가</button>
+              <button class="form-control" type="button" data-bs-dismiss="modal" onclick="friendadd()">친구 추가</button>
             </div>
           </div>
         </div>

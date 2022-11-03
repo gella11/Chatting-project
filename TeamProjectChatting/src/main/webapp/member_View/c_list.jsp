@@ -25,34 +25,32 @@
 				</table> 
 			</div>
 		</div> <!-- 채팅 구역 end  -->
-		
-<!-- Button trigger modal -->
-<button type="button" style='display: none' class="btn btn-primary modalbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-
-	강제클릭버튼 안보이는부분.
-
-</button>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" onclick='socketclose()' data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class='contentbox'>
-           채팅방 구현할자리.
-        </div>
-        <textarea onkeyup="enterkey()" class='msgbox form-control' rows="" cols=""></textarea>
-        <button class="form-control" type="button" onclick="send()">보내기</button>
-      </div>
-      <div class="modal-footer">
-        <button type="button" onclick='socketclose()' class="btn btn-secondary">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+	<button type="button" style='display: none' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+	  강제클릭버튼 안보이는부분.
+	</button>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+	        <button type="button" class="btn-close" onclick='socketclose()' data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        <div class='contentbox'>
+	           채팅방 구현할자리.
+	        </div>
+	        <textarea onkeyup="enterkey()" class='msgbox form-control' rows="" cols=""></textarea>
+	        <button class="form-control" type="button" onclick="send()">보내기</button>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" onclick='socketclose()' data-bs-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Understood</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
       
       
    </div> <!--  컨테이너 end  -->
