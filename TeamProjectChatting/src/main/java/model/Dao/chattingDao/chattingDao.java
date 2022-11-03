@@ -196,7 +196,42 @@ public class chattingDao extends SuperDao_C{
      }
        return false;
     }
+    
+    
+    // 프로필 변경
+ 	public boolean setinfo(String user_num , String user_profile, String user_msg) {
+ 		String sql = "update user set user_profile = ? and user_msg = ? where user_num = ?";
+ 		try {
+ 			ps = con.prepareStatement(sql);
+ 			ps.setString(1, user_profile);
+ 			ps.setString(2, user_msg);
+ 			ps.setString(3, user_num);
+ 			ps.executeUpdate(); return true;
+ 		}catch (Exception e) { System.out.println(e);	} return false;
+ 	}
   	
+ 	// 내 정보 가져와서 띄어주기
+ 	public singUp_Dto my_info(int my_num) {
+ 		String sql ="select * from user where user_num = ?";
+ 		try {
+ 			ps = con.prepareStatement(sql);
+ 			ps.setInt(1 , my_num);
+ 			rs = ps.executeQuery();
+ 			if(rs.next()) {
+ 				singUp_Dto dto = new singUp_Dto(
+ 						rs.getInt(1),
+ 						rs.getString(2),
+ 						rs.getString(3),
+ 						rs.getString(4),
+ 						rs.getString(5),
+ 						rs.getString(6),
+ 						rs.getString(7)
+ 						);
+ 				return dto;
+ 			}
+ 		} catch (Exception e) {System.out.println(e);}
+ 		return null;
+ 	}
   	
   	
   	

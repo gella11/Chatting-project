@@ -77,11 +77,11 @@
 				</div> <!-- friend_box e -->
 			</div>	<!-- flist_box e -->	
 		
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+		<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 		  친구추가버튼(숨길예정)
 		</button>
 		
-		<!-- Modal -->
+		Modal
 		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -92,6 +92,38 @@
 		      <div class="modal-body">
 		        <span>친구 e-mail 입력 : </span> <input type="email" class='f_email'>
 		        <button class="form-control" type="button" onclick="friendadd()">친구 추가</button>
+		      </div>
+		    </div>
+		  </div>
+		</div> -->
+		
+		<button type="button" class="btn btn-primary2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+		 프로필변경
+		</button>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h1 class="modal-title fs-5" id="staticBackdropLabel"> 프로필 변경 ! </h1>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		      
+	
+		        <form class="updateform">
+					상메 : 	<input type="text" name="user_msg"  	class="user_msg" > <br>
+					상품대표이미지: <input type="file" id="pimg" name="pimg"> <br>
+					<div> <!-- 폼에 등록된 첨부파일[이미지만] 미리보기 -->
+						<img alt="" src="" id="pimgpre">
+					</div> <br>
+			 	</form>
+			 	
+	      </div>
+		        
+		        
+		        <button class="form-control" type="button" onclick="infomodify()">프로필 변경</button>
 		      </div>
 		    </div>
 		  </div>
