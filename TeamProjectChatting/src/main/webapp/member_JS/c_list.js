@@ -14,6 +14,7 @@ function c_list(){
 	$.ajax({
 		url : "/TeamProjectChatting/F_list",
 		data:{"option":3 ,"user_num":mid},
+		async:false,
 		type:"POST",
 		success : function(re){
 			let json = JSON.parse(re)
@@ -31,6 +32,7 @@ function gochat(c_num){
 	$.ajax({
 		url : "/TeamProjectChatting/F_list",
 		data:{"option":2 , "c_num":c_num},
+		async:false,
 		type:"POST",
 		success : function(re){
 			let json = JSON.parse(re)
@@ -42,7 +44,9 @@ function gochat(c_num){
 // 11/1 도현 채팅소켓여는함수
 function socket(){
 	if (mid != 'null') {
-		clientsocket = new WebSocket('ws://localhost:8081/TeamProjectChatting/chatting/'+mid);
+		// 웹소켓에 서버소켓으로 연결[매핑]
+		clientsocket = new WebSocket('ws://localhost:8080/TeamProjectChatting/chatting/'+mid);
+		// 아래에서 구현 메소드를 객체에 대입
 		clientsocket.onopen = function(e) { onopen(e) }
 		clientsocket.onclose = function(e) { onclose(e) }
 		clientsocket.onmessage = function(e) { onmessage(e) }
@@ -58,11 +62,11 @@ $(document).keyup(function(e) {
         location.reload();
     }
 });
-
+ 
 // 11/1 도현 소켓끄기 새로고침
 function socketclose(){
-	//clientsocket.close();
-	location.reload();
+   //clientsocket.close();
+   location.reload();
 }
 //  11/1 도현 메시지보내기
 function send() {
@@ -82,28 +86,22 @@ function onmessage(e) {
 
 	if (msg.type === roomnumber) { //전송타입이 현재방번호 
 		if (msg.mid == mid) { // 본인 글이면  // 보낸사람 아이디와 접속된 아이디가 동일하면
-			let html = document.querySelector('.contentbox').innerHTML;
+			let aahtml = document.querySelector('.contentbox').innerHTML;
 
-			html += '<div class="secontent my-3"> ' +
+			aahtml += '<div class="secontent my-3"> ' +
 				//'<span class="date"> ' + msg.date + ' </span>' +
 				'<span class="content"> ' + msg.content + ' </span>' +
 				'</div>';
-			document.querySelector('.contentbox').innerHTML = html
+			document.querySelector('.contentbox').innerHTML = aahtml
 
 		} else { // 본인 글이 아니면 
-			let html = document.querySelector('.contentbox').innerHTML;
-			html += '<div class="row g-0 my-3">' +
-				'	<div class="col-sm-1 mx-2">' +
-				'		<img width="100%;" class="rounded-circle" alt="" src="/jspweb/img/' + msg.img + '">' +
-				'	</div>' +
-				'	<div class="col-sm-9"> ' +
-				'		<div class="recontent"> ' +
-				'			<div class="name">' + msg.mid + '</div>' +
-				'			<span class="content">' + msg.content + '</span>' +
-				'		</div>' +
-				'	</div>' +
+			let bbhtml = document.querySelector('.contentbox').innerHTML;
+
+			bbhtml += '<div class="secontent my-3"> ' +
+				//'<span class="date"> ' + msg.date + ' </span>' +
+				'<span class="content"> 다른사람 글' + msg.content + ' </span>' +
 				'</div>';
-			document.querySelector('.contentbox').innerHTML = html
+			document.querySelector('.contentbox').innerHTML = bbhtml
 		}
 		//////////////////////////////////////////////////////////////
 	} 
@@ -114,5 +112,6 @@ function onmessage(e) {
 	= document.querySelector('.chattingbox').scrollHeight;
 }
 function onerror(e) { }
+
 
 

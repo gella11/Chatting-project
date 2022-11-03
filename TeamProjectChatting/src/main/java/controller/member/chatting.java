@@ -16,17 +16,18 @@ public class chatting{
 
 	@OnOpen //서버웹소켓 들어옴
 	public void onOpen(Session session , @PathParam("mid") String mid) throws IOException {
+		System.out.println(mid+"들어옴");
 		clients.put(session,mid);
 	}
 	
 	@OnClose //서버웹소켓 나감 -- 닫기요청시 , 서버재부팅시 , 새로고침시
 	public void onClose(Session session) throws IOException {
-		String mid=clients.get(session);
 		clients.remove(session);		
 	}
 	
 	@OnMessage //메시지 들어옴  
 	public void onMessage(Session session , String msg) throws IOException {
+		System.out.println(msg);
 		for(Session s: clients.keySet()) {
 			s.getBasicRemote().sendText(msg);
 		}
