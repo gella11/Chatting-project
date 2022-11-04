@@ -18,7 +18,7 @@
 
 
 </head>
-<body>
+<body class="bodybg">
 
 	<%@include file="header.jsp"%>
 
@@ -72,8 +72,8 @@
 							</div>
 						</div>
 						<!-- 친구 리스트 js에서 가져와서 출력되는 곳 e -->
-
 					</div>
+					
 				</div> <!-- friend_box e -->
 			</div>	<!-- flist_box e -->	
 		

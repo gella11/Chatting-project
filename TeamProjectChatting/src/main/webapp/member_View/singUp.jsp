@@ -10,21 +10,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- CSS 초기화 -->
 	<link rel="stylesheet" href="https://unpkg.com/destyle.css@1.0.5/destyle.css">
-<<<<<<< HEAD
 
 	<!-- 구글 폰트 노토산스 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-=======
-	
-	<!-- 구글 폰트 노토산스 -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-	
->>>>>>> refs/remotes/origin/hhy
 	<!-- 부트스트랩 CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<!-- CSS -->

@@ -1,5 +1,5 @@
-v
-body{
+
+.bodybg{
 	background: #384576;
 }
 
@@ -126,6 +126,9 @@ body{
 	font-weight: 300;
 	color: #818181;
 }
+
+
+
 /* 하단 탭 아이콘 부분 */
 .icon_box{
 	width: 500px;
@@ -154,11 +157,3 @@ a :hover{
 	color:black;
 }
 
-
-
-
-
-/* 스크롤 바 */
-.friendlist_box{
-
-}

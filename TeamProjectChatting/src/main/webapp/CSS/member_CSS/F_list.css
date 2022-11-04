@@ -1,5 +1,5 @@
 
-body{
+.bodybg{
 	background: #384576;
 }
 
@@ -98,8 +98,9 @@ body{
 	height: 100px;	
 	padding: 5px 20px;
 	margin : 5px 0px;
-	background: rgb(247, 247, 247);
+	background: #f7f7f7;
 }
+
 .friend_con_box{
 	display: flex;
 	padding-top: 15px;
@@ -126,9 +127,10 @@ body{
 	font-weight: 300;
 	color: #818181;
 }
+
 /* 하단 탭 아이콘 부분 */
 .icon_box{
-	width: 500px;
+	width: 499px;
 	height: 80px; /* 탭 부분 세로 사이즈 */
 	background: #ececed;
 	position: absolute;

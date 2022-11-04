@@ -5,7 +5,7 @@ let roomnumber= null;
 //회원번호 변수
 let mid = document.querySelector('.mid').value;
 //채팅방html
-let html = '<tr>채팅방 이름</tr><br>';
+let html = '';
 
 
 //11/1 도현 : 나의 채팅방목록 꺼내오기
@@ -19,9 +19,21 @@ function c_list(){
 			let json = JSON.parse(re)
 			console.log(json)
 			json.forEach(c=>{
-				html+= `<tr class="roomnumber" value="${c.c_num}">${c.c_name}<button onclick='gochat(${c.c_num})'>채팅</button></tr><br>`;
+				html+= 	'<div class="friend_list roomnumber" onclick="gochat('+c.c_num+')">'
+					+ '<div class="friend_con_box">'				
+					+ '<div>'					
+					+ '<img class="friend_img" alt="" src="../img/망햄터.png">'						
+					+ '</div>'					 
+					+ '<div class="friend_text_box">'					
+					+ '<div class="friend_name"> '+ c.c_name +' </div>'						
+					+ '<div class="friend_msg"> 뭐해 </div>'						
+					+ '</div>'					
+					+ '</div>'				
+					+ '</div>'
+				
+				// `<tr class="roomnumber">${c.c_name}<button onclick='gochat(${c.c_num})'>채팅</button></tr><br>`;
 			})
-			document.querySelector('.clist').innerHTML=html;
+			document.querySelector('.clist').innerHTML = html;
 			socket()
 		}
 	})
@@ -94,7 +106,7 @@ function onmessage(e) {
 				'<span class="content"> ' + msg.content + ' </span>' +
 				'</div>';
 			document.querySelector('.contentbox').innerHTML = html
-
+		console.log("mid1 "+mid)
 		} else { // 본인 글이 아니면 
 			let html = document.querySelector('.contentbox').innerHTML;
 			html += '<div class="row g-0 my-3">' +
@@ -109,6 +121,7 @@ function onmessage(e) {
 				'	</div>' +
 				'</div>';
 			document.querySelector('.contentbox').innerHTML = html
+			console.log("mid2 "+mid)
 		}
 		//////////////////////////////////////////////////////////////
 	} 
