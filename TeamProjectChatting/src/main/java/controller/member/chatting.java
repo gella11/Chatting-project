@@ -29,6 +29,7 @@ public class chatting{
 	public void onMessage(Session session , String msg) throws IOException {
 		for(Session s: clients.keySet()) {
 			s.getBasicRemote().sendText(msg);
+			System.out.println("소켓"+msg);
 		}
 	}
 }

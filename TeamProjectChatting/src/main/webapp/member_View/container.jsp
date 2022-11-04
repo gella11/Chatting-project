@@ -5,23 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<link rel="stylesheet" href="../CSS/member_CSS/F_list.css">
-
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-<!-- 구글 폰트 노토산스 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-
-
+<link rel="stylesheet" href="../CSS/member_CSS/container.css">
 </head>
 <body>
-
 	<%@include file="header.jsp"%>
-
+	<input type="text" value="<%=user_num%>">
 	<div class="container"> <!--  컨테이너  -->
 
 		<div class="flist_box" id="flist_box">
@@ -72,35 +60,16 @@
 							</div>
 						</div>
 						<!-- 친구 리스트 js에서 가져와서 출력되는 곳 e -->
-
 					</div>
 				</div> <!-- friend_box e -->
 			</div>	<!-- flist_box e -->	
 		
-		
-		<!-- Modal -->
-		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h1 class="modal-title fs-5" id="staticBackdropLabel"> 친구를 추가하세요 ! </h1>
-		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		      </div>
-		      <div class="modal-body">
-		        <span>친구 e-mail 입력 : </span> <input type="email" class='f_email'>
-		        <button class="form-control" type="button" onclick="friendadd()">친구 추가</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		
-
 		<!-- 하단 탭 아이콘 부분 -->	
 		<div class="icon_box">
 			<div class="side_box">
-				<div class="tab_list1"><a onclick="tabchange('F_list.jsp')"><i class="fas fa-user user"></i></a></div>
+				<div class="tab_list1"><a onclick="tabchange('F_list.jsp')<%=user_num%>"><i class="fas fa-user user"></i></a></div>
 				<div class="tab_list2"><a onclick="tabchange('c_list.jsp')"><i class="fas fa-comment comment"></i></a></div>
-				<div class="tab_list3"><a onclick="tabchange('F_list.jsp')"><i class="fas fa-ellipsis-h more"></i></a></div>
+				<div class="tab_list3"><a onclick="tabchange('other.jsp')"><i class="fas fa-ellipsis-h more"></i></a></div>
 				<div class="tab_list4"><a class="logout" href="/TeamProjectChatting/member_View/login.jsp">Logout</a></div>
 			</div>
 		</div>
@@ -111,8 +80,8 @@
 
 
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-	<script src="../member_JS/F_list.js" type="text/javascript"></script>
+	<script src="../member_JS/container.js" type="text/javascript"></script>
+		<script src="../member_JS/F_list.js" type="text/javascript"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 	

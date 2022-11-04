@@ -1,0 +1,164 @@
+v
+body{
+	background: #384576;
+}
+
+/* 전체 크기 */
+.container{
+	width: 1200px;
+	height: 800px;
+	margin: 50px auto;
+}
+
+.flist_box{ 
+	width: 500px;
+	height: 100%;
+	margin: 0 auto;
+	border: 1px solid #ececed;
+	box-shadow: 2px 2px 5px 2px #262f51;
+	background: #fff;
+}
+
+/* 내 프로필 전체 박스 */
+.profile_box{ 
+	height: 150px; /* 프로필 세로 사이즈 */
+	background: #f2f2f2;
+}
+
+/* 내 프로필 텍스트 & 친구추가 아이콘 박스 */
+.sub_box{
+	display: flex;
+}
+
+/* 친구추가 아이콘 */
+.friend_plus{
+	width: 25px;
+	height: 20px;
+	margin: 23px 0px 0px 350px;
+}
+
+
+/* 내 프로필 */
+.profile_title{
+	text-align: left;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 700;
+	font-size: 20px;
+	padding: 15px 0px 10px 20px;
+	color: #333;
+}
+.profile_con_box{
+	padding-left: 20px;
+	display: flex;
+}
+.user_profile{
+	width: 80px;
+	height: 80px;
+	background: #f5de8d;
+	border-radius: 20px;
+}
+.profile_text_box{
+	width: 100%;
+	padding: 5px 0px 5px 15px;
+}
+.user_name{ /* 프로필 이름 */
+	font-size: 18px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 500;
+	color: #333;
+}
+.user_msg{ /* 프로필 메세지 */
+	padding-top: 5px;
+	font-size: 13px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	color: #333;
+}
+
+
+/* 친구 목록 출력 */
+
+.friend_title{
+	text-align: left;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 700;
+	font-size: 20px;
+	padding: 15px 0px 10px 20px;
+	color: #333;
+}
+
+.friend_box{
+	width: 100%;
+	height: 570px; /* 친구 목록 출력 세로 사이즈 */
+	overflow-y: scroll;	/* 세로 스크롤 */ 
+	word-break : break-all; /* 텍스트가 가로 사이즈보다 넘어가면 자동으로 줄바꿈 */
+}
+
+.friend_list{
+	height: 100px;	
+	padding: 5px 20px;
+	margin : 5px 0px;
+	background: rgb(247, 247, 247);
+}
+.friend_con_box{
+	display: flex;
+	padding-top: 15px;
+}
+.friend_img{
+	width: 60px;
+	height: 60px;
+	background: #f5de8d;
+	border-radius: 15px;
+}
+.friend_text_box{
+	padding: 5px 0px 0px 20px;
+}
+.friend_name{
+	font-size: 17px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	color: #333;
+}
+.friend_msg{
+	padding-top: 5px;
+	font-size: 16px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 300;
+	color: #818181;
+}
+/* 하단 탭 아이콘 부분 */
+.icon_box{
+	width: 500px;
+	height: 80px; /* 탭 부분 세로 사이즈 */
+	background: #ececed;
+	position: absolute;
+}
+.side_box{
+	display: flex;
+	justify-content: space-around;
+	padding-top: 25px;
+}
+a :hover{
+	text-decoration: none;
+}
+.user, .comment, .more{ /* 아이콘 모두 */
+	font-size: 30px;
+	color: #c7c8ca;
+}
+.logout{ /* 로그아웃 텍스트 */
+	text-decoration: none;
+	margin-left: 22px;
+	font-size: 20px;
+}
+.user:hover, .comment:hover, .more:hover{
+	color:black;
+}
+
+
+
+
+
+/* 스크롤 바 */
+.friendlist_box{
+
+}

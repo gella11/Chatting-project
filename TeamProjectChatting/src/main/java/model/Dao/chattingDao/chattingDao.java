@@ -197,7 +197,7 @@ public class chattingDao extends SuperDao_C{
   	
   //11/2 도현 친구추가.
     public boolean friendadd(int user_num , String email) {
-       String sql = "select (user_num) from user where user_email="+email;
+       String sql = "select (user_num) from user where user_email="+email+"";
        try {
           ps = con.prepareStatement(sql);
          rs = ps.executeQuery();

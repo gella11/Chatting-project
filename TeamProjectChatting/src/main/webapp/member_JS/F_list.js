@@ -10,6 +10,7 @@ function f_list(){
 			let html = '<tr><td>프로필</td><td>이름</td><td>상태메시지</td></tr>'
 			for(let i = 0 ; i<list.length; i++){
 				let l = list[i]
+				console.log(l.user_num)
 				html +=  '<div class="friend_list">'
 					+ '<div class="friend_con_box" onclick="chatting('+l.user_num+')"  id='+l.user_num+' >'		
 					+ '<div>'			
@@ -43,10 +44,6 @@ function chatting(num){
 let icon_box = document.querySelector('.icon_box')
 let container = document.querySelector('.container')
 
-//변환이벤트
-function tabchange(page){
-	$(".container").load(page)// 특정 태그에 해당 파일 로드 [ jquery ]
-}
 
 //11/2 도현 모달에서 친구추가하기.
 function friendadd(){

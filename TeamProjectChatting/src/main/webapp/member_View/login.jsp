@@ -11,8 +11,7 @@
 <link href="/TeamProjectChatting/CSS/member_CSS/login.css" rel="stylesheet">
 </head>
 <body>
-		
-		
+
 	<div class="box">
 		<div>login</div>
 		<div class="in_box" onclick="slide()">
