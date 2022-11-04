@@ -137,7 +137,7 @@ public class chattingDao extends SuperDao_C{
 		}
   		return null;
   	}
-  	
+  	//11/1도현 채팅방이름 ,채팅방번호 가져오기
   	public ArrayList<String> chattingname (int c_num){
   		ArrayList<String> list = new ArrayList<>();
   		String sql = "select * from chattingname where c_num ="+c_num;
@@ -154,7 +154,27 @@ public class chattingDao extends SuperDao_C{
 		}
   		return null;
   	}
-		
+	//11/2 도현 친구추가.
+  	public boolean friendadd(int user_num , String email) {
+  		String sql = "select (user_num) from user where user_email="+email;
+  		try {
+  			ps = con.prepareStatement(sql);
+ 			rs = ps.executeQuery();
+ 			if(rs.next()) {
+ 				sql = "insert friend value(? , ?);";
+ 				ps = con.prepareStatement(sql);
+ 				ps.setInt(1, user_num);
+ 				ps.setInt(2, rs.getInt(1));
+ 				ps.executeUpdate();
+ 				return true;
+ 			}
+ 			return false;
+		} 
+  		catch (Exception e) {
+			System.out.println(e);
+		}
+  		return false;
+  	}
   	
   	
   	

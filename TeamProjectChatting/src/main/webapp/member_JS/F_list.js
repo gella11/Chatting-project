@@ -1,4 +1,5 @@
 
+
 //10/28 도현,상진 친구리스트 가져오기.
 f_list()
 function f_list(){
@@ -6,7 +7,7 @@ function f_list(){
 		url : "/TeamProjectChatting/F_list",
 		success : function(re){
 			let list = JSON.parse(re)
-			let html = document.querySelector('.f_list').innerHTML
+			let html = '<tr><td>프로필</td><td>이름</td><td>상태메시지</td></tr>'
 			for(let i = 0 ; i<list.length; i++){
 				let l = list[i]
 				html +=  '<div class="friend_list">'

@@ -7,6 +7,8 @@ let mid = document.querySelector('.mid').value;
 //채팅방html
 let html = '<tr>채팅방 이름</tr><br>';
 
+
+//11/1 도현 : 나의 채팅방목록 꺼내오기
 c_list() 
 function c_list(){
 	$.ajax({
@@ -72,9 +74,8 @@ function send() {
 	let msg = { // 전송할 데이터 객체
 		type: roomnumber,// 일반메시지 
 		content: document.querySelector('.msgbox').value, // 작성내용
-		mid: mid,  // 보낸 사람 
+		mid: mid,  // 보낸 사람 회원번호.
 	}
-	
 	clientsocket.send(JSON.stringify(msg));
 	document.querySelector('.msgbox').value = '';
 }
@@ -111,15 +112,12 @@ function onmessage(e) {
 		}
 		//////////////////////////////////////////////////////////////
 	} 
-	
-
 	////////////////////////스크롤 고정 /////////////////////////////// 
-	let top = document.querySelector('.contentbox').scrollTop;
-	let Height = document.querySelector('.contentbox').scrollHeight;
-	  document.querySelector('.contentbox').scrollTop
-	= document.querySelector('.contentbox').scrollHeight;
+	let top = document.querySelector('.chattingbox').scrollTop;
+	let Height = document.querySelector('.chattingbox').scrollHeight;
+	  document.querySelector('.chattingbox').scrollTop
+	= document.querySelector('.chattingbox').scrollHeight;
 }
-
 function onerror(e) { }
 
 
