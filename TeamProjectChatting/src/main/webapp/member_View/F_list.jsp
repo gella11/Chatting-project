@@ -18,11 +18,11 @@
 
 
 </head>
-<body>
+<body class="bodybg">
 
 	<%@include file="header.jsp"%>
 
-   <div class="container"> <!--  컨테이너  -->
+   <div class="c_container"> <!--  컨테이너  -->
 
       <div class="flist_box">
 
@@ -109,6 +109,19 @@
       </div>
 
       </div> <!-- flist_box e -->
+      
+      
+      <div class="board_box"> <!-- 게시판 -->
+      	<div>
+      		<div class="board_title">
+      		  게시판
+      		</div>
+      		
+      		<div>
+      		</div>
+      	</div>
+      </div> <!-- 게시판 e -->
+      
    </div> <!--  컨테이너 e  -->   
 
 
