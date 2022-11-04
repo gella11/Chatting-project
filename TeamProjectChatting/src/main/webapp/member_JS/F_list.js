@@ -1,5 +1,4 @@
 
-
 //10/28 도현,상진 친구리스트 가져오기.
 f_list()
 function f_list(){
@@ -7,7 +6,7 @@ function f_list(){
 		url : "/TeamProjectChatting/F_list",
 		success : function(re){
 			let list = JSON.parse(re)
-			let html = '<tr><td>프로필</td><td>이름</td><td>상태메시지</td></tr>'
+			let html = '';
 			for(let i = 0 ; i<list.length; i++){
 				let l = list[i]
 				console.log(l.user_num)
@@ -39,12 +38,34 @@ function chatting(num){
        }
    })
 }
+//11/2 도현 모달에서 친구추가하기.
+function friendadd(){
+	let email = document.querySelector('.f_email').value;
+	$.ajax({
+      url : "/TeamProjectChatting/F_list",
+      data : {"email" : email, "option" : 4},
+      type:"POST",
+      success : function(re){
+		if(re=='true'){
+			location.reload();
+		}else{alert('이메일을 확인해주세요')}
+      }
+   })
+}
+
+//11/2 도현 추천친구찾기. 나를 친구추가했지만 , 내가 친구추가안한사람
 
 // 친구목록 & 채팅방 하단 탭 
 let icon_box = document.querySelector('.icon_box')
 let container = document.querySelector('.container')
 
-
+//변환이벤트
+function tabchange(page){
+	$(".container").load(page)// 특정 태그에 해당 파일 로드 [ jquery ]
+}
+function addbtn(){
+	document.querySelector('.friendaddbtn').click();
+}
 //11/2 도현 모달에서 친구추가하기.
 function friendadd(){
    let email = document.querySelector('.f_email').value;

@@ -2,7 +2,6 @@
 .bodybg{
 	background: #384576;
 }
-
 /* 전체 크기 */
 .container{
 	width: 1200px;
@@ -162,5 +161,4 @@ a :hover{
 
 /* 스크롤 바 */
 .friendlist_box{
-
 }
