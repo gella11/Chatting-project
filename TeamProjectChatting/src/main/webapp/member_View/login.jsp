@@ -24,7 +24,6 @@
 						placeholder="name@example.com"> <label for="floatingInput">Email
 					</label>
 				</div>
-
 				<div class="form-floating mb-3">
 					<input type="password" class="form-control mpassword"
 						id="floatingInput" placeholder="name@example.com"> <label

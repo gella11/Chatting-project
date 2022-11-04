@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import model.Dto.memberDto.F_list_Dto;
 import model.Dto.memberDto.singUp_Dto;
@@ -63,12 +64,12 @@ public class chattingDao extends SuperDao_C{
    // [10/28]
    // 3. 끝방 찾기
  	public int endroom() {
- 		String sql = "select * from chattingroom order by c_num desc";
+ 		String sql = "select * from chattingroom order by c_num desc limit 1";
  		try {
  			ps = con.prepareStatement(sql);
  			rs = ps.executeQuery();
  			if(rs.next()){
- 				return  rs.getInt(2);
+ 				return  rs.getInt(1);
  				} 
  		} catch (Exception e) {System.out.println("끝방찾기 오류 || chatting dao : 3번"+e);}
  		return 0;
@@ -117,6 +118,91 @@ public class chattingDao extends SuperDao_C{
   		} catch (Exception e) {System.out.println("채팅방 이름 넣기 오류 || chatting dao : 6번"+e);}
   		return false;
   	}
- 	
+  	
+  	
+ 	//11/1 도현) 나의 채팅방찾기
+  	public ArrayList<Integer> chattinglist (int user_num){
+  		ArrayList<Integer> list = new ArrayList<>();
+  		String sql = "select c_num from chattingroom where user_num="+user_num;
+  		try {
+  			ps = con.prepareStatement(sql);
+ 			rs = ps.executeQuery();
+ 			while(rs.next()){
+ 				list.add(rs.getInt(1));
+ 			}
+ 			return list;
+		} 
+  		catch (Exception e) {
+			System.out.println(e);
+		}
+  		return null;
+  	}
+  	
+  	public ArrayList<String> chattingname (int c_num){
+  		ArrayList<String> list = new ArrayList<>();
+  		String sql = "select * from chattingname where c_num ="+c_num;
+  		try {
+  			ps = con.prepareStatement(sql);
+ 			rs = ps.executeQuery();
+ 			while(rs.next()){
+ 				list.add(String.valueOf(rs.getInt(1)));
+ 				list.add(rs.getString(2));
+ 			}
+			return list;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+  		return null;
+  	}
 		
+  	
+  	
+  	
+  	public boolean findroom(String c_name, String r_name) {
+		String sql = "select count(c_num) from chattingname where c_name = ? or c_name = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, r_name);
+			ps.setString(2, c_name);
+ 			rs = ps.executeQuery();
+ 			if(rs.next()){
+ 				if(rs.getInt(1)==0) {
+ 					return true;
+ 				}
+ 			}
+ 			return false;
+		} catch (Exception e) {System.out.println(e);}
+  		return false;
+	}
+  	
+  //11/2 도현 친구추가.
+    public boolean friendadd(int user_num , String email) {
+       String sql = "select (user_num) from user where user_email="+email+"";
+       try {
+          ps = con.prepareStatement(sql);
+         rs = ps.executeQuery();
+         if(rs.next()) {
+            sql = "insert friend value(? , ?);";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, user_num);
+            ps.setInt(2, rs.getInt(1));
+            ps.executeUpdate();
+            return true;
+         }
+         return false;
+     } 
+       catch (Exception e) {
+        System.out.println(e);
+     }
+       return false;
+    }
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
 }
