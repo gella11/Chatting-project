@@ -3,19 +3,20 @@
 	background: #384576;
 }
 /* 전체 크기 */
-.container{
-	width: 1200px;
-	height: 800px;
-	margin: 50px auto;
+.c_container{
+   width: 1200px;
+   height: 800px;
+   margin: 50px auto;
+   display: flex;
+     justify-content: space-between;
 }
 
 .flist_box{ 
-	width: 500px;
-	height: 100%;
-	margin: 0 auto;
-	border: 1px solid #ececed;
-	box-shadow: 2px 2px 5px 2px #262f51;
-	background: #fff;
+   width: 500px;
+   height: 100%;
+   border: 1px solid #ececed;
+   box-shadow: 2px 2px 5px 2px #262f51;
+   background: #fff;
 }
 
 /* 내 프로필 전체 박스 */
@@ -161,4 +162,22 @@ a :hover{
 
 /* 스크롤 바 */
 .friendlist_box{
+}
+/* 게시판 */
+.board_box{
+   width: 670px;
+   height: 100%;
+   border: 1px solid #ececed;
+   box-shadow: 2px 2px 5px 2px #262f51;
+   background: #fff;
+}
+
+.board_title{
+   text-align: left;
+   font-family: 'Noto Sans KR', sans-serif;
+   font-weight: 700;
+   font-size: 20px;
+   padding: 15px 0px 10px 20px;
+   color: #333;
+   border-bottom: 1px solid #ccc;
 }

@@ -18,9 +18,9 @@
 
 
 </head>
-<body>
+<body class="bodybg">
 
-	<%@include file="header.jsp"%>
+   <%@include file="header.jsp"%>
 
    <div class="container"> <!--  컨테이너  -->
 
@@ -101,9 +101,9 @@
       <!-- 하단 탭 아이콘 부분 -->   
       <div class="icon_box">
          <div class="side_box">
-            <div class="tab_list1"><a onclick="tabchange('F_list.jsp')"><i class="fas fa-user user"></i></a></div>
-            <div class="tab_list2"><a onclick="tabchange('c_list.jsp')"><i class="fas fa-comment comment"></i></a></div>
-            <div class="tab_list3"><a onclick="tabchange('F_list.jsp')"><i class="fas fa-ellipsis-h more"></i></a></div>
+            <div class="tab_list1"><a href="/TeamProjectChatting/member_View/F_list.jsp"><i class="fas fa-user user"></i></a></div>
+            <div class="tab_list2"><a href="/TeamProjectChatting/member_View/c_list.jsp"><i class="fas fa-comment comment"></i></a></div>
+            <div class="tab_list3"><a href="/TeamProjectChatting/member_View/other.jsp"><i class="fas fa-ellipsis-h more"></i></a></div>
             <div class="tab_list4"><a class="logout" href="/TeamProjectChatting/member_View/login.jsp">Logout</a></div>
          </div>
       </div>
