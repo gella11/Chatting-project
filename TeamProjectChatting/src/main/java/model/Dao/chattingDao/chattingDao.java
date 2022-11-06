@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import model.Dto.memberDto.F_list_Dto;
+import model.Dto.memberDto.chattingDto;
 import model.Dto.memberDto.singUp_Dto;
 
 
@@ -137,7 +138,7 @@ public class chattingDao extends SuperDao_C{
 		}
   		return null;
   	}
-  	
+  	//11/1도현 채팅방이름 ,채팅방번호 가져오기
   	public ArrayList<String> chattingname (int c_num){
   		ArrayList<String> list = new ArrayList<>();
   		String sql = "select * from chattingname where c_num ="+c_num;
@@ -154,7 +155,6 @@ public class chattingDao extends SuperDao_C{
 		}
   		return null;
   	}
-		
   	
   	
   	
@@ -177,7 +177,7 @@ public class chattingDao extends SuperDao_C{
   	
   //11/2 도현 친구추가.
     public boolean friendadd(int user_num , String email) {
-       String sql = "select (user_num) from user where user_email="+email;
+       String sql = "select (user_num) from user where user_email='"+email+"'";
        try {
           ps = con.prepareStatement(sql);
          rs = ps.executeQuery();
@@ -196,42 +196,43 @@ public class chattingDao extends SuperDao_C{
      }
        return false;
     }
-    
-    
-    // 프로필 변경
- 	public boolean setinfo(String user_num , String user_profile, String user_msg) {
- 		String sql = "update user set user_profile = ? and user_msg = ? where user_num = ?";
- 		try {
- 			ps = con.prepareStatement(sql);
- 			ps.setString(1, user_profile);
- 			ps.setString(2, user_msg);
- 			ps.setString(3, user_num);
- 			ps.executeUpdate(); return true;
- 		}catch (Exception e) { System.out.println(e);	} return false;
- 	}
-  	
- 	// 내 정보 가져와서 띄어주기
- 	public singUp_Dto my_info(int my_num) {
- 		String sql ="select * from user where user_num = ?";
- 		try {
- 			ps = con.prepareStatement(sql);
- 			ps.setInt(1 , my_num);
- 			rs = ps.executeQuery();
- 			if(rs.next()) {
- 				singUp_Dto dto = new singUp_Dto(
- 						rs.getInt(1),
- 						rs.getString(2),
- 						rs.getString(3),
- 						rs.getString(4),
- 						rs.getString(5),
- 						rs.getString(6),
- 						rs.getString(7)
- 						);
- 				return dto;
- 			}
- 		} catch (Exception e) {System.out.println(e);}
- 		return null;
- 	}
+    //채팅저장
+    public boolean setchat(String type , String mid , String content) {
+    	String sql = "insert into usechat(c_num,from_num,c_content) values(?,?,?);";
+    	try {
+    		ps = con.prepareStatement(sql);
+    		ps.setString(1, type );
+  			ps.setString(2, mid );
+  			ps.setString(3, content );
+  			ps.executeUpdate();
+  			return true;
+		} 
+    	catch (Exception e) {
+    		System.out.println(e);
+		}
+    	return false;
+    }
+  	//채팅가져오기
+    public ArrayList<chattingDto> getchat(int cno){
+    	ArrayList<chattingDto> list = new ArrayList<>();
+    	String sql = "select*from usechat where c_num="+cno; 
+    	try {
+    		 ps = con.prepareStatement(sql);
+             rs = ps.executeQuery();
+             while(rs.next()) {
+            	 chattingDto dto = new chattingDto(
+            			 rs.getString(1),
+            			 rs.getString(2),
+            			 rs.getString(3));
+            	 list.add(dto);
+             }
+             return list;
+		} 
+    	catch (Exception e) {
+			System.out.println(e);
+		}
+    	return null;
+    }
   	
   	
   	

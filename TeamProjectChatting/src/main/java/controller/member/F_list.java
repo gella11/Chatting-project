@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import model.Dao.chattingDao.chattingDao;
 import model.Dao.memberDao.memberDao;
@@ -152,12 +153,21 @@ public class F_list extends HttpServlet {
 			response.getWriter().print(array);
 		}
 		// 11/2 도현 친구추가하기 
-      else if(option == 4) {
-         int user_num = (Integer)request.getSession().getAttribute("user_num");
-         String email = (String)request.getParameter("email");
-         boolean result = chattingDao.getInstacnDao().friendadd(user_num,email);
-         response.getWriter().print(result);
-      }
+		else if(option == 4) {
+			int user_num = (Integer)request.getSession().getAttribute("user_num");
+			String email = (String)request.getParameter("email");
+			boolean result = chattingDao.getInstacnDao().friendadd(user_num,email);
+			response.getWriter().print(result);
+		}
+		// 11/3 도현 메시지 저장하기.
+		else if(option == 5) {
+			request.setCharacterEncoding("UTF-8");
+			String type = request.getParameter("type");
+			String content = request.getParameter("content");
+			String mid = request.getParameter("mid");
+			boolean result = chattingDao.getInstacnDao().setchat(type,mid,content);
+			response.getWriter().print(result);
+		}
 		
 	}
 

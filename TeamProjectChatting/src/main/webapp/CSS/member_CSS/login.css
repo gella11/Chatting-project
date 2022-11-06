@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 
 body{
@@ -52,6 +53,7 @@ body{
 .form-floating {
 	margin-left: 85px
 }
+
 .logout_box {
 	margin-right: 216px;
 }
