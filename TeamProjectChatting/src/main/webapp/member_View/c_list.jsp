@@ -77,14 +77,11 @@
           </div>
         </div>
       </div>
-         
-         
-         
-         
-         
-         
-         
+
       </div> <!-- 채팅방 박스 e -->
+      
+      
+      
       <div class="board_box"> <!-- 게시판 -->
          <div>
             <div class="board_title">
@@ -95,6 +92,8 @@
             </div>
          </div>
       </div> <!-- 게시판 e -->
+      
+      
    </div> <!--  컨테이너 e  -->
    
    

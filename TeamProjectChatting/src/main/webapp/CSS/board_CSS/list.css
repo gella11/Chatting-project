@@ -1,0 +1,70 @@
+.list_box{
+	width: 600px;
+	margin: 0 auto;
+	border-bottom: 1px solid #ccc;
+	padding-top: 20px;
+	padding-bottom: 30px;
+}
+
+.user_profile{
+	width: 40px;
+	height: 40px;
+	border-radius: 30px;
+	margin: 10px;
+}
+
+
+.list_profile{
+	margin-top: 10px;
+	display: flex;
+}
+
+.list_title{
+	padding: 10px;
+}
+
+.list_subtitle{
+	width: 8%;
+	height: 17px;
+	border-radius: 50px;
+	background: #384576;
+	text-align: center;
+	margin-top: 15px; 
+}
+
+
+.user_name{
+	font-size: 15px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 500;
+	color: #333;
+}
+
+.b_date{ 
+	font-size: 10px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	color: #7c7c7c;
+}
+
+.user_department{ 
+	padding-top: 5px;
+	font-size: 5px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	color: #fff;
+	line-height: 100%;
+}
+
+.content_box{
+	padding-left: 20px;
+	padding-top: 10px;
+}
+
+
+.b_title{
+	font-size: 25px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 600;
+	color: #333;
+}

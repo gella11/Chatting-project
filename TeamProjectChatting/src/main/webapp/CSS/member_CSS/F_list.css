@@ -1,22 +1,21 @@
-
 .bodybg{
 	background: #384576;
 }
 /* 전체 크기 */
 .c_container{
-   width: 1200px;
-   height: 800px;
-   margin: 50px auto;
-   display: flex;
-     justify-content: space-between;
+	width: 1200px;
+	height: 800px;
+	margin: 50px auto;
+	display: flex;
+  	justify-content: space-between;
 }
 
 .flist_box{ 
-   width: 500px;
-   height: 100%;
-   border: 1px solid #ececed;
-   box-shadow: 2px 2px 5px 2px #262f51;
-   background: #fff;
+	width: 500px;
+	height: 100%;
+	border: 1px solid #ececed;
+	box-shadow: 2px 2px 5px 2px #262f51;
+	background: #fff;
 }
 
 /* 내 프로필 전체 박스 */
@@ -37,6 +36,9 @@
 	margin: 23px 0px 0px 350px;
 }
 
+.friend_plus:hover{
+	color: black;
+}
 
 /* 내 프로필 */
 .profile_title{
@@ -131,7 +133,7 @@
 /* 하단 탭 아이콘 부분 */
 .icon_box{
 	width: 499px;
-	height: 80px; /* 탭 부분 세로 사이즈 */
+	height: 76px; /* 탭 부분 세로 사이즈 */
 	background: #ececed;
 	position: absolute;
 }
@@ -157,27 +159,21 @@ a :hover{
 }
 
 
-
-
-
-/* 스크롤 바 */
-.friendlist_box{
-}
 /* 게시판 */
 .board_box{
-   width: 670px;
-   height: 100%;
-   border: 1px solid #ececed;
-   box-shadow: 2px 2px 5px 2px #262f51;
-   background: #fff;
+	width: 670px;
+	height: 100%;
+	border: 1px solid #ececed;
+	box-shadow: 2px 2px 5px 2px #262f51;
+	background: #fff;
 }
 
 .board_title{
-   text-align: left;
-   font-family: 'Noto Sans KR', sans-serif;
-   font-weight: 700;
-   font-size: 20px;
-   padding: 15px 0px 10px 20px;
-   color: #333;
-   border-bottom: 1px solid #ccc;
+	text-align: left;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 700;
+	font-size: 20px;
+	padding: 15px 0px 10px 20px;
+	color: #333;
+	border-bottom: 1px solid #ccc;
 }
