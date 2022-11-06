@@ -28,6 +28,7 @@ function list(){
 			+ '</div>'	
 			+ '</div>'
 				
+				
 			}
 			document.querySelector('.list_box').innerHTML = html;
 		}
