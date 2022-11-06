@@ -56,7 +56,7 @@
       <button type="button" style='display: none' class="btn btn-primary modalbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
          강제클릭버튼 안보이는부분.
       </button>
-      <!-- Modal -->
+  	 <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -81,27 +81,20 @@
       </div> <!-- 채팅방 박스 e -->
       
       
-      
       <div class="board_box"> <!-- 게시판 -->
-         <div>
-            <div class="board_title">
-              게시판
-            </div>
-            
-            <div>
-            </div>
-         </div>
+      	<div>
+      		<div class="board_title">
+      		  게시판
+      		</div>
+      		
+      		<div>
+      		</div>
+      	</div>
       </div> <!-- 게시판 e -->
-      
       
    </div> <!--  컨테이너 e  -->
    
-   
-   
 
-   
-   
-      
       
       
 

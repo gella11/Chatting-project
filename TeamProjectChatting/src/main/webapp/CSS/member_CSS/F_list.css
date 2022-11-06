@@ -177,3 +177,15 @@ a :hover{
 	color: #333;
 	border-bottom: 1px solid #ccc;
 }
+
+/* 게시판 */
+.board_box{
+	width: 670px;
+	height: 100%;
+	border: 1px solid #ececed;
+	box-shadow: 2px 2px 5px 2px #262f51;
+	background: #fff;
+}
+
+
+
