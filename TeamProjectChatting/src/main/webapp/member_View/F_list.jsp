@@ -116,7 +116,9 @@
       		<div class="board_title">
       		  게시판
       		</div>
-      		
+      		<div class="categorylist"></div> <!-- 부서 선택란 -->
+      		<div> </div> <!-- 글 리스트 출력 란 -->
+      		<div class="writebtn">  </div> <!-- 글쓰기 버튼 -->
       		<div>
       		</div>
       	</div>
