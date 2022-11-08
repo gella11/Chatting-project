@@ -26,10 +26,9 @@ public class login extends HttpServlet {
 			int user_num=memberDao.getInstance().user_num(user_email); // 회원번호 Dao접근
 			
 			HttpSession session = request.getSession();// 세션값 요청객체
-			
 			session.setAttribute("user_num", user_num); //세션에 회원번호 값 저장 
+			
 		}
-	
 		response.getWriter().print(result); //결과 전송
 	}
 

@@ -8,10 +8,10 @@ public class BoardDto {
     private String  b_date; 				
     private String b_view;					
     private int c_no;								
-    private String  user_name;
+    private String user_name;
 	
     public BoardDto() {super();}
-
+    
 	public BoardDto(int b_no, String b_title, String b_content, String b_file, String b_date, String b_view, int c_no,
 			String user_name) {
 		super();
@@ -24,11 +24,14 @@ public class BoardDto {
 		this.c_no = c_no;
 		this.user_name = user_name;
 	}
-
-	@Override
-	public String toString() {
-		return "BoardDto [b_no=" + b_no + ", b_title=" + b_title + ", b_content=" + b_content + ", b_file=" + b_file
-				+ ", b_date=" + b_date + ", b_view=" + b_view + ", c_no=" + c_no + ", user_name=" + user_name + "]";
+	
+	// 게시글 수정 dto 추가
+	public BoardDto(int b_no, String b_title, String b_content, String b_file) {
+		super();
+		this.b_no = b_no;
+		this.b_title = b_title;
+		this.b_content = b_content;
+		this.b_file = b_file;
 	}
 
 	public int getB_no() {
@@ -94,7 +97,14 @@ public class BoardDto {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-    
+
+	@Override
+	public String toString() {
+		return "BoardDto [b_no=" + b_no + ", b_title=" + b_title + ", b_content=" + b_content + ", b_file=" + b_file
+				+ ", b_date=" + b_date + ", b_view=" + b_view + ", c_no=" + c_no + ", user_name=" + user_name + "]";
+	}
+
+	
     
     
 }

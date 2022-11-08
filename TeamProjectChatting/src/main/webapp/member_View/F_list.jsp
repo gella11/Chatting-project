@@ -22,7 +22,7 @@
 
    <%@include file="header.jsp"%>
 
-   <div class="container"> <!--  컨테이너  -->
+   <div class="c_container"> <!--  컨테이너  -->
 
       <div class="flist_box">
 
@@ -35,7 +35,7 @@
                   <img onclick="addbtn()" class="friend_plus" src="../img/user_plus.png">
                </div>
             </div>   
-            <div class="profile_con_box">
+            <div onclick="profilebox()" class="profile_con_box">
                <div>
                   <img class="user_profile" alt="" src="../img/망곰이.png"> <!-- 내 프로필 이미지 -->
                </div>
@@ -76,11 +76,10 @@
                </div>
             </div> <!-- friend_box e -->
          </div>   <!-- flist_box e -->   
-      
+      <!-- 친구추가 -->
       <button style="display: none;" type="button" class="friendaddbtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         친구추가버튼(숨길예정)
-      </button>
-      
+      </button>    
       <!-- Modal -->
       <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -90,13 +89,39 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <!-- 친구추가 부분 -->
               <span>친구 e-mail 입력 : </span> <input type="text" class='f_email'>
               <button class="form-control" type="button" data-bs-dismiss="modal" onclick="friendadd()">친구 추가</button>
+              <!-- 추천친구 부분 -->
+              <div class='recommendfriend'>
+              	<span class='recommendemail1' value=''>이름</span> <button type="button" onclick='subfriendadd(1)'>친구추가</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      
+       <!-- 프로필변경 -->
+	<button style="display: none;" type="button" class="profileaddbtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+	  프로필변경
+	</button>
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	         <form>
+	             <span>상태메시지 : </span> <input type="text" name='usermsg'><br>
+	             <span>프로필사진 : </span> <input type="file" name='userprofile'>
+	         </form>
+	         <button class="form-control" type="button" data-bs-dismiss="modal" onclick="updateprofile()">변경</button>
+	
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
       <!-- 하단 탭 아이콘 부분 -->   
       <div class="icon_box">
@@ -109,6 +134,21 @@
       </div>
 
       </div> <!-- flist_box e -->
+      
+      
+      <div class="board_box"> <!-- 게시판 -->
+      	<div>
+      		<div class="board_title">
+      		  게시판
+      		</div>
+      		<div class="categorylist"></div> <!-- 부서 선택란 -->
+      		<div> </div> <!-- 글 리스트 출력 란 -->
+      		<div class="writebtn">  </div> <!-- 글쓰기 버튼 -->
+      		<div>
+      		</div>
+      	</div>
+      </div> <!-- 게시판 e -->
+      
    </div> <!--  컨테이너 e  -->   
 
 

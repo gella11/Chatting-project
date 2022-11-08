@@ -35,11 +35,13 @@ public class chatting{
       ArrayList<chattingDto> chatlist = chattingDao.getInstacnDao().getchat(cno);
       for(chattingDto dto : chatlist) {
          // 11/3 도현 채팅 하나씩 보내기.
-         JSONObject object = new JSONObject();            
+         JSONObject object = new JSONObject();
          object.put("type", dto.getType());
+         object.put("name", dto.getName());
          object.put("mid", dto.getMid());
          object.put("content", dto.getContent());
-         
+         object.put("date", dto.getDate());
+         object.put("img", dto.getImg());
          String msg = String.valueOf(object);
          
          session.getBasicRemote().sendText(msg);
