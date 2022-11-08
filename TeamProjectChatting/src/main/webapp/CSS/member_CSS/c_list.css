@@ -20,8 +20,42 @@
    background: #fff;
 }
 
+.contentbox{
+	overflow-y:auto;
+	background-color: #b2c7d9;
+	height: 700px;
+}
+.secontent{
+	text-align: right;
+}
 
-
+.secontent .content{
+	background-color: #ffeb33;
+}
+.content{
+	background-color: #ffffff;
+	border-radius: 10px;
+	padding: 10px;
+	max-width: 70%;
+	word-break:break-all;
+	display: inline-block;
+	font-size: 15px;
+}
+.date{
+	font-size: 1px;
+	margin: 3px;
+}
+.alarm{
+	width: 70%;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 10px;
+	font: #eeeeee;
+	padding: 2%;
+	background-color: #a9bdce;
+}
+.name{font-size: 12px;}
+.msgbox{resize: none;}
 
 
 /* 채팅방 목록 출력 */

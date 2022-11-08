@@ -13,7 +13,6 @@
 <body>
 
 	<div class="box">
-		<div>login</div>
 		<div class="in_box" onclick="slide()">
 			<p class="font-monospace title"> we are<br>
 			 cacaoTalk</p>

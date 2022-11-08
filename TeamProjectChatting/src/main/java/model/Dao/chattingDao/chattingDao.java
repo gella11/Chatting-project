@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import model.Dto.memberDto.F_list_Dto;
 import model.Dto.memberDto.chattingDto;
+import model.Dto.memberDto.recommendDto;
 import model.Dto.memberDto.singUp_Dto;
 
 
@@ -197,13 +198,16 @@ public class chattingDao extends SuperDao_C{
        return false;
     }
     //채팅저장
-    public boolean setchat(String type , String mid , String content) {
-    	String sql = "insert into usechat(c_num,from_num,c_content) values(?,?,?);";
+    public boolean setchat(int mid ,String type , String name , String content , String img,String date) {
+    	String sql = "insert into usechat(c_num,from_num,from_name,c_content,user_profile,c_date) values(?,?,?,?,?,?);";
     	try {
     		ps = con.prepareStatement(sql);
-    		ps.setString(1, type );
-  			ps.setString(2, mid );
-  			ps.setString(3, content );
+    		ps.setString(1, type);
+    		ps.setInt(2, mid);
+    		ps.setString(3, name );
+  			ps.setString(4, content );
+  			ps.setString(5, img );
+  			ps.setString(6, date );
   			ps.executeUpdate();
   			return true;
 		} 
@@ -223,7 +227,10 @@ public class chattingDao extends SuperDao_C{
             	 chattingDto dto = new chattingDto(
             			 rs.getString(1),
             			 rs.getString(2),
-            			 rs.getString(3));
+            			 rs.getString(3),
+            			 rs.getString(4),
+            			 rs.getString(5),
+            			 rs.getString(6));
             	 list.add(dto);
              }
              return list;
@@ -233,12 +240,62 @@ public class chattingDao extends SuperDao_C{
 		}
     	return null;
     }
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
+    //마지막 채팅 가져오기
+    public String lastStr(int cno){
+    	String sql = "select c_content from usechat where c_num="+cno+" order by c_date desc;"; 
+    	try {
+    		 ps = con.prepareStatement(sql);
+             rs = ps.executeQuery();
+             if(rs.next()) {
+            	 return rs.getString(1);
+             }
+		} 
+    	catch (Exception e) {
+			System.out.println(e);
+		}
+    	return null;
+    }
+    /*
+    // 11/4 도현 추천친구목록
+    public ArrayList<recommendDto> recommendlist (int user_num){
+  		ArrayList<Integer> list1 = new ArrayList<>();
+  		ArrayList<Integer> list2 = new ArrayList<>();
+  		ArrayList<recommendDto> list3 = new ArrayList<>();	
+  		
+  		try {
+  			String sql1 = " select friend_num from friend where user_num = "+user_num;
+  			ps = con.prepareStatement(sql1);
+ 			rs = ps.executeQuery();
+ 			while(rs.next()){
+ 				list1.add(rs.getInt(1));
+ 			}
+ 			
+ 			String sql2 = " select user_num from friend where friend_num = "+user_num;
+ 			ps = con.prepareStatement(sql2);
+ 			rs = ps.executeQuery();
+ 			while(rs.next()){
+ 				list2.add(rs.getInt(1));
+ 			}
+ 			
+ 			list2.removeAll(list1);
+ 			
+ 			for(int a : list2) {
+ 				String sql = "select user_name,user_email from user where user_num="+a;
+ 				ps = con.prepareStatement(sql2);
+ 	 			rs = ps.executeQuery();
+ 	 			if(rs.next()) {
+ 	 				recommendDto dto = new recommendDto(rs.getString(1),rs.getString(2));
+ 	 				list3.add(dto);
+ 	 			}
+ 			}
+ 			return list3;	
+		} 
+  		catch (Exception e) {
+			System.out.println(e);
+		}
+  		return null;
+  	}
+  	*/
+
+    
 }
