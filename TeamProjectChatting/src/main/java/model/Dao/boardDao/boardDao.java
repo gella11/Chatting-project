@@ -60,10 +60,12 @@ public class boardDao extends SuperDao_B{
            			 rs.getString(2));
             	 	list.add(dto);
             		}
+            System.out.println(list);
            	 return list;
 		} catch (Exception e) {System.out.println("카테고리 리스트 가져오기 실패"+e);}
 		return null;
 	} 
+	
 	// 11/7 [상진]
 	// 글 쓰기
     public boolean write(String b_title , String b_content , String b_file , int c_no , String user_name) {

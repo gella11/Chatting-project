@@ -86,58 +86,7 @@ function friendadd(){
       }
    })
 }
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-// 11/8 상진
-// 카테고리 버튼 생성
-categorylist()
-function categorylist(){
-	$.ajax({
-		url : "/TeamProjectChatting/categorynum",
-		success: (re)=>{
-			let category_num = JSON.parse(re)
-			let html = ''
-			category_num.forEach(c =>{
-				html +=  '<button onclick="categoryboard('+c.c_no+')"> '+c.c_name+' </button>'	
-			})
-			
-		}
-	})
-	
-    // 카테고리 정보를 반복문 돌려서 카테고리별 버튼 innerHTML
-    document.querySelector('.categorylist').innerHTML = html
-    // 카테고리 별 글쓰기 버튼 innerHTML
-    let writebtn = '<button onclick="writebtn('+category_num.c_no+')"> 글쓰기 </button>'
-    document.querySelector('.writebtn').innerHTML = writebtn
-}
-// 11/8 상진
-// 카테고리 번호에 해당하는 글 list 출력
-function categoryboard(c_no){
-	$.ajax({
-		url : "",
-		data :{"c_no" : c_no},
-		success : (re)=>{
-			
-		}
-	})
-	
-}
-// 11/8 상진
-// 카테고리 번호에 해당하는 글 쓰 기
-function writebtn(){
-	$.ajax({
-		url : "",
-		data : {"c_no":c_no},
-		success: (re) =>{
-			if(re==='true'){
-				alert('글 등록 완료')
-			}else{
-				alert('글 등록 실패')
-			}
-		}
-	})
-}
+
 // 11/4 친구추가버튼
 function subfriendadd(i){
 	//추천친구의 value를 친구추가 input에 넣어주기

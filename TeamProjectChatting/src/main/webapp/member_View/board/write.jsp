@@ -36,7 +36,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 	<script src="lang/summernote-ko-KR.js"></script>
 	
-	<script src="../member_JS/write.js" type="text/javascript"></script>
+	<script src="../../member_JS/board_JS/write.js" type="text/javascript"></script>
 
 </body>
 </html>

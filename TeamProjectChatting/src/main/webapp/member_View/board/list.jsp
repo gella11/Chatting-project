@@ -25,12 +25,17 @@
 				<div class="list_subtitle"> 
 					<div class="user_department"> 인사과 </div>
 				</div>
+				
 			</div>
 				
+			<div class="category"></div>
+			
 			<div class="content_box">			
 				<div class="b_title"> 제 58회 가을 워크샵 안내 </div>
 			</div>	
 		</div>
+		<div class="write"> </div>
+				
 	
 	</div> <!-- view_box e -->
 

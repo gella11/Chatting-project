@@ -24,14 +24,20 @@ public class categorynum extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		JSONObject object = new JSONObject();
+		
+		
 		ArrayList<CategoryDto> category = boardDao.getInstance().categorylist();
+		JSONArray array = new JSONArray();
+		
 		for(CategoryDto dto : category) {
+			JSONObject object = new JSONObject();
 			object.put("c_no", dto.getC_no());
 			object.put("c_name", dto.getC_name());
+			array.add(object);
 		}
-		request.setCharacterEncoding("UTF-8");
-		response.getWriter().print(object);
+		System.out.println("서블릿 카테고리 :" + array);
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().print(array);
 		
 	}
 

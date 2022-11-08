@@ -1,4 +1,5 @@
 // 11/6 혜영 글 전체 보기
+
 list()
 function list(){
 	$.ajax({
@@ -42,7 +43,57 @@ function select_view( b_no ){
 	})
 } // select_view e
 
-
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+// 11/8 상진
+// 카테고리 버튼 생성
+categorylist()
+function categorylist(){
+	$.ajax({
+		url : "/TeamProjectChatting/categorynum",
+		success: (re)=>{
+			let category_num = JSON.parse(re)
+			console.log(re)
+			let html = ''
+			category_num.forEach(c =>{
+				html +=  '<button onclick="categoryboard('+c.c_no+')"> '+c.c_name+' </button>'	
+			})
+			// 카테고리 정보를 반복문 돌려서 카테고리별 버튼 innerHTML
+		    document.querySelector('.category').innerHTML = html
+		    
+		}
+	})
+}
+function categorybtn(){
+	
+}
+// 11/8 상진
+// 카테고리 번호에 해당하는 글 list 출력
+function categoryboard(c_no){
+	$.ajax({
+		url : "",
+		data :{"c_no" : c_no},
+		success : (re)=>{
+			
+			// 카테고리 별 글쓰기 버튼 innerHTML
+		    let writebtn = '<button onclick="writebtn('+c_no+')"> 글쓰기 </button>'
+		    document.querySelector('.write').innerHTML = writebtn
+		}
+	})
+	
+}
+// 11/8 상진
+// 카테고리 번호에 해당하는 글 쓰 기
+function writebtn(c_no){
+	$.ajax({
+		url : "/TeamProjectChatting/writesession",
+		data : {"c_no":c_no},
+		success: (re) =>{
+			location.href = "/TeamProjectChatting/member_View/board/write.jsp";
+		}
+	})
+}
 
 
 
