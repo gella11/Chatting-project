@@ -114,5 +114,58 @@ public class memberDao extends SuperDao_M {
 		}
 		return 0;
 	}
+	
 
+	// [11-8] 혜영 회원 번호에서 부서명을 가져오는 메소드
+	public String getuser_department( int user_num ) { // 유저 번호를 가져와서
+		String sql = "select user_department from user where user_num = " + user_num ;
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			if( rs.next() ) {
+				String user_department = rs.getString(1); // 만약에 값이 있으면 변수에 담아서
+				return user_department; // 보내기
+			}
+			
+		} catch (Exception e) {
+			System.out.println("유저 이름 가져오기 오류 : " + e);
+		}
+		return null;
+	}
+	
+	// [11-8] 혜영 회원 번호에서 부서명을 가져오는 메소드
+	public String getuser_profile( int user_num ) { // 유저 번호를 가져와서
+		String sql = "select user_profile from user where user_num = " + user_num ;
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			if( rs.next() ) {
+				String user_profile = rs.getString(1); // 만약에 값이 있으면 변수에 담아서
+				return user_profile; // 보내기
+			}
+			
+		} catch (Exception e) {
+			System.out.println("유저 이름 가져오기 오류 : " + e);
+		}
+		return null;
+	}
+	
+	
+	
+	
+	
 }
+
+
+	
+
+
+
+
+
+
+
+
+

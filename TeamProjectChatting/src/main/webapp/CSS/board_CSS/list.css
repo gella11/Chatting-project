@@ -1,9 +1,13 @@
 .list_box{
 	width: 600px;
 	margin: 0 auto;
-	border-bottom: 1px solid #ccc;
 	padding-top: 20px;
 	padding-bottom: 30px;
+}
+
+.boder{
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 15px;
 }
 
 .user_profile{

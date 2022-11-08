@@ -13,7 +13,7 @@
 		
 	
 	<div class="view_box">
-		<div>
+		<!-- <div>
 			<div class="view_profile">
 				<div>
 					<img class="user_profile" alt="" src="../../img/망곰이.png">
@@ -41,27 +41,57 @@
 				<span> 첨부파일 </span>
 				<span class="b_file"> 파일명 </span>
 			</div>
-		</div>
-		
+			
+		</div> 
+			
 	
 		<div class="reply_box">
 			<textarea style="resize: none;" rows="" cols="" class="r_content"></textarea>
 			<button type="button" class="reply_btn"> 등록 </button>
-		</div>	
-			
-	
+		</div> -->
+		
+		
+		
 	</div> <!-- view_box e -->
-	
-	
-	
-	
-	
-	
-	
-	
 
 	
 
+	<!-- Button trigger modal -->
+	<button style="display: none" type="button" class="b_update btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+	</button>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      
+	      <div class="modal-body"> 	
+	        <!-- 모달 본문 -->
+	        
+	        <form class="update_form">
+				
+				게시글번호 	<input type="text" readonly="readonly" name="b_no" class="b_no"><br>        
+				제목 		<textarea rows="" cols="" name="b_title" class="b_title"></textarea><br>
+				내용 		<input type="text" name="b_content" class="b_content"><br>
+				첨부파일 	<input type="file" id="b_file" name="b_file" class="b_file"><br>
+				
+			</form>
+	        
+	        <!-- ------- 모달 본문 e -------- -->
+	        
+	        
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> 취소 </button>
+	        <button type="button" class="btn btn-primary" onclick="b_update()"> 저장 </button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 
 
@@ -72,10 +102,7 @@
 
 
 
-
-
-
-
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="../../member_JS/board_JS/view.js" type="text/javascript"></script>
 
 </body>

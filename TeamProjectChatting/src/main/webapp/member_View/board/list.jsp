@@ -12,7 +12,7 @@
 
 
 	<div class="list_box">
-		<div>
+		<div class="boder">
 			<div class="list_profile">
 				<div>
 					<img class="user_profile" alt="" src="../../img/망곰이.png">
