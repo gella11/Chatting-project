@@ -64,7 +64,23 @@ public class boardDao extends SuperDao_B{
 		} catch (Exception e) {System.out.println("카테고리 리스트 가져오기 실패"+e);}
 		return null;
 	} 
-	
+	// 11/7 [상진]
+	// 글 쓰기
+    public boolean write(String b_title , String b_content , String b_file , int c_no , String user_name) {
+    	String sql = "insert into board(b_title,b_content,b_file,c_no,user_name) values(?,?,?,?,?);";
+    	try {
+    		ps = con.prepareStatement(sql);
+    		ps.setString(1, b_title );
+  			ps.setString(2, b_content );
+  			ps.setString(3, b_file );
+  			ps.setInt(4, c_no );
+  			ps.setString(5, user_name );
+  			ps.executeUpdate();
+  			return true;
+		} 
+    	catch (Exception e) {System.out.println("글 등록 실패"+e);}
+    	return false;
+    }
 	
 	// 2. 개별 게시글 출력 - 11/7 혜영
 	public BoardDto board_view( int b_no ) {

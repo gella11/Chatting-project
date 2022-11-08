@@ -1,8 +1,8 @@
 package controller.member;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,9 +15,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import model.Dao.chattingDao.chattingDao;
 import model.Dao.memberDao.memberDao;
-import model.Dto.memberDto.F_list_Dto;
 import model.Dto.memberDto.singUp_Dto;
 
 
@@ -27,8 +29,7 @@ public class F_list extends HttpServlet {
        
 
     public F_list() {super();  }
-
-
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	
@@ -39,8 +40,9 @@ public class F_list extends HttpServlet {
 		int my_num = (Integer)request.getSession().getAttribute("user_num");
 		// DAO
 		ArrayList<Integer> friendlist  = chattingDao.getInstacnDao().getinfolist(my_num);
+		System.out.println(friendlist);
 	    ArrayList<singUp_Dto> list = chattingDao.getInstacnDao().f_list_info(friendlist);
-	    
+	    System.out.println(list);
 	    
 	    
 		// JSON
@@ -53,7 +55,6 @@ public class F_list extends HttpServlet {
 			object.put("user_msg",		list.get(i).getUser_msg() );
 			array.add(object);
 		}
-		System.out.println(array);
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().print(array);
 		
@@ -70,16 +71,14 @@ public class F_list extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int option = Integer.parseInt(request.getParameter("option"));
+		int user_num = (Integer)request.getSession().getAttribute("user_num");
+		request.setCharacterEncoding("UTF-8");
 		if(option == 1) {
 
 			// 도현 상진
 			// [10/28]
 			// 끝방번호
 			int endroom = chattingDao.getInstacnDao().endroom();
-			System.out.println(endroom+"끝방");
-
-			int user_num = (Integer)request.getSession().getAttribute("user_num");
-	
 		    int f_num = Integer.parseInt(request.getParameter("chattingnum"));
 		
 		    String myname = chattingDao.getInstacnDao().findname(user_num);
@@ -88,35 +87,22 @@ public class F_list extends HttpServlet {
 		    String c_name = myname+','+f_name;
 		    String r_name = f_name+','+myname;
 		    boolean nameresult = chattingDao.getInstacnDao().findroom(c_name , r_name);
-		    System.out.println(nameresult+"중복검사");
 		    
 		    if(nameresult == true) {
 		    	
 		    	boolean result1 = chattingDao.getInstacnDao().chattingroom(endroom, user_num);
 			    boolean result2 = chattingDao.getInstacnDao().chattingroom(endroom, f_num);
-			    System.out.println("내 이름 채팅방 insert : "+ result1);
-			    System.out.println("친구 이름 채팅방 insert :"+result2);
 			    // 도현 상진
 				// [10/28]
 			    // 채팅방 이름 넣기
 			    boolean result3 = chattingDao.getInstacnDao().chattingroomname(endroom,c_name);
-			    System.out.println("채팅창 이름 넣기"+result3);
-			    
-			    HttpSession session = request.getSession();// 세션값 요청객체
-				session.setAttribute("c_name", c_name);
-				session.setAttribute("roomnumber", endroom+1);
-				
 			    response.setCharacterEncoding("UTF-8");
 				response.getWriter().print(endroom+1);
-		    }else {
-		    	response.getWriter().print(!nameresult);
-		    }
-		    
-		    
-		    
-		}else if( option == 2) {
-			response.setCharacterEncoding("UTF-8");
+		    }    
+		}
+		else if( option == 2) {
 			int c_num = Integer.parseInt(request.getParameter("c_num"));
+			response.setCharacterEncoding("UTF-8");
 			if(c_num>0) {
 				ArrayList<String> listset =chattingDao.getInstacnDao().chattingname(c_num);
 				JSONObject object = new JSONObject();
@@ -130,6 +116,7 @@ public class F_list extends HttpServlet {
 				JSONObject object = new JSONObject();
 				object.put("roomnumber", roomnumber);
 				object.put("cname", cname);
+				
 				response.getWriter().print(object);
 			}
 			
@@ -137,8 +124,6 @@ public class F_list extends HttpServlet {
 		}
 		// 11/1 도현) 나의 채팅리스트 기본세팅
 		else if( option == 3) {
-			response.setCharacterEncoding("UTF-8");
-			int user_num = Integer.parseInt(request.getParameter("user_num"));
 			ArrayList<Integer> list = chattingDao.getInstacnDao().chattinglist(user_num);
 			JSONArray array = new JSONArray();
 			
@@ -154,21 +139,98 @@ public class F_list extends HttpServlet {
 		}
 		// 11/2 도현 친구추가하기 
 		else if(option == 4) {
-			int user_num = (Integer)request.getSession().getAttribute("user_num");
 			String email = (String)request.getParameter("email");
 			boolean result = chattingDao.getInstacnDao().friendadd(user_num,email);
 			response.getWriter().print(result);
 		}
 		// 11/3 도현 메시지 저장하기.
 		else if(option == 5) {
-			request.setCharacterEncoding("UTF-8");
-			String type = request.getParameter("type");
-			String content = request.getParameter("content");
-			String mid = request.getParameter("mid");
-			boolean result = chattingDao.getInstacnDao().setchat(type,mid,content);
-			response.getWriter().print(result);
+			String msg = request.getParameter("msg");
+			JSONParser parser = new JSONParser();
+			try {
+				JSONObject object = (JSONObject) parser.parse(msg);
+				String type = String.valueOf(object.get("type"));
+				int mid = Integer.parseInt(String.valueOf(object.get("mid")));
+				String content = String.valueOf(object.get("content"));
+				String name = String.valueOf(object.get("name"));
+				String img = String.valueOf(object.get("img"));
+				String date = String.valueOf(object.get("date"));
+				boolean result = chattingDao.getInstacnDao().setchat(mid,type,name,content,img,date);
+				response.getWriter().print(result);			
+			} catch (Exception e) {
+				System.out.println(e+"메시지저장 형변환 오류");
+			}		
+		}
+		// 11/4추천친구 목록 가져오기
+		else if(option == 6){
+			/*
+			ArrayList<recommendDto> list = chattingDao.getInstacnDao().recommendlist(user_num);
+			JSONArray array = new JSONArray();
+			
+			for(recommendDto dto : list) {
+				JSONObject object = new JSONObject();
+				object.put("email",dto.getEmail());
+				object.put("name",dto.getMname());
+				array.add(object);
+			}
+			*/
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().print(true);
+		}
+		// 11/7 도현 내프로필 불러오기
+		else if(option == 7) {
+			ArrayList<String> list = memberDao.getInstance().getprofile(user_num);
+			JSONObject object = new JSONObject();
+			object.put("profile", list.get(0));
+			object.put("name", list.get(1));
+			object.put("msg", list.get(2));
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().print(object);
+		}
+		// 11/8 도현 채팅방의 마지막 대화만 가져오기
+		else if(option==8) {
+			int c_num = Integer.parseInt(request.getParameter("c_num"));
+			System.out.println("마지막대화"+c_num);
+			String lastStr = chattingDao.getInstacnDao().lastStr(c_num);
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().print(lastStr);		
 		}
 		
+	
+		
 	}
+	@Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 11/7 도현 내프로필 바꾸기
+		String uploadpath = request.getSession().getServletContext().getRealPath("/img");
+		int user_num = (Integer)request.getSession().getAttribute("user_num");
+		System.out.println(uploadpath);
+		
+		MultipartRequest multi = new MultipartRequest(
+				request,uploadpath,1024*1024*100,"UTF-8",new DefaultFileRenamePolicy());
+		
+		String usermsg = multi.getParameter("usermsg");
+		
+		String userprofile = multi.getFilesystemName("userprofile");
+		
+		System.out.println(usermsg); 
+		System.out.println(userprofile);
+		
 
+		if( userprofile == null ) {  
+			String oldimg = new memberDao().getprofile(user_num).get(0);
+			System.out.println(oldimg);
+			deletefile( request.getSession() , oldimg );
+		}
+		
+		boolean result = memberDao.getInstance().setprofile(user_num,usermsg,userprofile);
+
+		response.getWriter().print(result);
+		
+    }
+	public void deletefile( HttpSession session ,  String pimg ) {
+		String deletepath = session.getServletContext().getRealPath("/TeamProjectChatting/pimg/"+ pimg );
+		File file = new File( deletepath );
+		if( file.exists() ) file.delete();	// 해당 경로에 존재하는 파일을 삭제
+	}
 }

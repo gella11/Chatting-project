@@ -9,23 +9,34 @@ function f_list(){
 			let html = '';
 			for(let i = 0 ; i<list.length; i++){
 				let l = list[i]
-				console.log(l.user_num)
-				html +=  '<div class="friend_list">'
+				html +='<div class="friend_list">'
 					+ '<div class="friend_con_box" onclick="chatting('+l.user_num+')"  id='+l.user_num+' >'		
 					+ '<div>'			
-					+ '<img class="friend_img" alt="" src="../img/망햄터.png">' + l.user_profile	// 이 라인에 프로필 이미지 들어가야돼요		
-					+ '</div>'			
-					+ '<div class="friend_text_box">'			
-					+ '<div class="friend_name">'+l.user_name+'</div>'				
-					+ '<div class="friend_msg">'+l.user_msg+'</div>'				 
-					+ '</div>'			
-					+ '</div>'		
-					+ '</div>'
+					if(l.user_profile!==null){
+				  html += '<img class="friend_img" alt="" src="/TeamProjectChatting/img/'+l.user_profile+'">' 		
+						+ '</div>'			
+						+ '<div class="friend_text_box">'			
+						+ '<div class="friend_name">'+l.user_name+'</div>'				
+						+ '<div class="friend_msg">'+l.user_msg+'</div>'				 
+						+ '</div>'			
+						+ '</div>'		
+						+ '</div>'
+					}else{
+				  html += '<img class="friend_img" alt="" src="/TeamProjectChatting/img/user.png">' 		
+						+ '</div>'			
+						+ '<div class="friend_text_box">'			
+						+ '<div class="friend_name">'+l.user_name+'</div>'				
+						+ '<div class="friend_msg">'+l.user_msg+'</div>'				 
+						+ '</div>'			
+						+ '</div>'		
+						+ '</div>'
+					}
 			}
 			document.querySelector('.f_list').innerHTML = html;
 		}
 	})
 }
+
 //10/28 도현,상진 채팅방생성 후 채팅창으로 넘어가기.
 function chatting(num){
    let chattingnum = num;
@@ -38,6 +49,7 @@ function chatting(num){
        }
    })
 }
+
 //11/2 도현 모달에서 친구추가하기.
 function friendadd(){
 	let email = document.querySelector('.f_email').value;
@@ -53,19 +65,11 @@ function friendadd(){
    })
 }
 
-//11/2 도현 추천친구찾기. 나를 친구추가했지만 , 내가 친구추가안한사람
 
-// 친구목록 & 채팅방 하단 탭 
-let icon_box = document.querySelector('.icon_box')
-let container = document.querySelector('.container')
-
-//변환이벤트
-function tabchange(page){
-	$(".container").load(page)// 특정 태그에 해당 파일 로드 [ jquery ]
-}
 function addbtn(){
 	document.querySelector('.friendaddbtn').click();
 }
+
 //11/2 도현 모달에서 친구추가하기.
 function friendadd(){
    let email = document.querySelector('.f_email').value;
@@ -75,15 +79,18 @@ function friendadd(){
       type:"POST",
       success : function(re){
       if(re=='true'){
-         location.reload();
-      }else{alert('이메일을 확인해주세요')}
+		 document.querySelector('.f_email').value='';
+		 //location.reload();
+      }
+      else{alert('이메일을 확인해주세요')}
       }
    })
 }
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-
+// 11/8 상진
+// 카테고리 버튼 생성
 categorylist()
 function categorylist(){
 	$.ajax({
@@ -104,7 +111,7 @@ function categorylist(){
     let writebtn = '<button onclick="writebtn('+category_num.c_no+')"> 글쓰기 </button>'
     document.querySelector('.writebtn').innerHTML = writebtn
 }
-
+// 11/8 상진
 // 카테고리 번호에 해당하는 글 list 출력
 function categoryboard(c_no){
 	$.ajax({
@@ -116,6 +123,7 @@ function categoryboard(c_no){
 	})
 	
 }
+// 11/8 상진
 // 카테고리 번호에 해당하는 글 쓰 기
 function writebtn(){
 	$.ajax({
@@ -130,6 +138,78 @@ function writebtn(){
 		}
 	})
 }
+// 11/4 친구추가버튼
+function subfriendadd(i){
+	//추천친구의 value를 친구추가 input에 넣어주기
+	document.querySelector('.f_email').value = document.querySelector('.recommendemail'+i).value;
+	friendadd();
+}
+/*
+//11/4 도현 추천친구목록 불러오기
+recommendfriendlist()
+function recommendfriendlist(){
+	$.ajax({
+      url : "http://localhost:8080/TeamProjectChatting/F_list",
+      data : {"option" : 6},
+      type:"POST",
+      success : function(re){
+     	let json = JSON.parse(re)
+     	console.log(json);
+      }
+     if(re=='true'){
+         recommendfriendlist();
+      }
+      else{alert('실패?')}
+      }
+   })
+}*/
+
+//11/8 도현 내프로필 추가하기.
+myprofile()
+function myprofile(){
+	$.ajax({
+      url : "/TeamProjectChatting/F_list",
+      data : {"option" : 7},
+      type:"POST",
+      success : function(re){
+     	let json = JSON.parse(re)
+		document.querySelector('.user_name').innerHTML=json.name;
+		document.querySelector('.user_msg').innerHTML=json.msg;
+		if(json.profile!==null){
+			document.querySelector('.user_profile').src= "/TeamProjectChatting/img/"+json.profile;
+   	  	}
+   	  	else{
+			document.querySelector('.user_profile').src= "/TeamProjectChatting/img/user.png";
+		}
+   	  }
+	})
+}
+function profilebox(){
+	document.querySelector('.profileaddbtn').click();
+}
+
+//11/8 도현 내프로필 변경
+function updateprofile(){
+	let form = document.querySelector('form')
+	let formdata = new FormData(form)
+	$.ajax({
+      url : "/TeamProjectChatting/F_list",
+      data : formdata ,
+      contentType:false, 
+	  processData:false,
+      type:"put",
+      success : function(re){
+     	if(re=='true'){location.reload()}
+   	  }
+	})
+}
+
+
+
+
+
+
+
 
 
 

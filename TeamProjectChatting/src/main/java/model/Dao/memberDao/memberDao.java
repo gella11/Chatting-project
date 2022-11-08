@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class memberDao extends SuperDao_M {
 
@@ -99,7 +100,6 @@ public class memberDao extends SuperDao_M {
 
 	// [10-27] 김원종 회원번호값 가져오는 메소드
 	public int user_num(String user_email) { // email값 가져오기
-		System.out.println(user_email);
 		String sql = "select user_num from user where user_email =?"; // email이 일치하는 user_num 호출
 		try {
 			ps = con.prepareStatement(sql);
@@ -115,6 +115,40 @@ public class memberDao extends SuperDao_M {
 		return 0;
 	}
 	
+	//11/7 도현 나의 프로필 가져오기
+	public ArrayList<String> getprofile(int user_num){
+		ArrayList<String> list = new ArrayList<>();
+		String sql = "select u.user_profile,u.user_name,u.user_msg from user u where user_num="+user_num;
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				list.add(rs.getString(1));
+				list.add(rs.getString(2));
+				list.add(rs.getString(3));
+			}
+			return list;
+		} 
+		catch (Exception e) {
+			System.out.println("프로필가져오기 오류" + e);
+		}
+		return null;
+	}
+	//11/8 
+	public boolean setprofile (int user_num , String user_msg , String user_profile) {
+		String sql = "update user set user_msg=? , user_profile=?  where user_num = "+user_num;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, user_msg);
+			ps.setString(2, user_profile);
+			ps.executeUpdate();
+			return true;
+		} 
+		catch (Exception e) {
+			System.out.println("프로필올리기 오류"+e);
+		}
+		return false;
+	}
 
 	// [11-8] 혜영 회원 번호에서 부서명을 가져오는 메소드
 	public String getuser_department( int user_num ) { // 유저 번호를 가져와서
