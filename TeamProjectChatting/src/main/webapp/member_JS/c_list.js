@@ -138,7 +138,11 @@ function onmessage(e) {
 }
 function onerror(e) { }
 
-
+/////////////본문 전환 이벤트///////////////
+function pagechange(page){
+	$(".board_title").load( page )// 특정 태그에 해당 파일 로드 [ jquery ]
+}
+///////////////////////////////////////
 
 
 
