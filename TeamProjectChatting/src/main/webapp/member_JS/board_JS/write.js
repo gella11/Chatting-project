@@ -29,7 +29,7 @@ function bwirte(){
 		success : function(re){
 			if(re === 'true'){
 				alert(re)
-				location.href="list.jsp"
+				location.href="/TeamProjectChatting/member_View/board/list.jsp"
 			}else{
 				alert('글 등록 실패')
 			}
@@ -37,3 +37,16 @@ function bwirte(){
 	})
 	
 }
+
+// 2. 첨부파일 등록(변경)했을 때 미리보기
+let b_file = document.querySelector('#b_file')
+	b_file.addEventListener('change',function(e){	// e 꼭 넣어야함 e:event 객체(이벤트 정보[target] 여기선 change이벤트 , 누가 뭐를[]data])
+	// 1) js 파일 클래스 []
+	let file = new FileReader() // 객체생성
+	// 2) 해당 펌부된 파일 경로 알기
+	file.readAsDataURL(e.target.files[0])
+	// 3) 이미지 태그에 첨부된 이미지 대입
+	file.onload = function(e){ // e는 onload 이벤트 정보
+		document.querySelector('#b_filepre').src = e.target.result
+	}
+})

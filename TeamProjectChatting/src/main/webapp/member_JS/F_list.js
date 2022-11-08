@@ -1,4 +1,3 @@
-
 //10/28 도현,상진 친구리스트 가져오기.
 f_list()
 function f_list(){
@@ -45,6 +44,7 @@ function chatting(num){
       data : {"chattingnum" : chattingnum, "option" : 1},
       type:"POST",
       success : function(re){
+		
 		location.href='/TeamProjectChatting/member_View/c_list.jsp';
        }
    })
@@ -152,9 +152,6 @@ function updateprofile(){
    	  }
 	})
 }
-
-
-
 
 
 

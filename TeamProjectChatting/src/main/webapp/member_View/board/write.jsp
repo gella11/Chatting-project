@@ -23,10 +23,14 @@
 			<textarea id="summernote" name="bcontent"></textarea>
 			<!-- 내용 : <input type="text" name="bcontent"> <br> -->
 			
-			첨부파일: <input type="file" name="bfile"> <br>
+			첨부파일: <input type="file" name="b_file" id="b_file"> <br>
 			<button type="button" onclick="bwirte()"> 쓰기 </button>
 			<!-- form 쩨로 넘기려면 버튼에 타입 button 써야해요 -->
 		</form>
+		
+		<div> <!-- 첨부파일 미리보기 -->
+			<img alt="" src="" id="b_filepre">
+		</div>
 	</div>
 
 

@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<%@include file="header.jsp"%>
+	<div class="c_container">
+		<!-- 본문 -->
+		<div id="mainbox">
+			<!-- 사이드바에서 메뉴 클릭시 jsp가 표시되는 구역 -->
+			<jsp:include page="F_list.jsp" />
+		</div>
+		
+		<!-- 본문 -->
+		<div id="boardbox">
+			<!-- 사이드바에서 메뉴 클릭시 jsp가 표시되는 구역 -->
+			<jsp:include page="board/list.jsp" />
+		</div>
+	</div> <!--  컨테이너 e  --> 
+	
+	<script src="../member_JS/dash.js" type="text/javascript"></script>
+</body>
+</html>
