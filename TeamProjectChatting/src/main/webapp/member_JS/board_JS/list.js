@@ -1,4 +1,3 @@
-
 // 11/6 혜영 글 전체 보기
 list()
 function list(){
