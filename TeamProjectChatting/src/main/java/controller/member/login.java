@@ -27,7 +27,7 @@ public class login extends HttpServlet {
 			
 			HttpSession session = request.getSession();// 세션값 요청객체
 			
-			session.setAttribute("user_num", user_num); //세션에 회원번호 값 저장 
+			session.setAttribute("user_num", user_num); //세션에 회원번호 값 저장
 		}
 	
 		response.getWriter().print(result); //결과 전송
