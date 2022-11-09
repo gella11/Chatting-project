@@ -12,7 +12,7 @@ function b_view( b_no ){ // 선택한 글 출력
 			
 			let html = '<div>'
 					+ '<div class="view_profile">' 
-					+ '<div>' + b.user_profile + '</div>'	
+					+ '<div><img class="user_profile" alt="" src="../../img/'+ b.user_profile +'"></div>'	
 					+ '<div class="view_title">'	
 					+ '<div class="user_name"> '+ b.user_name +' </div>'		
 					+ '<div class="b_date"> '+ b.b_date +' </div>'		
@@ -67,6 +67,7 @@ function b_modal_open( b_no ){
 } // b_modal_open e
 
 
+// 3. 게시글 수정 - 11/8 혜영
 function b_update(){
 	
 	let form = document.querySelector('.update_form');
@@ -87,15 +88,20 @@ function b_update(){
 } // b_update e
 
 
-// 3. 게시글 삭제
-function b_delete(){
+// 4. 게시글 삭제 - 11/9 혜영
+function b_delete( b_no ){
 	alert('delete')
 	$.ajax({
 		url		: "/TeamProjectChatting/tboard/view",
 		data	: { "b_no" : b_no },
 		type	: "delete",
 		success	: re => {
-			let b = JSON.parse(re);
+			if( re == 'true' ){
+				alert('게시글 삭제 성공')
+				location.href = "list.jsp"
+			}else{
+				alert('게시글 삭제 실패')
+			}
 			
 			
 			
