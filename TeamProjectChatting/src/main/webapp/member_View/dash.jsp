@@ -13,7 +13,8 @@
 		<!-- 본문 -->
 		<div id="mainbox">
 			<!-- 사이드바에서 메뉴 클릭시 jsp가 표시되는 구역 -->
-			<jsp:include page="F_list.jsp" />
+			<jsp:include page="F_list.jsp" /> 
+						<%-- <%@include file="F_list.jsp"변수 중복선언?? %> --%>
 		</div>
 		
 		<!-- 본문 -->

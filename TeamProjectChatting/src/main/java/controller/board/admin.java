@@ -1,4 +1,4 @@
-package controller.member;
+package controller.board;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -91,7 +91,7 @@ public class admin extends HttpServlet {
 		dto.setUser_name(user_name);dto.setUser_email(user_email);dto.setUser_department(user_department);
 		boolean result = adminDao.getInstance().edit_user(dto,user_num);//변수 끝
 		
-		System.out.println("수정 ///"+result);
+		System.out.println("수정 ///"+result);   
 		
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().print(result);
