@@ -26,14 +26,14 @@ public class boardDao extends SuperDao_B{
 		if( c_no == 1 && !key.equals("") && !keyword.equals("") ) { // 카테고리 번호가 1이고 검색이 있을 때[키워드검색]
 			sql = "select b.*, u.user_department, u.user_profile\r\n"
 					+ "from board b, user u\r\n"
-					+ "where b.user_name = u.user_name and" + key + " like '%"+ keyword +"%'\r\n"
+					+ "where b.user_name = u.user_name and b." + key + " like '%"+ keyword +"%'\r\n"
 					+ "order by b_date desc\r\n"
 					+ "limit " + start_row + ", " + list_size;
 			System.out.println("카테고리 번호가 1이고 검색이 있을 때(전체검색)");
 		}else if(c_no != 1 && !key.equals("") && !keyword.equals("")){ // 카테고리가 1이 아니고 검색이 있을 때[개별]
 			sql = "select b.*, u.user_department, u.user_profile\r\n"
 					+ "from board b, user u\r\n"
-					+ "where b.user_name = u.user_name && b.c_no ="+ c_no +"\r\n and" + key + " like '%"+ keyword +"%'\r\n"
+					+ "where b.user_name = u.user_name && b.c_no ="+ c_no +"\r\n and b." + key + " like '%"+ keyword +"%'\r\n"
 					+ "order by b_date desc \r\n"
 					+ "limit " + start_row + ", " + list_size;
 			System.out.println("카테고리가 1이 아니고 검색이 없을때");
@@ -235,7 +235,7 @@ public class boardDao extends SuperDao_B{
     			return rs.getInt(1);
     		}
 		} catch (Exception e) {
-			System.out.println("페이징 처리 오류 : " + e);
+			System.out.println("전체 게시물 수 처리 오류 : " + e);
 		}
 		return 0;
 	} // gettotal_size e

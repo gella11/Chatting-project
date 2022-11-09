@@ -2,7 +2,7 @@
 
 let pageinfo ={
 	
-	list_size : 5,	// 한페이지당 게시물 표시 개수
+	list_size : 3,	// 한페이지당 게시물 표시 개수
 	page : 1,		// 현재 페이지 번호
 	key : '',		// 검색 키 [ 공백이면 값이 없음 ]
 	keyword : '',	// 검색 키워드
@@ -62,23 +62,23 @@ function list( page, c_no ){
 			
 			// 이전 버튼 출력
 			if( page <= 1 ){
-				page_html += '<button onclick="list('+(page, c_no)+')"> 이전 </button>';
+				page_html += '<button onclick="list('+(page +','+ c_no)+')"> 이전 </button>';
 			}else{
-				page_html += '<button onclick="list('+(page-1, c_no)+')"> 이전 </button>';
+				page_html += '<button onclick="list('+(page-1, +','+ c_no)+')"> 이전 </button>';
 			}
 			
 			// [ 페이지번호 버튼 ] 시작 버튼 - 마지막 버튼 출력
 			for( let page = blist.start_btn; page <= blist.end_btn; page++ ){
-				page_html += '<button type="button" onclick="list('+ page, c_no +')">'+ page +'</button>'
+				page_html += '<button type="button" onclick="list('+ page +','+ c_no +')">'+ page +'</button>'
 			}
 			
 			// 다음 버튼 출력
 			if( page >= blist.total_page ){
 				// 현재 페이지가 마지막 페이지면 다음 페이지 불가 제한
-				page_html += '<button onclick="list('+(page, c_no)+')"> 다음 </button>';
+				page_html += '<button onclick="list('+(page +','+ c_no)+')"> 다음 </button>';
 			}
 			else{
-				page_html += '<button onclick="list('+(page+1, c_no)+')"> 다음 </button>';
+				page_html += '<button onclick="list('+(page+1+','+ c_no)+')"> 다음 </button>';
 			}
 			document.querySelector('.pagebox').innerHTML = page_html;
 			
@@ -161,22 +161,22 @@ function writebtn(c_no){
 // 4. 검색 처리 메소드
 function bsearch(){
 	
-	pageinfo.key = document.querySelector(".key").value;
-	pageinfo.keyword = document.querySelector(".keyword").value;
+	pageinfo.key = key = document.querySelector(".key").value;
+	pageinfo.keyword = keyword = document.querySelector(".keyword").value;
 	console.log("pageinfo.key :: " + pageinfo.key)
 	console.log("pageinfo.keyword :: " + pageinfo.keyword)
 	
 	// 검색 완료 시 첫페이지로 출력되도록해야 함
-	list( 1 )	// 메소드 호출 시 파라미터 사용하여 첫 페이지로 보여지게끔
+	list( 1, pageinfo.c_no )	// 메소드 호출 시 파라미터 사용하여 첫 페이지로 보여지게끔
 		
-} // bsearch e
+} // bsearch es
 
 
 // 6. 게시물 표시 개수 : 한 페이지에 보여지는 게시글 수 체인지 이벤트 사용하여 변경하기
 function blist_size(){
 	
 	pageinfo.list_size = document.querySelector('.list_size').value;
-	list( 1 )
+	list( 1, pageinfo.c_no )
 	
 } // blistsize e
 
