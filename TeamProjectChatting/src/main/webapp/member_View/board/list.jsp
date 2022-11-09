@@ -10,52 +10,51 @@
 
 	<%@include file="../header.jsp"%>
 
-
-	<div class="list_box">
-		<div class="boder">
-			<div class="list_profile">
-				<div>
-					<img class="user_profile" alt="" src="../../img/망곰이.png">
-				</div>
-				
-				<div class="list_title"> 
-					<div class="user_name"> 김망곰 </div>
-					<div class="b_date"> 2022-11-06 </div>
-				</div>
-				<div class="list_subtitle"> 
-					<div class="user_department"> 인사과 </div>
-				</div>
-				
-			</div>
-				
-			<div class="category"></div>
+	<div class="list_con">
+		
 			
-			<div class="content_box">			
-				<div class="b_title"> 제 58회 가을 워크샵 안내 </div>
-			</div>	
-		</div>
+		<div class="category"> </div>
 		<div class="write"> </div>
+		
+		<div>
+			게시물 수 <span class="total_size"> </span>		
+		</div>
+		
+		<div class="list_box">
+		</div>
+		
+		<div>
+			
+			
+			<span>
+				<select class="list_size" onchange="blist_size()">
+					<option vlaue="5"> 5 </option>
+					<option vlaue="10"> 10 </option>
+					<option vlaue="15"> 15 </option>
+					<option vlaue="20"> 20 </option>
+				</select>
+			</span>
 				
+				
+			<!-- 페이징 처리 출력 부분 -->
+			<span class="pagebox"> 
+			</span>
+			
+			<!-- 검색 처리 출력 부분 -->
+			<div> 
+				<select class="key">
+					<option value="l.b_title"> 제목 </option>
+					<option value="l.b_content"> 내용 </option>
+					<option value="l.user_name"> 작성자 </option>
+				</select>
+				<input class="keyword" type="text" placeholder="검색어">
+				<button type="button" onclick="bsearch()"> 검색 </button>
+			</div>
+		</div>
+		
+	</div>
 	
-	</div> <!-- view_box e -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 
 <script src="../../member_JS/board_JS/list.js" type="text/javascript"></script>
 
