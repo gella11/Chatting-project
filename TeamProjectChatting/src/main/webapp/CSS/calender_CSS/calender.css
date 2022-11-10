@@ -270,7 +270,6 @@ ul h2{
 
 li button::before{
 	font-family: "Font Awesome 5 Pro";
-	content : '\f274';
 	font-size: 1rem;
 	font-weight: 900;
 	margin-right: 7px;

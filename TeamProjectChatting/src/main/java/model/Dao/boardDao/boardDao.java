@@ -386,13 +386,13 @@ public class boardDao extends SuperDao_B{
 	
 	// 11/10 상진
 	// 달력 일정 등록
-	public boolean caladd(String user_name, String t_date , String t_content) {
+	public boolean caladd(String user_name, String t_date , String tt_content) {
 		String sql="insert into cal(user_name , t_date  , t_content) value(?, ?, ?) ";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, user_name );
 			ps.setString(2, t_date );
-			ps.setString(3, t_content );
+			ps.setString(3, tt_content );
 			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {System.out.println("일정 등록 실패"+e);}
@@ -403,11 +403,10 @@ public class boardDao extends SuperDao_B{
 	// 달력 일정 정보 쓸어오기
 	public ArrayList<calDto> callist(String user_name , String currentMonth) {
 		ArrayList<calDto> list = new ArrayList<>();
-		String sql = "select * from cal where user_name = ? and t_date like '____?%' ";
+		String sql = "select * from cal where user_name = ? or user_name = 'admin' and t_date like '____"+currentMonth+"%' ";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, user_name);
-			ps.setString(2, currentMonth);
             rs = ps.executeQuery();
             while(rs.next()) {
             	calDto dto = new calDto(

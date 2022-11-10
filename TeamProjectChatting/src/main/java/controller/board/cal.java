@@ -25,13 +25,15 @@ public class cal extends HttpServlet {
 		System.out.println("내 이름"+user_name);
 		// 등록하고자 하는 날짜
 		String t_date = request.getParameter("t_date");
+		
 		System.out.println("cal 서블릿 t_date ::: "+t_date);
 		// 등록하고자 하는 내용
 		String t_condent = request.getParameter("t_content");
+		String tt_content = "-"+t_condent;
 		System.out.println("cal 서블릿 t_content:::"+t_condent);
 		
 		
-		boolean result = boardDao.getInstance().caladd(user_name , t_date , t_condent);
+		boolean result = boardDao.getInstance().caladd(user_name , t_date , tt_content);
 		
 		response.getWriter().print(result);
 		

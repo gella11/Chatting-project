@@ -95,7 +95,7 @@ function calregist(){
 		url:"/TeamProjectChatting/cal",
 		data : {"t_content" : t_content , "t_date" : t_date},
 		success : function(re) {
-			if(re==='true'){alert('등록됏슈')}
+			if(re==='true'){alert('등록됏슈'); location.href = '../../member_View/calender/calender.jsp'}
 			else{alert('실패유')}
 		}
 	})
@@ -108,36 +108,33 @@ function callist(currentMonth){
 		async : false,
 		success : function(re) {
 			let t = JSON.parse(re)
+			
 			let days =""
-
 			lastDay = new Date( toDay.getFullYear() , toDay.getMonth()+1 , 0 ).getDate()
 			Day1 = toDay.getDay()
 			
 			for(let i = 1 ; i <= Day1 ; i++){
 			      days += `<div> </div>`
 			      monthDays.innerHTML = days
-			   }
-	    
+			}
+			   
 			for(let i = 1 ; i <= lastDay ; i++){
 			let id= toDay.getFullYear()+''+(toDay.getMonth()+1)+''+i
+					 days += `<div onclick="modalon(${id})">${i}
+							     <ul>
+							        <li> <button id="${id}" ></button></li>
+							        <li class="a${id}"></li>
+							     </ul>
+							   </div>`
+					monthDays.innerHTML = days
+			}
 			
-			if(t[i].user_name !=''){
-				 days += `<div onclick="modalon(${id})">${i}
-						     <ul>
-						        <li> <button id="${id}" class="${id}">${t.t_content}</button></li>
-						     </ul>
-						   </div>`
-						   monthDays.innerHTML = days
-			}else{
-			
-		   	  	 days += `<div onclick="modalon(${id})">${i}
-						     <ul>
-						        <li> <button id="${id}" class="${id}"></button></li>
-						     </ul>
-					   	 </div>`
-				 monthDays.innerHTML = days
-				}
-		   }
+			t.forEach(c=>{
+														
+				html = `<button id="${c.t_date}" >${c.t_content}</button>`
+				
+				document.querySelector(`.a${c.t_date}`).innerHTML = html
+			})
 		}
 	})
 }
