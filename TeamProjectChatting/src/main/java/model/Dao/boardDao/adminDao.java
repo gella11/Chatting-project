@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import javax.swing.text.html.parser.DTD;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import model.Dto.memberDto.User_Dto;
 
 public class adminDao extends SuperDao_B{
@@ -16,7 +19,7 @@ public class adminDao extends SuperDao_B{
 	//[2022-11-07 회원 전체호출 메소드 ]
 	public ArrayList<User_Dto> all_user(){
 		ArrayList<User_Dto>list = new ArrayList<>();
-		String sql = "select*from user";
+		String sql = "select*from user where user_num!=1;";
 		try {
 			ps=con.prepareStatement(sql);
 			rs=ps.executeQuery();
@@ -92,6 +95,29 @@ public class adminDao extends SuperDao_B{
 		} catch (Exception e) {System.out.println("관리자 카테고리삭제 오류 adminDao"+e);}
 		return false;
 	}
+	//[2022-11-10 사원 개인정보 출력 메소드]
+	public JSONArray detail_employee(int user_num) {
+		JSONArray array= new JSONArray();
+		String sql="select*from user where user_num="+user_num;
+		try {
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				JSONObject object = new JSONObject();
+				object.put("user_num", rs.getInt(1));
+				object.put("user_name", rs.getString(2));
+				object.put("user_department", rs.getString(1));
+				object.put("user_birth", rs.getString(1));
+				object.put("user_date", rs.getString(1));
+				array.add(object);
+				return array;
+			}
+		} catch (Exception e) {System.out.println("개인정보호출 오류"+e);}
+		return null;
+	}
+	
+	
+	
 	
 	
 	

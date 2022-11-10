@@ -9,7 +9,7 @@
 <body>
 
 	<%@include file="../header.jsp"%>
-
+	<input class="user_num" type="hidden" value="<%=user_num%>">
 	<div class="list_con">
 		
 			
@@ -18,6 +18,9 @@
 		
 		<div>
 			게시물 수 <span class="total_size"> </span>		
+		</div>
+		
+		<div class="admin_box">
 		</div>
 		
 		<div class="list_box">

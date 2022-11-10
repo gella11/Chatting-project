@@ -180,4 +180,40 @@ function blist_size(){
 	
 } // blistsize e
 
+//[2022-11-10]
+function admin_board(){
+	let user_num=document.querySelector('.user_num').value
+	$.ajax({
+		url:"/TeamProjectChatting/boardlist",
+		data:{"user_num":user_num},
+		type:"post",
+		success:function(re){
+			let html='';
+			let admin =JSON.parse(re)
+			admin.forEach(l=>{
+				html += '<div class="boder">'
+					+ '<div class="list_profile">'
+					+ '<div><img class="user_profile" alt="" src="../../img/'+ l.user_profile +'"></div>'	
+					+ '<div class="list_title"> '	
+					+ '<div class="user_name"> '+ l.user_name +' </div>'		
+					+ '<div class="b_date"> '+ l.b_date +' </div>'		
+					+ '</div>'	
+					+ '<div class="list_subtitle">'	
+					+ '</div>'	
+					+ '</div>'
+					+ '<div class="content_box">'		
+					+ '<div class="b_title" onclick="select_view(' + l.b_no + ')"> '+ l.b_title +' </div>'	
+					+ '</div>'	
+					+ '</div>'
+			})
+			document.querySelector('.admin_box').innerHTML = html;
+		}
+		
+	})
+}
+
+
+
+
+
 

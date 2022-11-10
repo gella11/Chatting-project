@@ -315,7 +315,37 @@ public class boardDao extends SuperDao_B{
 		} catch (Exception e) {System.out.println(e);}
 		return array;
 	}
-	
+	//[2022-11-10]김원종 관리자 게시물 출력 
+	public JSONArray admin_board (int user_num){
+		JSONArray array = new JSONArray();
+		String sql="select * from user where user_num=?";
+		try {
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, user_num);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				String user_name=rs.getString(2);
+			 sql="select * from board where user_name=? order by b_date desc";
+			 ps=con.prepareStatement(sql);
+			 ps.setString(1, user_name);
+			 rs=ps.executeQuery();
+			 while(rs.next()) {
+				 JSONObject object = new JSONObject();
+				 object.put("b_no",rs.getInt(1));
+				 object.put("b_title",rs.getString(2));
+				 object.put("b_content",rs.getString(3));
+				 object.put("b_file",rs.getString(4));
+				 object.put("b_date",rs.getString(5));
+				 object.put("b_view",rs.getInt(6));
+				 object.put("c_no",rs.getInt(7));
+				 object.put("user_name",rs.getString(8));
+				 array.add(object);
+				 return array;
+			 }
+			}
+		} catch (Exception e) {System.out.println("관리자 게시물 출력 오류 "+e);}
+		return array;
+	}
 	
 	
 	

@@ -32,8 +32,7 @@
 	%>
 	<%
 	} else {
-	response.sendRedirect("../board/login.jsp");
-	System.out.println("로그인넘버222 : " + user_num);
+	response.sendRedirect("/TeamProjectChatting/member_View/login.jsp");
 	}
 	%>
 	<div class="c_container">
@@ -53,7 +52,6 @@
 					<h3 class="fw-bold title">회원관리</h3>
 				</div>
 				<button id="modal-btn" class="button2">부서 추가</button>
-
 				<div id="my-modal" class="modal">
 					<div class="modal-content2">
 						<div class="modal-header">
@@ -63,8 +61,10 @@
 						<div>
 							<table class="add_delete showcate table">
 							</table>
-							<input type="text" id="category" class=" form-control" placeholder="추가할 부서명을 입력해주세요." >
-							<button type="button" id="category" class="form-control" > 추가하기</button>
+							<input type="text" id="category" class=" form-control"
+								placeholder="추가할 부서명을 입력해주세요.">
+							<button type="button" id="category" class="form-control"
+								onclick="addcategory()">추가하기</button>
 						</div>
 						<div class="modal-footer"></div>
 					</div>
@@ -79,52 +79,50 @@
 
 	</div>
 	<!--  컨테이너 e  -->
-	<!-- Button trigger modal -->
-	<button type="button" style="display: none" class="btn btn-primary"
-		data-bs-toggle="modal" data-bs-target="#exampleModal1"
-		onclick="edit()"></button>
+	<div class="interior"></div>
+	<div id="open-modal" class="modal-window">
+		<div>
+			<a href="#" title="Close" class="modal-close">Close</a>
+			<h1>사원관리</h1>
+			<div>
+				<form class="updateform">
+					사원번호<input class="user_num form-control" type="text"
+						name="user_num" readonly="readonly"> 사원이름<input
+						class="user_name form-control" type="text" name="user_name"
+						readonly="readonly"> 비밀번호<input
+						class="user_pw form-control" type="text" name="user_pw">
+					이메일<input class="user_email form-control" type="text"
+						name="user_email"> 연락처<input
+						class="user_phone form-control" type="text" name="user_phone">
+					부서<input class="user_department form-control" type="text"
+						name="user_department"> 생년월일<input
+						class="user_birth form-control" type="text" name="user_birth"
+						readonly="readonly"> 입사날<input
+						class="user_date form-control" type="text" name="user_date"
+						readonly="readonly">
+				</form>
 
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal1" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">사원정보 수정</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<form class="updateform">
-						사원번호<input class="user_num form-control" type="text"
-							name="user_num" readonly="readonly"> 사원이름<input
-							class="user_name form-control" type="text" name="user_name">
-						비밀번호<input class="user_pw form-control" type="text" name="user_pw">
-						이메일<input class="user_email form-control" type="text"
-							name="user_email"> 연락처<input
-							class="user_phone form-control" type="text" name="user_phone">
-						부서<input class="user_department form-control" type="text"
-							name="user_department"> 생년월일<input
-							class="user_birth form-control" type="text" name="user_birth"
-							readonly="readonly"> 입사날<input
-							class="user_date form-control" type="text" name="user_date"
-							readonly="readonly">
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary" onclick="edit_user()">변경사항
-						저장</button>
-				</div>
 			</div>
+			<br>
+
+
 		</div>
 	</div>
-
-
-
-
-
+	<!--================================================================================================  -->
+		<div style="display: none;" class="Click-here">Click Here</div>
+				<div class="custom-model-main">
+					<div class="custom-model-inner">
+						<div class="close-btn">×</div>
+						<div class="custom-model-wrap">
+							<div class="pop-up-content-wrap">
+								<table class="detail_table table">
+								
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="bg-overlay"></div>
+				</div>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
