@@ -70,9 +70,28 @@ public class adminDao extends SuperDao_B{
 		
 		return false;
 	}
-	
-	
-	
+	//[2022-11-09 카테고리 추가 메소드 ]
+	public boolean addcategory(String category) {
+		String sql="insert into category(c_name) value(?)";
+		try {
+			ps=con.prepareStatement(sql);
+			ps.setString(1, category);
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {System.out.println("관리자 카테고리추가 오류 adminDao"+e);}
+		return false;
+	}
+	//[2022-11-09 카테고리 삭제 메소드 ]
+	public boolean deletecategory(int c_no) {
+		String sql="DELETE FROM category WHERE c_no=?";
+		try {
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, c_no);
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {System.out.println("관리자 카테고리삭제 오류 adminDao"+e);}
+		return false;
+	}
 	
 	
 	

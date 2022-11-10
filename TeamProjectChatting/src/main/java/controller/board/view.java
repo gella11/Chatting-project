@@ -84,7 +84,7 @@ public class view extends HttpServlet {
 		// 첨부파일이 있을 경우에만 사용 [ 업로드용 ]
 		MultipartRequest multi = new MultipartRequest(
 				request,
-				request.getSession().getServletContext().getRealPath(""), // getRealPath : 배포한 서버의 경로
+				request.getSession().getServletContext().getRealPath("/img"), // getRealPath : 배포한 서버의 경로
 				1024*1240*10,
 				"UTF-8",
 				new DefaultFileRenamePolicy());
@@ -93,26 +93,46 @@ public class view extends HttpServlet {
 		int b_no = Integer.parseInt(multi.getParameter("b_no"));
 		String b_title = multi.getParameter("b_title");
 		String b_content = multi.getParameter("b_content");
-		String b_file = multi.getFilesystemName("b_file");
-		System.out.println(" b_no//" + b_no );
-		System.out.println(" b_title//" + b_title );
-		System.out.println(" b_content//" + b_content );
-		System.out.println(" b_file//" + b_file );
-		
+		String b_file = multi.getFilesystemName("b_file");		
 		
 		BoardDto dto = new BoardDto( b_no, b_title, b_content, b_file );
 				
 		boolean result = new boardDao().b_update( dto );
 		response.setCharacterEncoding( "UTF-8" );
 		response.getWriter().print( result );
-		System.out.println( "result" + result );
 		
 	
 	}
 	
 	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
+		int b_no = Integer.parseInt(request.getParameter("b_no"));
+		
+		System.out.println("bno 서블릿 ::: " + b_no );
+		boolean result = new boardDao().b_delete(b_no);
+		
+		response.getWriter().print(result);
+		System.out.println("삭제 결과 서블릿 ::: " + result);
+		
+		
+		
+		
 	
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

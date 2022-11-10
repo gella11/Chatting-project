@@ -28,7 +28,7 @@ public class write extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 1. 저장경로 [ 배포된 프로젝트의(서버) 폴더 저장 ]
-		String uploadpath = request.getSession().getServletContext().getRealPath("/upload"); //최상의경로
+		String uploadpath = request.getSession().getServletContext().getRealPath("/img"); //최상의경로
 		// 2. muti 객체 생성
 		MultipartRequest multi = new MultipartRequest(
 			   request ,					 // 요청방식
@@ -40,13 +40,19 @@ public class write extends HttpServlet {
 		
 		
 		int user_num = (Integer)request.getSession().getAttribute("user_num");
-			String user_name = chattingDao.getInstacnDao().findname(user_num);
+		String user_name = chattingDao.getInstacnDao().findname(user_num);
 		int c_no = (Integer)request.getSession().getAttribute("c_no");
 		String b_title 	= multi.getParameter("b_title");
 		String b_content  = multi.getParameter("b_content");
 		String b_file = multi.getFilesystemName("b_file");
-		System.out.println("씨넘"+c_no);
-		System.out.println("b_file"+b_file);
+
+		System.out.println("-----서블렛-------");
+    	System.out.println(user_num);
+    	System.out.println(c_no);
+    	System.out.println(b_title);
+    	System.out.println(b_content);
+    	System.out.println("------------");
+			
 		boolean result = boardDao.getInstance().write(b_title,b_content,b_file,c_no,user_name);
 		
 		
