@@ -9,7 +9,6 @@ function b_view( b_no ){ // 선택한 글 출력
 		type	: "get",
 		success	: re => {
 			let b = JSON.parse(re);
-			
 			let html = '<div>'
 					+ '<div class="view_profile">' 
 					+ '<div><img class="user_profile" alt="" src="../../img/'+ b.user_profile +'"></div>'	
@@ -37,12 +36,18 @@ function b_view( b_no ){ // 선택한 글 출력
 					+ '<button type="button" class="reply_btn" onclick="rwrite('+b_no+')"> 등록 </button>'
 					+ '</div>';
 					document.querySelector('.view_box').innerHTML = html;
+					
+					// 뒤로가기 버튼 생성
+					let return_btn = '<span class="return_btn">'
+							+ '<a href="/TeamProjectChatting/member_View/board/list.jsp"> 뒤로가기 </a>'
+							+ '</span>';
+					document.querySelector('.btn_box').innerHTML = return_btn;
 					rlist()
 			// 서블릿에서 조건 검 -> 내 글이거나 관리자면 버튼이 생성되도록
 			if( b.btn_action == true ){
 				let btn = '<button onclick="b_modal_open()"> 수정 </button>'
 						+ '<button onclick="b_delete('+b.b_no+')"> 삭제 </button>'
-				document.querySelector('.btn_box').innerHTML = btn;
+				document.querySelector('.btn_box').innerHTML += btn;
 				
 				
 			}
@@ -202,7 +207,8 @@ function b_update(){
 		processData : false,
 		contentType : false,
 		success	: re => {
-			alert('연결확인')
+			alert('게시글이 수정되었습니다.');
+			location.href="/TeamProjectChatting/member_View/board/view.jsp"
 			
 			
 		}
@@ -212,7 +218,7 @@ function b_update(){
 
 // 4. 게시글 삭제 - 11/9 혜영
 function b_delete( b_no ){
-	alert('delete')
+	
 	$.ajax({
 		url		: "/TeamProjectChatting/tboard/view",
 		data	: { "b_no" : b_no },
@@ -224,14 +230,10 @@ function b_delete( b_no ){
 			}else{
 				alert('게시글 삭제 실패')
 			}
-			
-			
-			
 		}
 	})
 	
 } // b_delete e
-
 
 
 

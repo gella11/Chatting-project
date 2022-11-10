@@ -62,8 +62,8 @@ public class view extends HttpServlet {
 		object.put("b_view", dto.getB_view());
 		object.put("c_no", dto.getC_no());
 		object.put("user_name", dto.getUser_name());
-		object.put("user_department", user_department );
-		object.put("user_profile", user_profile );
+		object.put("user_department", dto.getUser_department() );
+		object.put("user_profile", dto.getUser_profile() );
 		
 		// 삭제 수정 버튼 활성화 하기 회원 번호가 있고 작성자와 로그인된 이름이 동일거나 이름이 admin 이면
 		if( user_num != 0 && user_name.equals( dto.getUser_name()) || user_name.equals("admin") ) {

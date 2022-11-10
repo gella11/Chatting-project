@@ -217,17 +217,21 @@ public class boardDao extends SuperDao_B{
 	
 	
 	// 전체 게시물 수  - 11/9 혜영
-    public int gettotal_size( String key, String keyword ) {
+    public int gettotal_size( String key, String keyword, int c_no) {
     	
     	String sql = "";
     	if( !key.equals("") && !keyword.equals("") ) { // 검색이 있을 경우
     		sql = "select count(*)\r\n"
-				+ "from user u, board b\r\n"
-				+ "where b.user_name = u.user_name and "+ key +" like '%"+ keyword +"%'";
+    				+ "from user u, board b\r\n"
+    				+ "where b.user_name = u.user_name\r\n"
+    				+ "and b." + key + " like '%"+ keyword +"%' and b.c_no = "+c_no+"\r\n"
+    				+ "order by b_date desc";
     	}else { // 검색이 없을 경우
 			sql = "select count(*)\r\n"
-				+ "from user u, board b\r\n"
-				+ "where b.user_name = u.user_name";
+					+ "from user u, board b\r\n"
+					+ "where b.user_name = u.user_name\r\n"
+					+ "and b.c_no = "+c_no+"\r\n"
+					+ "order by b_date desc";
 		}
     	
     	try {
@@ -418,6 +422,27 @@ public class boardDao extends SuperDao_B{
 		} catch (Exception e) {System.out.println("일정 가져오기 실패"+e);}
 		return null;
 	} 
+	// 유저 번호를 확인하여 관리자 페이지 이동 버튼 출력 - 혜영 11/10 
+	public boolean admin_btn( int user_num ) {
+		
+		String sql = "";
+			try {
+			
+			if( user_num == 1 ) { // 유저 번호가 1번 [ 관리자 ] 이면 
+				sql = "select user_name from user where user_num = "+user_num;
+			} else {
+				sql = "";
+			}
+			
+			ps = con.prepareStatement(sql);
+			ps.executeQuery();
+			return true;
+		} catch (Exception e) {
+			System.out.println("관리자 페이지 이동버튼 출력 오류 : " + e );
+		}
+		return false;
+		
+	}
 	
 	
 	
