@@ -29,7 +29,7 @@ function bwirte(){
 		success : function(re){
 			if(re === 'true'){
 				alert(re)
-				//location.href="/TeamProjectChatting/member_View/board/list.jsp"
+				location.href="/TeamProjectChatting/member_View/board/list.jsp"
 			}else{
 				alert('글 등록 실패')
 			}

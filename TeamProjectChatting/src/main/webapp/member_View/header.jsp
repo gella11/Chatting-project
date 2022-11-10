@@ -9,6 +9,7 @@
 <!-- 폰트어썸 [아이콘 ] -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
 
+
 <!-- 구글 폰트 노토산스 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +29,8 @@
       System.out.println("로그인넘버222 : "+user_num)   ;
    }%>
 
-
+	
+	
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
    <script type="text/javascript" src="/TeamProjectChatting/member_JS/login.js"></script>
    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>

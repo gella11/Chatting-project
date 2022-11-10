@@ -24,7 +24,6 @@ function list( page, c_no ){
 			
 			let blist = JSON.parse(re);
 			let list = blist.data
-			
 			let html = '';
 			for( let i = 0; i < list.length; i++ ){
 				let l = list[i];
@@ -152,7 +151,13 @@ function writebtn(c_no){
 		async: false, 
 		data : {"c_no":c_no},
 		success: (re) =>{
-			location.href = "/TeamProjectChatting/member_View/board/write.jsp";
+			if(re==='true'){
+				location.href = "/TeamProjectChatting/member_View/board/write.jsp";	
+			}else{
+				alert('당신은 이 부서 사람이 아니야 보기만 해')
+				location.href = "/TeamProjectChatting/member_View/board/list.jsp";	
+			}
+			
 		}
 	})
 }

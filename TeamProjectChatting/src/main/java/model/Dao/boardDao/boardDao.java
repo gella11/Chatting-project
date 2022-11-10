@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 
 import model.Dto.memberDto.BoardDto;
 import model.Dto.memberDto.CategoryDto;
+import model.Dto.memberDto.calDto;
 import model.Dto.memberDto.chattingDto;
 
 public class boardDao extends SuperDao_B{
@@ -316,8 +317,76 @@ public class boardDao extends SuperDao_B{
 		return array;
 	}
 	
+	// 11/10 상진
+	// 11-1 카테고리 선택하여 글 작성 시, 내 회원번호로 부서를 가져와서 동일 여부 확인
+	public String my_department(int user_num) {
+		String sql = "select user_department from user where user_num = "+user_num;
+		String result = "부서명은 무엇일까요";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if( rs.next() ) {
+				
+				return	rs.getString(1);
+			}
+			return result;
+		} catch (Exception e) {System.out.println(e);}
+		return result;
+	}
+	// 11-2
+	public String department(int c_no) {
+		String sql = "select c_name from category where c_no = "+c_no;
+		String result = "c_no의 카테고리 이름은 무엇일까요";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if( rs.next() ) {
+				return	rs.getString(1);
+			}
+			return result;
+		} catch (Exception e) {System.out.println("c_no의 해당하는 카테고리 이름 가져오기"+e);	}
+		return result;
+	}
 	
+	// 11/10 상진
+	// 달력 일정 등록
+	public boolean caladd(String user_name, String t_date , String t_content) {
+		String sql="insert into cal(user_name , t_date  , t_content) value(?, ?, ?) ";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, user_name );
+			ps.setString(2, t_date );
+			ps.setString(3, t_content );
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {System.out.println("일정 등록 실패"+e);}
+		return false;
+	}
 	
+	// 11/10 상진
+	// 달력 일정 정보 쓸어오기
+	public ArrayList<calDto> callist(String user_name , String currentMonth) {
+		ArrayList<calDto> list = new ArrayList<>();
+		String sql = "select * from cal where user_name = ? and t_date like '____?%' ";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, user_name);
+			ps.setString(2, currentMonth);
+            rs = ps.executeQuery();
+            while(rs.next()) {
+            	calDto dto = new calDto(
+           			rs.getInt(1),
+           			rs.getString(2),
+           			rs.getString(3),
+           			rs.getString(4)
+           			 );
+            	 	list.add(dto);
+            		}
+           	 return list;
+		} catch (Exception e) {System.out.println("일정 가져오기 실패"+e);}
+		return null;
+	} 
 	
 	
 	
