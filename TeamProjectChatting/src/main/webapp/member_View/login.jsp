@@ -14,7 +14,7 @@
 
 	<div class="box">
 		<div class="in_box" onclick="slide()">
-			<p class="font-monospace title"> we are<br>
+			<p class="font-monospace title"> We are Cacao Company <br>
 			 cacaoTalk</p>
 			<p class="font-monospace title">Welcome.</p>
 			<div class="in_box_two">

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+
 import model.Dao.boardDao.adminDao;
 
 /**
@@ -38,7 +40,19 @@ public class admin_Category extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		System.out.println("결과받기"+result);
 		
+		response.setCharacterEncoding("UTF-8");
 		response.getWriter().print(result);
+	
+	}
+	
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int user_num=Integer.parseInt(request.getParameter("user_num"));
+		JSONArray list = adminDao.getInstance().detail_employee(user_num);
+				
+		System.out.println("어라이////"+list);
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().print(list);
 	
 	}
 

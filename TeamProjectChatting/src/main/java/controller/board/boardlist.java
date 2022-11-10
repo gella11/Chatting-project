@@ -22,7 +22,7 @@ public class boardlist extends HttpServlet {
     public boardlist() {super();}
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      
+	   //윤상진 
       int c_no = Integer.parseInt(request.getParameter("c_no"));
       JSONArray array = new JSONArray();
       
@@ -49,6 +49,17 @@ public class boardlist extends HttpServlet {
    }
 
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   // 관리자 게시물 출력 [2022-11-10 ] 김원종 
+	 
+	   int user_num=Integer.parseInt(request.getParameter("user_num"));
+	   JSONArray array = boardDao.getInstance().admin_board(user_num);
+	  
+	  response.setCharacterEncoding("UTF-8");
+	  response.getWriter().print(array);
+	  
+	  // ArrayList<BoardDto> list = boardDao.getInstance().admin_board(user_num);
+	   
+   
    }
 
 }
