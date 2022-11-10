@@ -10,6 +10,8 @@ let mid = document.querySelector('.mid').value;
 let myname = null;
 //채팅방html
 let html = '';
+//채팅방 메시지
+let msgcontent = '';
 
 //11/8 도현 나의 프로필
 myprofile()
@@ -95,7 +97,7 @@ function socket(){
    let str = mid+","+roomnumber;
    if (mid != 'null') {
       // 웹소켓에 서버소켓으로 연결[매핑]
-      clientsocket = new WebSocket('ws://localhost:8080/TeamProjectChatting/chatting/'+str);
+      clientsocket = new WebSocket('ws://192.168.17.14:8080/TeamProjectChatting/chatting/'+str);
       // 아래에서 구현 메소드를 객체에 대입
       clientsocket.onopen = function(e) { onopen(e) }
       clientsocket.onclose = function(e) { onclose(e) }
@@ -120,8 +122,8 @@ function socketclose(){
  
 //  11/1 도현 메시지보내기
 function send() {
+   msgcontent = document.querySelector('.msgbox').value;
    let today = new Date();   
-   let msgcontent = document.querySelector('.msgbox').value;
    let msg = { // 전송할 데이터 객체
       type: roomnumber,// 일반메시지 
       content: msgcontent, // 작성내용
@@ -195,6 +197,90 @@ function pagechange(page){
 	$(".board_title").load( page )// 특정 태그에 해당 파일 로드 [ jquery ]
 }
 ///////////////////////////////////////
+
+
+//11/9 도현 채팅방만들기 클릭함수
+function addbtn(){
+	document.querySelector('.groupchatbtn').click();
+}
+
+//11/9 도현 간단 친구목록 
+f_list()
+function f_list(){
+	$.ajax({
+		url : "/TeamProjectChatting/F_list",
+		success : function(re){
+			let list = JSON.parse(re)
+			let html = '';
+			for(let i = 0 ; i<list.length; i++){
+				let l = list[i]
+				html +='<div class="friendbox"><input type="checkbox" class="friendno" value="'+l.user_num+'"><span class="nameemail"> 이름 : '+l.user_name+"  /  이메일 : "+l.user_email+' </span></div>'
+			}
+			document.querySelector('.c_friendlist').innerHTML = html;
+		}
+	})
+}
+
+//11/9 도현 단톡방 만들기
+function groupchatting(){
+	let chattingname = document.querySelector('.chattingname').value;
+	let flist =  document.querySelectorAll('.friendno');
+  	let list = [];
+    for (var i=0; i<flist.length; i++) {
+       if (flist[i].checked == true) {
+           list.push(flist[i].value)
+       }
+    }
+    
+	$.ajax({
+      url : "/TeamProjectChatting/F_list",
+      data:{"option":0 , "list":JSON.stringify(list) , "name":chattingname},
+      async:false,
+      type:"POST",
+      success : function(re){
+         if(re=='true'){location.reload()
+         }
+         else{
+			alert('잘못된 입력입니다.')	
+		 }
+      }
+   })
+}
+
+
+//11/10 도현 채팅방 나가기
+function chattingout(){
+	$.ajax({
+      url : "/TeamProjectChatting/F_list",
+      data:{"option":6 , "c_num":roomnumber},
+      async:false,
+      type:"POST",
+      success : function(re){
+         if(re=='true'){
+		 let outmessage = "<span style='color : red;'>*** 알림 : "+myname+"님이 나갔습니다.***</span>";
+		 document.querySelector('.msgbox').value=outmessage;
+		 send();
+		 location.reload();
+         }
+         else if(re=='allout'){
+		 location.reload();
+		 }
+         else{
+			alert('잘못된 입력입니다.')	
+		 }
+      }
+   })
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

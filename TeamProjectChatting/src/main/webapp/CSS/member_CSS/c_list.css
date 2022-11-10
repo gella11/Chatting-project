@@ -3,7 +3,19 @@
 .bodybg{
    background: #384576;
 }
-
+.modal-header , .modal-body , .modal-footer , .contentbox , .sendbox{
+	background-color:#f3f3f3;
+}
+.friendbox{
+	margin: 10px;
+	
+}
+.friendno{
+	padding-top: 5px;
+}
+#exampleModal , #staticBackdrop{
+	background-color: #384576;
+}
 /* 전체 크기 */
 .c_container{
    width: 1200px;
@@ -11,6 +23,15 @@
    margin: 50px auto;
    display: flex;
    justify-content: space-between;
+}
+.chattingout{
+	color: white;
+	background-color: red;
+}
+.groupchat{
+	width: 30px;
+	color: white;
+	background: white;
 }
 
 .chatting_rbox{ 
@@ -23,15 +44,14 @@
 
 .contentbox{
 	overflow-y:auto;
-	background-color: #b2c7d9;
-	height: 700px;
+	height: 650px;
 }
 .secontent{
 	text-align: right;
 }
 
 .secontent .content{
-	background-color: #ffeb33;
+	background-color:#ffffc1;
 }
 .content{
 	background-color: #ffffff;

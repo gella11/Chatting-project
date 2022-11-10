@@ -40,9 +40,7 @@ public class F_list extends HttpServlet {
 		int my_num = (Integer)request.getSession().getAttribute("user_num");
 		// DAO
 		ArrayList<Integer> friendlist  = chattingDao.getInstacnDao().getinfolist(my_num);
-		System.out.println(friendlist);
 	    ArrayList<singUp_Dto> list = chattingDao.getInstacnDao().f_list_info(friendlist);
-	    System.out.println(list);
 	    
 	    
 		// JSON
@@ -53,6 +51,7 @@ public class F_list extends HttpServlet {
 			object.put("user_name", 	list.get(i).getUser_name() );
 			object.put("user_profile",  list.get(i).getUser_profile() );
 			object.put("user_msg",		list.get(i).getUser_msg() );
+			object.put("user_email",	list.get(i).getUser_email() );
 			array.add(object);
 		}
 		response.setCharacterEncoding("UTF-8");
@@ -73,7 +72,34 @@ public class F_list extends HttpServlet {
 		int option = Integer.parseInt(request.getParameter("option"));
 		int user_num = (Integer)request.getSession().getAttribute("user_num");
 		request.setCharacterEncoding("UTF-8");
-		if(option == 1) {
+		//11/9 도현 단톡방만들기 
+		if(option==0) {
+			String chattingname = (String)request.getParameter("name");
+			String list = (String)request.getParameter("list");
+			JSONParser parser = new JSONParser();
+			try {
+				JSONArray array = (JSONArray) parser.parse(list);
+				
+				System.out.println("array:"+array.toString());
+				int endroom = chattingDao.getInstacnDao().endroom();		
+				for(int i=0; i<array.size(); i++) {
+					System.out.println("친구회원번호"+array.get(i));
+					boolean result = chattingDao.getInstacnDao().chattingroom(endroom, Integer.parseInt(String.valueOf(array.get(i))));
+					if(result==false) {return;}
+				}
+				//유저 채팅방에 넣기.
+				boolean result1 = chattingDao.getInstacnDao().chattingroom(endroom, user_num);
+				//채팅방 이름 넣기.
+				boolean result2 = chattingDao.getInstacnDao().chattingroomname(endroom,chattingname);
+				if(result1&&result2) {
+					response.getWriter().print(true);
+				}		
+			} 
+			catch (Exception e) {
+				System.out.println("단톡방 형변환 오류"+e);
+			}		
+		}
+		else if(option == 1) {
 
 			// 도현 상진
 			// [10/28]
@@ -161,21 +187,24 @@ public class F_list extends HttpServlet {
 				System.out.println(e+"메시지저장 형변환 오류");
 			}		
 		}
-		// 11/4추천친구 목록 가져오기
+		// 11/10 도현 채팅방 나가기.
 		else if(option == 6){
-			/*
-			ArrayList<recommendDto> list = chattingDao.getInstacnDao().recommendlist(user_num);
-			JSONArray array = new JSONArray();
-			
-			for(recommendDto dto : list) {
-				JSONObject object = new JSONObject();
-				object.put("email",dto.getEmail());
-				object.put("name",dto.getMname());
-				array.add(object);
-			}
-			*/
-			response.setCharacterEncoding("UTF-8");
-			response.getWriter().print(true);
+			int c_num = Integer.parseInt(request.getParameter("c_num"));
+			//채팅방 목록에서 삭제.
+			boolean result = chattingDao.getInstacnDao().deletechat(user_num, c_num);
+			if(result) {
+				//채팅방에 들어와있는 사람 체크
+				int count= chattingDao.getInstacnDao().searchchat(c_num);
+				if(count==0) {
+					//아무도없으면 채팅방내역삭제
+					chattingDao.getInstacnDao().deletemessage(c_num);
+					response.getWriter().print("allout");
+				}
+				else {
+					//누군가는 있다.
+					response.getWriter().print(true);
+				}
+			}		
 		}
 		// 11/7 도현 내프로필 불러오기
 		else if(option == 7) {

@@ -43,18 +43,21 @@ public class chattingDao extends SuperDao_C{
         ArrayList<singUp_Dto> friendlist = new ArrayList<>();
         for(int a : list) {
            singUp_Dto dto = null;
-           String sql = "select user_num , user_name , user_profile , user_msg from user where user_num="+a;
+           String sql = "select user_num , user_name , user_profile , user_msg,user_email from user where user_num="+a;
            try {
               ps = con.prepareStatement(sql);
               rs = ps.executeQuery();
               while(rs.next()){
                  dto = new singUp_Dto(
-                       rs.getInt(1),
-                       rs.getString(2),
-                       rs.getString(3),
-                       rs.getString(4)
-                       );
+                		 rs.getInt(1),
+                		 rs.getString(2),
+                		 null,
+                		 rs.getString(5),
+                		 null,
+                		 rs.getString(3)
+                		 ,rs.getString(4));
                  friendlist.add(dto);
+                 System.out.println(dto);
               }
               continue;
            } catch (Exception e) {   System.out.println("친구 정보가져오기 오류 || chatting dao : 1-2번"+e);   }
@@ -105,6 +108,50 @@ public class chattingDao extends SuperDao_C{
  		} catch (Exception e) {System.out.println("채팅방 insert 오류 || chatting dao : 5번"+e);}
  		return false;
  				
+ 	}
+ 	// 11/10 도현 채팅방에서 나가기.
+ 	public boolean deletechat (int user_num , int c_num) {
+ 		String sql="delete from chattingroom where c_num=? and user_num=?;";
+ 		try {
+ 			ps = con.prepareStatement(sql);
+ 			ps.setInt(1, c_num );
+ 			ps.setInt(2, user_num );
+ 			ps.executeUpdate();
+ 			return true;
+ 		} 
+ 		catch (Exception e) {System.out.println("채팅방 나가기 오류"+e);}
+ 		return false;			
+ 	}
+ 	// 11/10 빈 채팅방 확인
+ 	public int searchchat (int c_num) {
+ 		String sql="select count(*) from chattingroom where c_num=?;";
+ 		try {
+ 			ps = con.prepareStatement(sql);
+ 			ps.setInt(1, c_num );
+ 			rs = ps.executeQuery();
+ 			if(rs.next()) {
+ 				int count = rs.getInt(1);
+ 				return count;
+ 			}
+ 		} 
+ 		catch (Exception e) {System.out.println("채팅방 나가기 오류"+e);}
+ 		return -1;			
+ 	}
+ 	// 11/10 도현 채팅내역 삭제.
+ 	public boolean deletemessage(int c_num) {
+ 		String sql="delete from usechat where c_num=?;";
+ 		String sql1="delete from chattingname where c_num=?;";
+ 		try {
+ 			ps = con.prepareStatement(sql);
+ 			ps.setInt(1, c_num );
+ 			ps.executeUpdate();
+ 			ps = con.prepareStatement(sql1);
+ 			ps.setInt(1, c_num );
+ 			ps.executeUpdate();
+ 			return true;
+ 		} 
+ 		catch (Exception e) {System.out.println("채팅방 나가기 오류"+e);}
+ 		return false;
  	}
     // 도현 상진
  	// [10/28]

@@ -31,15 +31,16 @@ public class singUp_Dto {
 		this.user_msg = user_msg;
 	}
 
-	public singUp_Dto(int user_num, String user_name, String user_profile, String user_msg) {
+
+	public singUp_Dto(int user_num, String user_name, String user_email, String user_profile, String user_msg) {
 		super();
 		this.user_num = user_num;
 		this.user_name = user_name;
+		this.user_email = user_email;
 		this.user_profile = user_profile;
 		this.user_msg = user_msg;
 	}
 
-	
 
 	public int getUser_num() {
 		return user_num;

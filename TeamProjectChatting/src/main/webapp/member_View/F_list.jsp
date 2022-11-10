@@ -85,17 +85,16 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel"> 친구를 추가하세요 ! </h1>
+              <h1 class="modal-title fs-5" id="staticBackdropLabel"> 친구의 이메일을 입력해주세요 ! </h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <!-- 친구추가 부분 -->
-              <span>친구 e-mail 입력 : </span> <input type="text" class='f_email'>
+              <div class="form-floating mb-3">
+	  		      <input type="email" class="f_email form-control" id="floatingInput" placeholder="name@example.com">
+				  <label for="floatingInput">Email address</label>
+			  </div>
               <button class="form-control" type="button" data-bs-dismiss="modal" onclick="friendadd()">친구 추가</button>
-              <!-- 추천친구 부분 -->
-              <div class='recommendfriend'>
-              	<span class='recommendemail1' value=''>이름</span> <button type="button" onclick='subfriendadd(1)'>친구추가</button>
-              </div>
             </div>
           </div>
         </div>
@@ -108,21 +107,27 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+	        <h1 class="modal-title fs-5" id="exampleModalLabel">프로필을 변경하세요 !</h1>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
 	         <form>
-	             <span>상태메시지 : </span> <input type="text" name='usermsg'><br>
-	             <span>프로필사진 : </span> <input type="file" name='userprofile'>
+	             <div class="form-floating mb-3">
+	  		      <input name='usermsg' type="email" class="f_email form-control" id="floatingInput" placeholder="name@example.com">
+				  <label for="floatingInput">상태메시지 입력</label>
+			  	 </div>
+			  	 <div class="input-group mb-3">
+				   <input name='userprofile' type="file" class="form-control" id="inputGroupFile02">
+				   <label class="input-group-text" for="inputGroupFile02">Profile upload</label>
+				 </div>
 	         </form>
-	         <button class="form-control" type="button" data-bs-dismiss="modal" onclick="updateprofile()">변경</button>
+	         <button class="form-control" type="button" data-bs-dismiss="modal" onclick="updateprofile()">등록</button>
 	
 	      </div>
 	    </div>
 	  </div>
 	</div>
-
+	
       <!-- 하단 탭 아이콘 부분 -->   
       <div class="icon_box">
          <div class="side_box">
