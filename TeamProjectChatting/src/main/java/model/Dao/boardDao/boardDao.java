@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Locale.Category;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import model.Dto.memberDto.BoardDto;
 import model.Dto.memberDto.CategoryDto;
@@ -240,11 +241,80 @@ public class boardDao extends SuperDao_B{
 		return 0;
 	} // gettotal_size e
 	
-	
-	
-	
-	
-	
+	// 11/9 상진 
+    // 댓글 등록
+	public boolean rwrite(String r_content, String user_name, int b_no ) {
+		String sql="insert into reply(r_content, user_name, b_no) value(?, ?, ?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, r_content );
+			ps.setString(2, user_name );
+			ps.setInt(3, b_no );
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {System.out.println(e);}
+		return false;
+				
+	}
+	// 11/9 상진
+	// 대-댓글 등록
+	public boolean rrwrite(String r_content, String user_name , int b_no, int r_index ) {
+		String sql="insert into reply(r_content , user_name  , b_no , r_index) value(?, ?, ?, ?) ";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, r_content );
+			ps.setString(2, user_name );
+			ps.setInt(3, b_no );
+			ps.setInt(4, r_index );
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {System.out.println(e);}
+		return false;
+				
+	}
+	// 11/9 상진
+	// 10. 댓글 리스트
+	public JSONArray getrlist(int b_no) {
+		JSONArray array = new JSONArray();
+		String sql = "select r.r_content , r.r_date, u.user_name , r.r_no , u.user_profile, u.user_department , r.r_index from reply r, user u where r.user_name = u.user_name and r.b_no = "+b_no+" and r.r_index = 0 order by r.r_date desc;";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				JSONObject object = new JSONObject();
+				object.put("r_content", rs.getString(1) );
+				object.put("r_date", rs.getString(2) );
+				object.put("user_name", rs.getString(3) );
+				object.put("r_no", rs.getInt(4) );
+				object.put("user_profile", rs.getString(5) );
+				object.put("user_department", rs.getString(6) );
+				object.put("r_index", rs.getInt(7) );
+				array.add(object);
+			}
+		} catch (Exception e) {System.out.println(e);}
+		return array;
+	} 
+	// 11/9 상진
+	// 10-2). 대댓글 리스트
+	public JSONArray getrrlist(int b_no, int r_index) {
+		JSONArray array = new JSONArray();
+		String sql = "select r.r_content , r.r_date, u.user_name , r.r_no , u.user_profile, u.user_department from reply r, user u where r.user_name = u.user_name and r.b_no = "+b_no+" and r.r_index = "+r_index+" order by r.r_date desc;";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				JSONObject object = new JSONObject();
+				object.put("r_content", rs.getString(1) );
+				object.put("r_date", rs.getString(2) );
+				object.put("user_name", rs.getString(3) );
+				object.put("r_no", rs.getInt(4) );
+				object.put("user_profile", rs.getString(5) );
+				object.put("user_department", rs.getString(6) );
+				array.add(object);
+			}
+		} catch (Exception e) {System.out.println(e);}
+		return array;
+	}
 	
 	
 	

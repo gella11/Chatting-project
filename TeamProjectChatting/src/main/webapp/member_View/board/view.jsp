@@ -53,7 +53,7 @@
 		
 		
 	</div> <!-- view_box e -->
-
+	<div class="replylist"> </div> <!-- 댓글 -->
 	
 
 	<!-- Button trigger modal -->
