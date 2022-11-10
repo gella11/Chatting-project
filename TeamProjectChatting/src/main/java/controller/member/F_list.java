@@ -166,7 +166,8 @@ public class F_list extends HttpServlet {
 		// 11/2 도현 친구추가하기 
 		else if(option == 4) {
 			String email = (String)request.getParameter("email");
-			boolean result = chattingDao.getInstacnDao().friendadd(user_num,email);
+			int f_num = chattingDao.getInstacnDao().findnum(email);
+			boolean result = chattingDao.getInstacnDao().friendadd(user_num,f_num);
 			response.getWriter().print(result);
 		}
 		// 11/3 도현 메시지 저장하기.
