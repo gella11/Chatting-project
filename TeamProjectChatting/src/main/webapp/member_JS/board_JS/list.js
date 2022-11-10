@@ -2,7 +2,7 @@
 
 let pageinfo ={
 	
-	list_size : 3,	// 한페이지당 게시물 표시 개수
+	list_size : 5,	// 한페이지당 게시물 표시 개수
 	page : 1,		// 현재 페이지 번호
 	key : '',		// 검색 키 [ 공백이면 값이 없음 ]
 	keyword : '',	// 검색 키워드
@@ -28,13 +28,7 @@ function list( page, c_no ){
 			let html = '';
 			for( let i = 0; i < list.length; i++ ){
 				let l = list[i];
-				/*
-				if( pageinfo.c_no == 0 ){
-					
-				}else if( pageinfo.c_no == l.c_no ){
-					
-				}
-				*/
+
 				html += '<div class="boder">'
 					+ '<div class="list_profile">'
 					+ '<div><img class="user_profile" alt="" src="../../img/'+ l.user_profile +'"></div>'	
@@ -64,14 +58,15 @@ function list( page, c_no ){
 			if( page <= 1 ){
 				page_html += '<button onclick="list('+(page +','+ c_no)+')"> 이전 </button>';
 			}else{
-				page_html += '<button onclick="list('+(page-1, +','+ c_no)+')"> 이전 </button>';
+				page_html += '<button onclick="list('+(page-1 +','+ c_no)+')"> 이전 </button>';
 			}
 			
 			// [ 페이지번호 버튼 ] 시작 버튼 - 마지막 버튼 출력
 			for( let page = blist.start_btn; page <= blist.end_btn; page++ ){
 				page_html += '<button type="button" onclick="list('+ page +','+ c_no +')">'+ page +'</button>'
-			}
-			
+			} console.log("page :  " + page)
+				console.log("blist.start_btn :  " + blist.start_btn) 
+				console.log("blist.end_btn :  " + blist.end_btn) 
 			// 다음 버튼 출력
 			if( page >= blist.total_page ){
 				// 현재 페이지가 마지막 페이지면 다음 페이지 불가 제한
@@ -158,7 +153,7 @@ function writebtn(c_no){
 }
 
 
-// 4. 검색 처리 메소드
+// 검색 처리 메소드 혜영 - 11/9
 function bsearch(){
 	
 	pageinfo.key = key = document.querySelector(".key").value;
@@ -172,7 +167,7 @@ function bsearch(){
 } // bsearch es
 
 
-// 6. 게시물 표시 개수 : 한 페이지에 보여지는 게시글 수 체인지 이벤트 사용하여 변경하기
+// 게시물 표시 개수 혜영 - 11/9
 function blist_size(){
 	
 	pageinfo.list_size = document.querySelector('.list_size').value;
@@ -181,3 +176,28 @@ function blist_size(){
 } // blistsize e
 
 
+
+// 어드민 버튼 생성
+admin_btn();
+function admin_btn(){
+	
+	$.ajax({
+		url		: "/TeamProjectChatting/board/adminbtn",
+		success	: re => {
+			if( re == 'true' ){
+				let btn = '<button onclick="adminpage()"> 관리자 페이지 </button>';
+		
+				document.querySelector('.admin_btn').innerHTML = btn;
+			}else{
+				
+			}
+		}
+	})
+	
+} // admin_btn
+
+// 어드민 페이지로 이동
+function adminpage(){
+	location.href = "/TeamProjectChatting/member_View/admin/user_manage.jsp";
+	
+} // adminpage e

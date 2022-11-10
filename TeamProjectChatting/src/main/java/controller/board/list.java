@@ -42,9 +42,12 @@ public class list extends HttpServlet {
 		
 		// 2. 페이지당 게시물 수 가져오기
 		int list_size = Integer.parseInt(request.getParameter("list_size"));
+				
+		int c_no = Integer.parseInt(request.getParameter("c_no"));
+		System.out.println("c_no ::: " + c_no);
 		
 		// 3. 전체 게시물 수
-		int total_size = boardDao.getInstance().gettotal_size( key, keyword );
+		int total_size = boardDao.getInstance().gettotal_size( key, keyword, c_no );
 		
 		// 4. 전체 페이지 수 계산
 		int total_page = 0;
@@ -84,9 +87,6 @@ public class list extends HttpServlet {
 		
 		// 프로필 이미지 가져오기
 		String user_profile = memberDao.getInstance().getuser_profile( user_num ); 
-		
-		int c_no = Integer.parseInt(request.getParameter("c_no"));
-		System.out.println("c_no ::: " + c_no);
 		
 		// 페이징 처리에 필요한 정보 담은 것
 		JSONObject boards = new JSONObject();

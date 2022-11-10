@@ -18,9 +18,9 @@
 	<div class="webbox"> 
 		<h3> 글쓰기 </h3>
 		<form enctype="application/x-www-form-urlencoded">
-			제목 : <input type="text" name="btitle"> <br>
+			제목 : <input type="text" name="b_title"> <br>
 			
-			<textarea id="summernote" name="bcontent"></textarea>
+			<textarea id="summernote" name="b_content"></textarea>
 			<!-- 내용 : <input type="text" name="bcontent"> <br> -->
 			
 			첨부파일: <input type="file" name="b_file" id="b_file"> <br>

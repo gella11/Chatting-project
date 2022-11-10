@@ -15,6 +15,7 @@
 			
 		<div class="category"> </div>
 		<div class="write"> </div>
+		<div class="admin_btn"> </div>
 		
 		<div>
 			게시물 수 <span class="total_size"> </span>		
@@ -22,7 +23,7 @@
 		
 		<div class="list_box">
 		</div>
-		
+				
 		<div>
 			
 			
