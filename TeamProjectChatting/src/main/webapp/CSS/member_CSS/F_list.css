@@ -1,6 +1,9 @@
 .bodybg{
 	background: #384576;
 }
+#staticBackdrop , #exampleModal{
+	background-color: #384576;
+}
 /* 전체 크기 */
 .c_container{
 	width: 1200px;

@@ -32,8 +32,8 @@
          <div class="friend_box"> <!-- 친구 목록 출력 -->
                <div class="friend_title">
                   채팅 목록 ▾
+                  <img onclick="addbtn()" class="groupchat" src="../img/talk.png">  
                </div>
-      
                <div class="friendlist_box">
       
                   <div class="clist">
@@ -67,23 +67,44 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Chatting</h1>
+              <h1 class="modal-title fs-5" id="exampleModalLabel"> Chatting </h1>
               <button type="button" class="btn-close" onclick='socketclose()' data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class='contentbox'>
               </div>
               <textarea onkeyup="enterkey()" class='msgbox form-control' rows="" cols=""></textarea>
-              <button class="form-control" type="button" onclick="send()">보내기</button>
-            </div>
-            <div class="modal-footer">
-              <button type="button" onclick='socketclose()' class="btn btn-secondary">Close</button>
+              
+              <button class="sendbox form-control" type="button" onclick="send()">보내기</button>
+              <button style='background-color: #ff9866; ' class="form-control" type="button" onclick="chattingout()">채팅방 나가기</button>
             </div>
           </div>
         </div>
       </div>
          
-         
+      <button style='color=red; display: none' type="button" class="groupchatbtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        단톡방
+      </button>    
+      <!-- Modal -->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel"> 채팅방을 만드세요 ! </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="c_friendlist">
+            </div>
+            <div class="form-floating mb-3">
+  			  <input type="email" class="chattingname form-control" id="floatingInput" placeholder="name@example.com">
+  			  <label for="floatingInput"> 채팅방 이름 입력 </label>
+			</div>
+            <button class="form-control" type="button" data-bs-dismiss="modal" onclick="groupchatting()">채팅방 만들기</button>
+            </div>
+          </div>
+        </div>
+      </div>         
          
          
          

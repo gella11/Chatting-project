@@ -80,9 +80,9 @@ function friendadd(){
       success : function(re){
       if(re=='true'){
 		 document.querySelector('.f_email').value='';
-		 //location.reload();
+		 location.reload();
       }
-      else{alert('이메일을 확인해주세요')}
+      else{alert('이미 추가됬거나 없는 회원입니다.')}
       }
    })
 }

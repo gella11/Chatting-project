@@ -43,18 +43,21 @@ public class chattingDao extends SuperDao_C{
         ArrayList<singUp_Dto> friendlist = new ArrayList<>();
         for(int a : list) {
            singUp_Dto dto = null;
-           String sql = "select user_num , user_name , user_profile , user_msg from user where user_num="+a;
+           String sql = "select user_num , user_name , user_profile , user_msg,user_email from user where user_num="+a;
            try {
               ps = con.prepareStatement(sql);
               rs = ps.executeQuery();
               while(rs.next()){
                  dto = new singUp_Dto(
-                       rs.getInt(1),
-                       rs.getString(2),
-                       rs.getString(3),
-                       rs.getString(4)
-                       );
+                		 rs.getInt(1),
+                		 rs.getString(2),
+                		 null,
+                		 rs.getString(5),
+                		 null,
+                		 rs.getString(3)
+                		 ,rs.getString(4));
                  friendlist.add(dto);
+                 System.out.println(dto);
               }
               continue;
            } catch (Exception e) {   System.out.println("친구 정보가져오기 오류 || chatting dao : 1-2번"+e);   }
@@ -105,6 +108,50 @@ public class chattingDao extends SuperDao_C{
  		} catch (Exception e) {System.out.println("채팅방 insert 오류 || chatting dao : 5번"+e);}
  		return false;
  				
+ 	}
+ 	// 11/10 도현 채팅방에서 나가기.
+ 	public boolean deletechat (int user_num , int c_num) {
+ 		String sql="delete from chattingroom where c_num=? and user_num=?;";
+ 		try {
+ 			ps = con.prepareStatement(sql);
+ 			ps.setInt(1, c_num );
+ 			ps.setInt(2, user_num );
+ 			ps.executeUpdate();
+ 			return true;
+ 		} 
+ 		catch (Exception e) {System.out.println("채팅방 나가기 오류"+e);}
+ 		return false;			
+ 	}
+ 	// 11/10 빈 채팅방 확인
+ 	public int searchchat (int c_num) {
+ 		String sql="select count(*) from chattingroom where c_num=?;";
+ 		try {
+ 			ps = con.prepareStatement(sql);
+ 			ps.setInt(1, c_num );
+ 			rs = ps.executeQuery();
+ 			if(rs.next()) {
+ 				int count = rs.getInt(1);
+ 				return count;
+ 			}
+ 		} 
+ 		catch (Exception e) {System.out.println("채팅방 나가기 오류"+e);}
+ 		return -1;			
+ 	}
+ 	// 11/10 도현 채팅내역 삭제.
+ 	public boolean deletemessage(int c_num) {
+ 		String sql="delete from usechat where c_num=?;";
+ 		String sql1="delete from chattingname where c_num=?;";
+ 		try {
+ 			ps = con.prepareStatement(sql);
+ 			ps.setInt(1, c_num );
+ 			ps.executeUpdate();
+ 			ps = con.prepareStatement(sql1);
+ 			ps.setInt(1, c_num );
+ 			ps.executeUpdate();
+ 			return true;
+ 		} 
+ 		catch (Exception e) {System.out.println("채팅방 나가기 오류"+e);}
+ 		return false;
  	}
     // 도현 상진
  	// [10/28]
@@ -175,20 +222,39 @@ public class chattingDao extends SuperDao_C{
 		} catch (Exception e) {System.out.println(e);}
   		return false;
 	}
+  	//11/10 도현 이메일로 회원번호 찾기
+  	public int findnum(String email) {
+  		String sql = "select (user_num) from user where user_email='"+email+"'";
+  		try {
+  		    ps = con.prepareStatement(sql);
+  	        rs = ps.executeQuery();
+  	        if(rs.next()) {
+  	        	return rs.getInt(1);
+  	        }
+		} catch (Exception e) {
+			System.out.println("회원번호찾기오류"+e);
+		}
+  		return -1;
+  	}
+  	
   	
   //11/2 도현 친구추가.
-    public boolean friendadd(int user_num , String email) {
-       String sql = "select (user_num) from user where user_email='"+email+"'";
+    public boolean friendadd(int user_num , int f_num) {
+       String sql = "select count(*) from friend where user_num =? and friend_num=?;";
        try {
           ps = con.prepareStatement(sql);
-         rs = ps.executeQuery();
+          ps.setInt(1, user_num);
+          ps.setInt(2, f_num);
+          rs = ps.executeQuery();
          if(rs.next()) {
-            sql = "insert friend value(? , ?);";
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, user_num);
-            ps.setInt(2, rs.getInt(1));
-            ps.executeUpdate();
-            return true;
+        	 if(rs.getInt(1)==0) {
+        		sql = "insert friend value(? , ?);";
+	            ps = con.prepareStatement(sql);
+	            ps.setInt(1, user_num);
+	            ps.setInt(2, f_num);
+	            ps.executeUpdate();
+	            return true;
+        	 }  
          }
          return false;
      } 
@@ -197,6 +263,7 @@ public class chattingDao extends SuperDao_C{
      }
        return false;
     }
+    
     //채팅저장
     public boolean setchat(int mid ,String type , String name , String content , String img,String date) {
     	String sql = "insert into usechat(c_num,from_num,from_name,c_content,user_profile,c_date) values(?,?,?,?,?,?);";
