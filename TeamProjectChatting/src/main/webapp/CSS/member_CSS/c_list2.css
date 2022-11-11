@@ -1,0 +1,169 @@
+/* [11-03] 허혜영 CSS 추가 */
+
+.bodybg{
+   background: #689abe;
+}
+.modal-header , .modal-body , .modal-footer , .contentbox , .sendbox{
+	background-color:#f3f3f3;
+}
+.friendbox{
+	margin: 10px;
+	
+}
+.friendno{
+	padding-top: 5px;
+}
+#exampleModal , #staticBackdrop{
+	background-color: #384576;
+}
+/* 전체 크기 */
+.c_container{
+   width: 520px;
+	height: 800px;
+	margin: 50px auto;
+	display: flex;
+  	justify-content: space-between;
+}
+.side_box{
+	display: flex;
+	justify-content: space-around;
+	padding-top: 25px;
+}
+.user, .comment, .more{ /* 아이콘 모두 */
+	font-size: 30px;
+	color: #c7c8ca;
+}
+.chattingout{
+	color: white;
+	background-color: red;
+}
+.groupchat{
+	width: 30px;
+	color: white;
+	background: white;
+}
+
+.chatting_rbox{ 
+   width: 500px;
+   height: 100%;
+   border: 1px solid #ececed;
+   box-shadow: 2px 2px 5px 2px #262f51;
+   background: #fff;
+}
+
+.contentbox{
+	overflow-y:auto;
+	height: 650px;
+}
+.secontent{
+	text-align: right;
+}
+
+.secontent .content{
+	background-color:#ffffc1;
+}
+.content{
+	background-color: #ffffff;
+	border-radius: 10px;
+	padding: 10px;
+	max-width: 70%;
+	word-break:break-all;
+	display: inline-block;
+	font-size: 15px;
+}
+.date{
+	font-size: 1px;
+	margin: 3px;
+}
+.alarm{
+	width: 70%;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 10px;
+	font: #eeeeee;
+	padding: 2%;
+	background-color: #a9bdce;
+}
+.name{font-size: 12px;}
+.msgbox{resize: none;}
+
+
+/* 채팅방 목록 출력 */
+
+.friend_title{
+   text-align: left;
+   font-family: 'Noto Sans KR', sans-serif;
+   font-weight: 700;
+   font-size: 20px;
+   padding: 15px 0px 10px 20px;
+   color: #333;
+}
+
+.friendlist_box{
+   width: 100%;
+   height: 670px; /* 친구 목록 출력 세로 사이즈 */
+   overflow-y: scroll;	/* 세로 스크롤 */ 
+	word-break : break-all; /* 텍스트가 가로 사이즈보다 넘어가면 자동으로 줄바꿈 */
+}
+
+.f_list{
+   height: 100%;
+}
+
+.friend_list{
+   height: 100px;   
+   padding: 5px 20px;
+   margin : 5px 0px;
+   background: #f7f7f7;
+}
+
+.friend_con_box{
+   display: flex;
+   padding-top: 15px;
+}
+
+.friend_img{
+   width: 60px;
+   height: 60px;
+   background: #fff;
+   border-radius: 15px;
+}
+
+.friend_text_box{
+   padding: 5px 0px 0px 20px;
+}
+
+.friend_name{
+   font-size: 17px;
+   font-family: 'Noto Sans KR', sans-serif;
+   font-weight: 400;
+   color: #333;
+}
+
+.friend_msg{
+   padding-top: 5px;
+   font-size: 16px;
+   font-family: 'Noto Sans KR', sans-serif;
+   font-weight: 300;
+   color: #818181;
+}
+
+
+/* 게시판 */
+.board_box{
+	width: 670px;
+	height: 100%;
+	border: 1px solid #ececed;
+	box-shadow: 2px 2px 5px 2px #262f51;
+	background: #fff;
+}
+
+.board_title{
+	text-align: left;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 700;
+	font-size: 20px;
+	padding: 15px 0px 10px 20px;
+	color: #333;
+	border-bottom: 1px solid #ccc;
+}

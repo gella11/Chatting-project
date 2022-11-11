@@ -1,0 +1,319 @@
+.view_box{
+	width: 600px;
+	margin: 0 auto;
+}
+
+.user_profile{
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
+	margin: 10px;
+}
+
+
+.view_profile{
+	margin-top: 10px;
+	display: flex;
+}
+
+.view_title{
+	padding: 15px;
+	
+}
+
+.view_subtitle{
+	width: 8%;
+	height: 20px;
+	border-radius: 50px;
+	background: #384576;
+	text-align: center;
+	margin-top: 20px; 
+}
+
+
+.user_name{
+	font-size: 18px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 500;
+	color: #333;
+}
+
+.b_date{ 
+	font-size: 10px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	color: #7c7c7c;
+}
+
+.user_department{ 
+	padding-top: 5px;
+	font-size: 9px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	color: #fff;
+	line-height: 100%;
+}
+
+.content_box{
+	border-bottom: 1px solid #ccc;
+	padding-top: 20px;
+	padding-bottom: 35px;
+}
+
+
+.b_title{
+	font-size: 32px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 700;
+	color: #333;
+}
+
+.b_content{
+	margin-top: 20px;
+	font-size: 20px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 300;
+	color: #585858;
+	line-height: 155%;
+}
+
+.file_box{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.reply_box{
+	margin-top: 20px;
+}
+
+.r_content{
+	width: 100%;
+	height: 70px;
+	outline: none;
+}
+
+.reply_btn{
+	border: none;	
+	background: #5264AE;
+	width: 70px;
+	height: 35px;
+	border-radius: 40px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	color: #fff;
+	font-size: 15px;
+	float: right;
+	margin: 10px;
+}
+
+.reply_btn:hover{
+	background: #384576;
+}
+
+.btn_box{
+	float: right;
+	margin-bottom: 20px;
+}
+
+.modal_title{
+	margin-top:10px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 600;
+	font-size: 25px;
+	color: #585858;
+	
+}
+
+
+/* --- 수정 --- */
+
+table tr{
+	line-height: 120%;
+}
+
+.form_box{
+	height: 380px;
+	padding: 10px;
+}
+
+.b_no{
+	border: none;
+	outline: none;
+}
+
+.update_title{
+	width: 100%;
+	border: 1px solid #ccc;
+	outline: none;
+	resize: none;
+}
+
+.update_content{
+	width: 100%;
+	height: 200px;
+	border: 1px solid #ccc;
+	outline: none;
+	margin-top: 20px;
+	resize: none;
+}
+
+.update_file{
+	border: 1px solid #ccc;
+	outline: none;
+}
+
+
+/* 뒤로가기 버튼*/
+.return_btn{
+	background: #dad0f9;
+	width: 80px;
+	height: 40px;
+}
+
+.return_btn a{
+	text-decoration: none;
+	border: none;	
+	border-radius: 40px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 500;
+	color: #ddd;
+	font-size: 15px;
+	float: right;
+	margin: 10px;
+	line-height: 100%;
+	text-align: center;
+}
+
+
+
+
+
+/* ----------- 모달 CSS ------------------ */
+
+
+.modal-window {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  
+}  
+  
+.modal-window:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 모달창 크기 */
+.modal-window > div {
+  width: 500px;
+  height: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2em;
+  background: white;
+  box-shadow: 2px 2px 5px 2px #ccc;
+}
+  
+  
+header h1 {
+    font-size: 150%;
+    margin: 0 0 15px;
+  }
+  
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+ 
+}
+
+.modal-close:hover{
+	color: black;
+}
+
+/* Demo Styles */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container2 {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 800px;
+}
+
+.modal-window > div {
+    border-radius: 1rem;
+  }
+
+
+.modal-window div:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+
+.logo {
+  max-width: 150px;
+  display: block;
+}
+
+small {
+  color: lightgray;
+}
+
+.btn {
+  background-color: white;
+  padding: 1em 1.5em;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  
+}
+
+.btn i {
+    padding-right: 0.3em;
+  }
+
+.modal_btn_box{
+	float: right;
+}
+
+.modal_btn_box button:nth-child(1) {
+	border: none;	
+	background: #5264AE;
+	width: 70px;
+	height: 35px;
+	border-radius: 40px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	color: #fff;
+	font-size: 15px;
+	float: right;
+	margin: 10px;
+}
+
+.modal_btn_box button:nth-child(1):hover{
+	background: #384576;
+}
+
+
+
