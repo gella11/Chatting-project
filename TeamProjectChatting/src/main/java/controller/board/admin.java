@@ -50,6 +50,7 @@ public class admin extends HttpServlet {
 			object.put("user_email", list.get(i).getUser_email());
 			object.put("user_phone", list.get(i).getUser_phone());
 			object.put("user_department", list.get(i).getUser_department());
+			object.put("user_position", list.get(i).getUser_position());
 			object.put("user_birth", list.get(i).getUser_birth());
 			object.put("user_date", list.get(i).getUser_date());
 			array.add(object);
@@ -71,6 +72,7 @@ public class admin extends HttpServlet {
 		object.put("user_email", dto.getUser_email());
 		object.put("user_phone", dto.getUser_phone());
 		object.put("user_department", dto.getUser_department());
+		object.put("user_position", dto.getUser_position());
 		object.put("user_birth", dto.getUser_birth());
 		object.put("user_date", dto.getUser_date());
 		response.setCharacterEncoding("UTF-8");

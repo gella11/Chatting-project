@@ -49,7 +49,7 @@
 			<!-- 게시판 -->
 			<div>
 				<div class="board_title">
-					<h3 class="fw-bold title">회원관리</h3>
+					<h3 class="fw-bold title">인사관리</h3>
 				</div>
 				<button id="modal-btn" class="button2">부서 추가</button>
 				<div id="my-modal" class="modal">
@@ -95,13 +95,18 @@
 						name="user_email"> 연락처<input
 						class="user_phone form-control" type="text" name="user_phone">
 					부서<input class="user_department form-control" type="text"
-						name="user_department"> 생년월일<input
+						name="user_department">
+						직책<input class="user_position form-control" type="text"
+						name="user_position">
+						 생년월일<input
 						class="user_birth form-control" type="text" name="user_birth"
 						readonly="readonly"> 입사날<input
 						class="user_date form-control" type="text" name="user_date"
 						readonly="readonly">
-				</form>
+					<button id="edit" class="wrap button" type="button"
+						onclick="edit_user()">수정하기</button>
 
+				</form>
 			</div>
 			<br>
 
@@ -109,20 +114,35 @@
 		</div>
 	</div>
 	<!--================================================================================================  -->
-		<div style="display: none;" class="Click-here">Click Here</div>
-				<div class="custom-model-main">
-					<div class="custom-model-inner">
-						<div class="close-btn">×</div>
-						<div class="custom-model-wrap">
-							<div class="pop-up-content-wrap">
-								<table class="detail_table table">
-								
-								</table>
-							</div>
-						</div>
+	<div style="display: none;" class="Click-here">Click Here</div>
+	<div class="custom-model-main">
+		<div class="custom-model-inner">
+			<div class="close-btn">×</div>
+			<div class="custom-model-wrap">
+				<div class="pop-up-content-wrap" style="height: 476px;">
+					<table class="detail_table table">
+
+					</table>
+					<div style="width: 500px; height: 1200px;">
+						<!--차트가 그려질 부분-->
+						<canvas id="myChart"></canvas>
 					</div>
-					<div class="bg-overlay"></div>
+
 				</div>
+			</div>
+		</div>
+		<div class="bg-overlay"></div>
+	</div>
+
+	<!--===================================================================================================  -->
+
+
+
+
+
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
