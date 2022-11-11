@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../CSS/member_CSS/c_list2.css">
+<link rel="stylesheet" href="../CSS/member_CSS/c_list2.css?after">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -106,44 +106,27 @@
         </div>
       </div>         
          
-         
+      <!-- 하단 탭 아이콘 부분 -->   
+      <div class="icon_box">
+         <div class="side_box">
+            <div class="tab_list1"><a onclick="pagechange('F_list2.jsp')"><i class="fas fa-user user"></i></a></div>
+            <div class="tab_list2"><a onclick="pagechange('c_list2.jsp')"><i class="fas fa-comment comment"></i></a></div>
+            <div class="tab_list3"><a onclick="pagechange2('calender/calender2.jsp')"><i class="fas fa-ellipsis-h more"></i></a></div>
+            <div class="tab_list4"><a class="logout" href="/TeamProjectChatting/member_View/login.jsp">Logout</a></div>
+         </div>
+      </div>
          
          
          
       </div> <!-- 채팅방 박스 e -->
       
-       <!-- 하단 탭 아이콘 부분 -->   
-      <div class="icon_box">
-         <div class="side_box">
-            <div class="tab_list1"><a onclick="pagechange('F_list2.jsp')"><i class="fas fa-user user"></i></a></div>
-            <div class="tab_list2"><a onclick="pagechange('c_list2.jsp')"><i class="fas fa-comment comment"></i></a></div>
-            <div class="tab_list3"><a href="/TeamProjectChatting/member_View/other.jsp"><i class="fas fa-ellipsis-h more"></i></a></div>
-            <div class="tab_list4"><a class="logout" href="/TeamProjectChatting/member_View/login.jsp">Logout</a></div>
-         </div>
-      </div>
+    
 
 		
 		
    </div> <!--  컨테이너 e  -->
    
    
-   <script>
-
-   //data, title, url 의 값이 들어가게 됩니다. 비워두면 이벤트 발생의 플래그 정도로 사용 할 수 있습니다.
-
-                                         //기존페이지 이외에 입력한 URL로 페이지가 하나 더 만들어지는 것을 알 수 있습니다.
-
-
-
- window.onpopstate = function(event) {  //뒤로가기 이벤트를 캐치합니다.
-	 history.pushState(null, null, '3');
-  history.back();   // pushState로 인하여 페이지가 하나 더 생성되기 떄문에 한번에 뒤로가기 위해서 뒤로가기를 한번 더 해줍니다.
-  pagechange('dash.jsp')
-  console.log('뒤로가기 체크'); 
-
- };
-
-</script>
 
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>

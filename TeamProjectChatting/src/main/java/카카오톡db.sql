@@ -13,22 +13,51 @@ create table user(
    user_profile longtext,                       -- 프로필사진
    user_msg varchar(20),                       -- 상태메시지
    user_department varchar(20) ,                 -- 부서명
+   user_position varchar(10),                -- 직책
    user_birth varchar(13),                       -- 생년월일            
-   user_date datetime default now(),              -- 입사날짜
-      
+   user_date datetime default now() ,              -- 입사날짜
+   user_vacation int,                        -- 연차일수   
+   user_usevacation float,                     -- 휴가 및 연차 사용일수
+   
+   
    constraint primary key (user_num)
         
 );
+update user set user_name='안녕',user_pw='안녕',user_email='안녕',user_phone='010-1111-1111',user_department='개발' where user_num=2;
+            
+drop table if exists Performance;
+create table Performance(
+user_num int,
+Performance datetime default now(),
+content varchar(100),
+foreign key (user_num) references user(user_num) on delete cascade on update cascade
+);
+select*from Performance;
+insert into Performance values(2 , '2022-12-22','카카오체결');
+
+select count(*) from Performance where user_num=2 and Performance like '%2022-01%';
+
 
 select*from user;
 
 
-insert user value( null , '이름나', 12, 13, 14, null, 16,'경리부','19931011',null);
-insert user value( null , '이름다', 22, 23, 24, null, 26,'경제부','19911215',null);
-insert user value( null , '이름라', 32, 33, 34, null, 36,'관리부','19870313',null);
-insert user value( null , '이름마', 42, 43, 44, null, 46,'회계부','19550501',null);
-insert user value( null , '이름바', 52, 53, 54, null, 56,'개발부','19670617',null);
-insert user value( null , '이름사', 62, 63, 64, null, 66,'시설부','19800811',null);
+insert user value( null , 'admin', 'admin', 'admin', 'admin', null, 'admin','admin','admin',19941011,'20211011','15','3');
+insert user value( null , 'ㄱㄷ', '32', '33', '34', null, '35','개발부','사원',19941011,'20211011','12','1');
+insert user value( null , 'ㅈㄷ', '32', '33', '34', null, '35','개발부','사원',19941011,'20220102','12','1');
+insert user value( null , 'ㅂㅈ', '32', '33', '34', null, '35','개발부','대리',19941011,'20090102','12','1');
+insert user value( null , 'ㅂㄷ', '32', '33', '34', null, '35','개발부','부장',19941011,'20011012','12','1');
+insert user value( null , '이지훈', '32', '33', '34', null, '35',null,'부장',19941011,'20011012','12','1');
+insert user value( null , '이를라', 32, 33, 34, null, 36,'관리부','19870313',null);
+insert user value( null , '이를라', 32, 33, 34, null, 36,'관리부','19870313',null);
+insert user value( null , '나도현', 42, 43, 44, null, 46,'회계부','19550501',null);
+insert user value( null , '박진영', 52, 53, 54, null, 56,'개발부','19670617',null);
+insert user value( null , '이수만', 62, 63, 64, null, 66,'시설부','19800811',null);
+
+
+
+SELECT  DATE_FORMAT(user_date,'%Y-%m') FROM user where user_num=2;
+select*from user;
+select DATE_FORMAT(user_date,'%Y-%m-%d');
 
 drop table if exists friend;
 create table friend(
@@ -109,6 +138,10 @@ create table category(
 );
 select*from category;
 
+
+
+
+DELETE FROM category WHERE c_no=6;
 insert into category(c_name) value('전체');
 insert into category(c_name) value('인사');
 insert into category(c_name) value('마케팅');
@@ -132,11 +165,13 @@ CREATE TABLE board(
     
 );
 select * from board;
- insert into board values(null, 'b제목', 'b내용', 'b첨부파일', null, 1, 1, '이름나');
+ insert into board values(null, '회사공지', '월요일발표', '관리자', now(), 1, 1, 'admin');
  insert into board values(null, '다제목', '다내용', '다첨부파일', null, 1, 1, '이름다');
  insert into board values(null, '라제목', '라내용', '라첨부파일', null, 1, 1, '이름라');
  insert into board values(null, '마제목', '마내용', '마첨부파일', null, 1, 1, '이름마');
 
+select * from user where user_num=?;
+select * from board where user_name='admin' order by b_date desc;
 drop table if exists reply;
 create table reply(
 
@@ -151,4 +186,4 @@ create table reply(
     constraint b_no foreign key(b_no) references  board(b_no) on delete cascade                -- 게시물 삭제시 댓글도 같이 삭제
     
 );
-select*from user;
+select*from user ;

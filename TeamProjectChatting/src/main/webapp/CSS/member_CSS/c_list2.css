@@ -16,6 +16,15 @@
 #exampleModal , #staticBackdrop{
 	background-color: #384576;
 }
+
+/*스크롤 바 없애기*/
+.friend_box{
+ -ms-overflow-style: none;
+ }
+::-webkit-scrollbar {
+  display: none;
+}
+
 /* 전체 크기 */
 .c_container{
    width: 520px;
@@ -114,7 +123,7 @@
    height: 100px;   
    padding: 5px 20px;
    margin : 5px 0px;
-   background: #f7f7f7;
+   background: #fff;
 }
 
 .friend_con_box{
@@ -167,3 +176,33 @@
 	color: #333;
 	border-bottom: 1px solid #ccc;
 }
+
+
+/* 하단 탭 아이콘 부분 */
+.icon_box{
+	width: 499px;
+	height: 76px; /* 탭 부분 세로 사이즈 */
+	background: #ececed;
+	position: absolute;
+}
+.side_box{
+	display: flex;
+	justify-content: space-around;
+	padding-top: 25px;
+}
+a :hover{
+	text-decoration: none;
+}
+.user, .comment, .more{ /* 아이콘 모두 */
+	font-size: 30px;
+	color: #c7c8ca;
+}
+.logout{ /* 로그아웃 텍스트 */
+	text-decoration: none;
+	margin-left: 22px;
+	font-size: 20px;
+}
+.user:hover, .comment:hover, .more:hover{
+	color:black;
+}
+

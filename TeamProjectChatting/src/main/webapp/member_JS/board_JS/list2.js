@@ -2,7 +2,7 @@
 
 let pageinfo ={
 	
-	list_size : 5,	// 한페이지당 게시물 표시 개수
+	list_size : 4,	// 한페이지당 게시물 표시 개수
 	page : 1,		// 현재 페이지 번호
 	key : '',		// 검색 키 [ 공백이면 값이 없음 ]
 	keyword : '',	// 검색 키워드
@@ -27,10 +27,12 @@ function list( page, c_no ){
 			let html = '';
 			for( let i = 0; i < list.length; i++ ){
 				let l = list[i];
-
-				html += '<div class="boder">'
+				let profile = l.user_profile
+				if(profile === null){
+					profile = "user.png"
+					html += '<div class="boder">'
 					+ '<div class="list_profile">'
-					+ '<div><img class="user_profile" alt="" src="../../img/'+ l.user_profile +'"></div>'	
+					+ '<div><img class="user_profile" alt="" src="../img/'+ profile +'"></div>'	
 					+ '<div class="list_title"> '	
 					+ '<div class="user_name"> '+ l.user_name +' </div>'		
 					+ '<div class="b_date"> '+ l.b_date +' </div>'		
@@ -43,9 +45,27 @@ function list( page, c_no ){
 					+ '<div class="b_title" onclick="select_view(' + l.b_no + ')"> '+ l.b_title +' </div>'	
 					+ '</div>'	
 					+ '</div>'
+				}else{
+					html += '<div class="boder">'
+					+ '<div class="list_profile">'
+					+ '<div><img class="user_profile" alt="" src="../img/'+ l.user_profile +'"></div>'	
+					+ '<div class="list_title"> '	
+					+ '<div class="user_name"> '+ l.user_name +' </div>'		
+					+ '<div class="b_date"> '+ l.b_date +' </div>'		
+					+ '</div>'	
+					+ '<div class="list_subtitle">'	
+					+ '<div class="user_department"> '+ l.user_department +' </div>'
+					+ '</div>'	
+					+ '</div>'
+					+ '<div class="content_box">'		
+					+ '<div class="b_title" onclick="select_view(' + l.b_no + ')"> '+ l.b_title +' </div>'	
+					+ '</div>'	
+					+ '</div>'
+				}
+				
 			}
 			// 버튼 출력
-			let writebtn = '<button onclick="writebtn('+c_no+')"> 글쓰기 </button>'
+			let writebtn = '<button onclick="writebtn('+c_no+')" class="write_btn"> 글쓰기 </button>'
          	document.querySelector('.write').innerHTML = writebtn
 			// 게시물 출력
 			document.querySelector('.list_box').innerHTML = html;
@@ -55,24 +75,24 @@ function list( page, c_no ){
 			
 			// 이전 버튼 출력
 			if( page <= 1 ){
-				page_html += '<button onclick="list('+(page +','+ c_no)+')"> 이전 </button>';
+				page_html += '<button onclick="list('+(page +','+ c_no)+')" class="page1"> < </button>';
 			}else{
-				page_html += '<button onclick="list('+(page-1 +','+ c_no)+')"> 이전 </button>';
+				page_html += '<button onclick="list('+(page-1 +','+ c_no)+')" class="page1"> < </button>';
 			}
 			
 			// [ 페이지번호 버튼 ] 시작 버튼 - 마지막 버튼 출력
 			for( let page = blist.start_btn; page <= blist.end_btn; page++ ){
-				page_html += '<button type="button" onclick="list('+ page +','+ c_no +')">'+ page +'</button>'
+				page_html += '<button type="button" onclick="list('+ page +','+ c_no +')" class="page_num">'+ page +'</button>'
 			} console.log("page :  " + page)
 				console.log("blist.start_btn :  " + blist.start_btn) 
 				console.log("blist.end_btn :  " + blist.end_btn) 
 			// 다음 버튼 출력
 			if( page >= blist.total_page ){
 				// 현재 페이지가 마지막 페이지면 다음 페이지 불가 제한
-				page_html += '<button onclick="list('+(page +','+ c_no)+')"> 다음 </button>';
+				page_html += '<button onclick="list('+(page +','+ c_no)+')" class="page2"> > </button>';
 			}
 			else{
-				page_html += '<button onclick="list('+(page+1+','+ c_no)+')"> 다음 </button>';
+				page_html += '<button onclick="list('+(page+1+','+ c_no)+')" class="page2"> > </button>';
 			}
 			document.querySelector('.pagebox').innerHTML = page_html;
 			
@@ -113,7 +133,7 @@ function categorylist(){
 			console.log(re)
 			let html = ''
 			category_num.forEach(c =>{
-				html +=  '<button onclick="list('+ pageinfo.page+','+ c.c_no+')"> '+c.c_name+' </button>'	
+				html +=  '<button onclick="list('+ pageinfo.page+','+ c.c_no+')" class="department_btn"> '+c.c_name+' </button>'	
 			})
 			// 카테고리 정보를 반복문 돌려서 카테고리별 버튼 innerHTML
 		    document.querySelector('.category').innerHTML = html
@@ -135,7 +155,7 @@ function categoryboard(c_no){
          let list = JSON.parse(re)
          
          // 카테고리 별 글쓰기 버튼 innerHTML
-          let writebtn = '<button onclick="writebtn('+c_no+')"> 글쓰기 </button>'
+          let writebtn = '<button onclick="writebtn('+c_no+')" class="writebtn"> 글작성 </button>'
           document.querySelector('.write').innerHTML = writebtn
       }
    })
@@ -149,10 +169,12 @@ function writebtn(c_no){
 		data : {"c_no":c_no},
 		success: (re) =>{
 			if(re==='true'){
-				location.href = "/TeamProjectChatting/member_View/board/write.jsp";	
+				//location.href = "/TeamProjectChatting/member_View/board/write.jsp";
+				pagechange2('board/write2.jsp')	
 			}else{
 				alert('당신은 이 부서 사람이 아니야 보기만 해')
-				location.href = "/TeamProjectChatting/member_View/board/list.jsp";	
+				//location.href = "/TeamProjectChatting/member_View/board/list.jsp";
+				pagechange2('list2.jsp')	
 			}
 			
 		}
@@ -228,9 +250,10 @@ function admin_btn(){
 		url		: "/TeamProjectChatting/board/adminbtn",
 		success	: re => {
 			if( re == 'true' ){
-				let btn = '<button onclick="adminpage()"> 관리자 페이지 </button>';
+				let btn1 = '<button onclick="adminpage()"> 관리자 페이지 </button>';
+				
 		
-				document.querySelector('.admin_btn').innerHTML = btn;
+				document.querySelector('.admin_btn').innerHTML = btn1;
 			}else{
 				
 			}

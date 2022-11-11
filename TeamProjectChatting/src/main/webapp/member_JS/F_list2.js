@@ -45,7 +45,7 @@ function chatting(num){
       type:"POST",
       success : function(re){
 		
-		location.href='/TeamProjectChatting/member_View/c_list.jsp';
+		pagechange('../member_View/c_list2.jsp')
        }
    })
 }

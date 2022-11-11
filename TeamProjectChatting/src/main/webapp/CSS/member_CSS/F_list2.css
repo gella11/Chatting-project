@@ -4,6 +4,15 @@
 #staticBackdrop , #exampleModal{
 	background-color: #384576;
 }
+
+/*스크롤 바 없애기*/
+.friend_box{
+ -ms-overflow-style: none;
+ }
+::-webkit-scrollbar {
+  display: none;
+}
+
 /* 전체 크기 */
 .c_container{
 	width: 520px;

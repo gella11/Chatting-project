@@ -192,11 +192,7 @@ function onmessage(e) {
 function onerror(e) { }
 document.querySelector('.contentbox').scrollTop = document.querySelector('.contentbox').scrollHeight; 
 
-/////////////본문 전환 이벤트///////////////
-function pagechange(page){
-	$(".board_title").load( page )// 특정 태그에 해당 파일 로드 [ jquery ]
-}
-///////////////////////////////////////
+
 
 
 //11/9 도현 채팅방만들기 클릭함수
@@ -271,8 +267,6 @@ function chattingout(){
       }
    })
 }
-
-
 
 
 

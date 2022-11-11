@@ -7,11 +7,10 @@
 <link rel="stylesheet" href="../CSS/board_CSS/view2.css?after">
 
 </head>
-<body>
+<body class="viewbody">
 
 	<%@include file="../header.jsp"%>
-		
-	
+	<div class="tab_list2 aaa"><a onclick="pagechange2('board/list2.jsp')"><i class="fas comment">←</i></a></div>
 	<div class="view_box">
 
 	</div> <!-- view_box e -->
@@ -64,25 +63,6 @@
 
 
 
-
-
-<script>
-
-   //data, title, url 의 값이 들어가게 됩니다. 비워두면 이벤트 발생의 플래그 정도로 사용 할 수 있습니다.
-
-                                         //기존페이지 이외에 입력한 URL로 페이지가 하나 더 만들어지는 것을 알 수 있습니다.
-
-
-
- window.onpopstate = function(event) {  //뒤로가기 이벤트를 캐치합니다.
-	 history.pushState(null, null, '3');
-  history.back();   // pushState로 인하여 페이지가 하나 더 생성되기 떄문에 한번에 뒤로가기 위해서 뒤로가기를 한번 더 해줍니다.
-  pagechange2('board/list2.jsp')
-  console.log('뒤로가기 체크'); 
-
- };
-
-</script>
 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="../member_JS/board_JS/view2.js" type="text/javascript"></script>

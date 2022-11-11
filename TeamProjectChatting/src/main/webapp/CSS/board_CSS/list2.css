@@ -1,7 +1,21 @@
-.list_con{
+.list_container{
 	width: 800px;
+	height: 800px;
+	margin : 0 auto;
+	overflow-y: scroll;	/* 세로 스크롤 */ 
+	word-break : break-all; /* 텍스트가 가로 사이즈보다 넘어가면 자동으로 줄바꿈 */
+	-ms-overflow-style: none;
+}
+
+/*스크롤 바 없애기*/
+::-webkit-scrollbar {
+  display: none;
+}
+
+.list_con{
+	width: 550px;
 	margin: 0 auto;
-	padding-top: 20px;
+	padding-top: 50px;
 	padding-bottom: 30px;
 }
 
@@ -52,7 +66,7 @@
 }
 
 .user_department{ 
-	padding-top: 5px;
+	padding-top: 2px;
 	font-size: 5px;
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 400;
@@ -72,3 +86,135 @@
 	font-weight: 600;
 	color: #333;
 }
+
+.page_con{
+	margin-top: 20px;
+}
+
+.page_con2, .page_con3{
+	text-align: center;
+}
+
+.page_con3{
+	margin-top: 10px;
+}
+
+.key, .list_size, .keyword{
+	outline: none;
+}
+
+.list_size{
+	border: 1px solid #ccc;
+	width: 40px;
+	height: 30px;
+}
+
+.key{
+	border: 1px solid #ccc;
+	width: 60px;
+	height: 30px;
+}
+
+.keyword{
+	border: 1px solid #ccc;
+	width: 250px;
+	height: 30px;
+}
+
+
+.department_btn{
+	border: none;	
+	background: #5264AE;
+	width: 70px;
+	height: 35px;
+	border-radius: 40px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	color: #fff;
+	font-size: 15px;
+	margin-left: 10px;
+}
+
+.department_btn:hover {
+	background: #384576;
+}
+
+.writebtn{
+	float: right;
+	border: none;	
+	background: #bcbcbc;
+	width: 70px;
+	height: 35px;
+	border-radius: 40px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	color: #fff;
+	font-size: 15px;
+	margin-left: 10px;
+}
+
+.writebtn:hover{
+	background: #acacac;
+}
+
+
+.write_btn{
+	border: none;	
+	background: #acacac;
+	width: 70px;
+	height: 35px;
+	border-radius: 40px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	color: #fff;
+	font-size: 15px;
+	float: right;
+	margin: 10px;
+}
+
+.write_btn:hover{
+	background: #d3d3d3;
+}
+
+.total_size_box{
+	margin-top: 10px;
+	color: #acacac;
+	font-size: 15px;
+}
+
+.page_num{
+	border: none;
+	background: #fff;
+	color: #595959;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+}
+
+/* 이전 */
+.page1{
+	border: none;
+	background: #fff;
+	color: #595959;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 600;
+}
+
+/* 다음 */
+.page2{
+	border: none;
+	background: #fff;
+	color: #595959;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 600;
+}
+
+.bsearch_box{
+	width: 80px;
+	height: 30px;
+	border: none;
+	color: #595959;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 500;
+}
+
+

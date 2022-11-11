@@ -9,9 +9,12 @@ function b_view( b_no ){ // 선택한 글 출력
 		type	: "get",
 		success	: re => {
 			let b = JSON.parse(re);
-			let html = '<div>'
+			let profile = b.user_profile
+			if(profile === null){
+				profile = "user.png"
+				let html = '<div>'
 					+ '<div class="view_profile">' 
-					+ '<div><img class="user_profile" alt="" src="../../img/'+ b.user_profile +'"></div>'	
+					+ '<div><img class="user_profile" alt="" src="../img/'+ profile +'"></div>'	
 					+ '<div class="view_title">'	
 					+ '<div class="user_name"> '+ b.user_name +' </div>'		
 					+ '<div class="b_date"> '+ b.b_date +' </div>'		
@@ -36,17 +39,49 @@ function b_view( b_no ){ // 선택한 글 출력
 					+ '<button type="button" class="reply_btn" onclick="rwrite('+b_no+')"> 등록 </button>'
 					+ '</div>';
 					document.querySelector('.view_box').innerHTML = html;
+			}else{
+				let html = '<div>'
+					+ '<div class="view_profile">' 
+					+ '<div><img class="user_profile" alt="" src="../img/'+ b.user_profile +'"></div>'	
+					+ '<div class="view_title">'	
+					+ '<div class="user_name"> '+ b.user_name +' </div>'		
+					+ '<div class="b_date"> '+ b.b_date +' </div>'		
+					+ '</div>'	
+					+ '<div class="view_subtitle">'	 
+					+ '<div class="user_department"> '+ b.user_department +' </div>'		
+					+ '</div>'	
+					+ '</div>'
+					+ '<div class="content_box">'	
+					+ '<div class="b_title"> '+ b.b_title +' </div>'	
+					+ '<div class="b_content">'+ b.b_content +'</div>'
+					+ '</div>'
+					+ '<div class="file_box">'
+					+ '<span> 첨부파일 </span>'	
+					+ '<span class="b_file"> '+ b.b_file +' </span>'	
+					+ '</div>'
+					+ '</div>'
+					+ '<div class="btn_box">'
+					+ '</div>'
+					+ '<div class="reply_box">'
+					+ '<textarea style="resize: none;" rows="" cols="" class="r_content"></textarea>'
+					+ '<button type="button" class="reply_btn" onclick="rwrite('+b_no+')"> 등록 </button>'
+					+ '</div>';
+					document.querySelector('.view_box').innerHTML = html;
+			}
+					
+			
 					
 					// 뒤로가기 버튼 생성
 					let return_btn = '<span class="return_btn">'
 							+ '<a href="/TeamProjectChatting/member_View/board/list.jsp"> 뒤로가기 </a>'
+							//+ '<a onclick="pagechange('+/TeamProjectChatting/member_View/board/view2.jsp+')"> 뒤로가기 </a>'
 							+ '</span>';
 					document.querySelector('.btn_box').innerHTML = return_btn;
 					rlist()
 			// 서블릿에서 조건 검 -> 내 글이거나 관리자면 버튼이 생성되도록
 			if( b.btn_action == true ){
-				let btn = '<button onclick="b_modal_open()"> 수정 </button>'
-						+ '<button onclick="b_delete('+b.b_no+')"> 삭제 </button>'
+				let btn = '<button onclick="b_modal_open()" class="update_btn2"> 수정 </button>'
+						+ '<button onclick="b_delete('+b.b_no+')" class="delete_btn2"> 삭제 </button>'
 				document.querySelector('.btn_box').innerHTML += btn;
 				
 				
@@ -66,7 +101,8 @@ function rwrite(b_no){
 		success : function(re){
 			if( re == 1){
 				alert('댓글 작성')
-				location.reload()
+				//location.reload()
+				pagechange2('../member_View/board/view2.jsp')	
 			}else if( re == 0) {
 				alert('로그인이 필요합니다.')
 				location.href='../../member_View/login.jsp'
@@ -98,9 +134,9 @@ function rlist(){
 					async : false,
 					success : function(re){
 						let rereplylist = JSON.parse(re)
-							html += '<div>' 
+							html += '<div class="reply_box2">' 
 										+ '<div class="view_profile">' 
-										+ '<div><img class="user_profile" alt="" src="../../img/'+ reply.user_profile +'"></div>'	
+										+ '<div><img class="user_profile" alt="" src="../img/'+ reply.user_profile +'"></div>'	
 										+ '<div class="view_title">'	
 										+ '<div class="user_name"> '+ reply.user_name +' </div>'		
 										+ '<div class="b_date"> '+ reply.r_date +' </div>'		
@@ -110,12 +146,12 @@ function rlist(){
 										+ '</div>'	
 										+ '</div>'
 										+ '<div class="content_box">'	
-										+ '<div class="b_content">'+ reply.r_content +'</div>'
+										+ '<div class="b_content reply_con">'+ reply.r_content +'</div>'
 										+ '</div>'
 										+ '</div>'
 										+ '<div class="btn_box">'
 										+ '</div>'
-										+ '<button type="button" onclick="rereplyview('+reply.r_no+')"> 답글 </button>'  
+										+ '<button type="button" onclick="rereplyview('+reply.r_no+')" class="rereply_btn"> 답글 </button>'  
 										+ '<div class="reply'+reply.r_no+'"> </div>'
 										+ '</div>';
 							for(let j = 0 ; j<rereplylist.length; j++){
@@ -166,7 +202,7 @@ function rereplywrite(r_no){
 		success : function(re){
 			if( re == 1){
 				alert('대댓글 작성')
-				location.reload()
+				pagechange2('../member_View/board/view2.jsp')
 			}else if( re == 0) {
 				alert('로그인이 필요합니다.')
 				location.href='../../member_View/login.jsp'
