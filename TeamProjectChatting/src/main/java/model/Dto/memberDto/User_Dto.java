@@ -7,12 +7,11 @@ public class User_Dto {
 	private String user_email;
 	private String user_phone;
 	private String user_department;
+	private String user_position;
 	private String user_birth;
 	private String user_date;
-	
-	
 	public User_Dto(int user_num, String user_name, String user_pw, String user_email, String user_phone,
-			String user_department) {
+			String user_department, String user_position, String user_birth, String user_date) {
 		super();
 		this.user_num = user_num;
 		this.user_name = user_name;
@@ -20,21 +19,12 @@ public class User_Dto {
 		this.user_email = user_email;
 		this.user_phone = user_phone;
 		this.user_department = user_department;
+		this.user_position = user_position;
+		this.user_birth = user_birth;
+		this.user_date = user_date;
 	}
 	public User_Dto() {
 		super();
-	}
-	public User_Dto(int user_num, String user_name, String user_pw, String user_email, String user_phone,
-			String user_department, String user_birth, String user_date) {
-		super();
-		this.user_num = user_num;
-		this.user_name = user_name;
-		this.user_pw = user_pw;
-		this.user_email = user_email;
-		this.user_phone = user_phone;
-		this.user_department = user_department;
-		this.user_birth = user_birth;
-		this.user_date = user_date;
 	}
 	public int getUser_num() {
 		return user_num;
@@ -72,6 +62,12 @@ public class User_Dto {
 	public void setUser_department(String user_department) {
 		this.user_department = user_department;
 	}
+	public String getUser_position() {
+		return user_position;
+	}
+	public void setUser_position(String user_position) {
+		this.user_position = user_position;
+	}
 	public String getUser_birth() {
 		return user_birth;
 	}
@@ -87,9 +83,10 @@ public class User_Dto {
 	@Override
 	public String toString() {
 		return "User_Dto [user_num=" + user_num + ", user_name=" + user_name + ", user_pw=" + user_pw + ", user_email="
-				+ user_email + ", user_phone=" + user_phone + ", user_department=" + user_department + ", user_birth="
-				+ user_birth + ", user_date=" + user_date + "]";
+				+ user_email + ", user_phone=" + user_phone + ", user_department=" + user_department
+				+ ", user_position=" + user_position + ", user_birth=" + user_birth + ", user_date=" + user_date + "]";
 	}
+	
 	
 	
 	

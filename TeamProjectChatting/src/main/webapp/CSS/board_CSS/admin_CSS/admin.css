@@ -1,5 +1,5 @@
 
-a{text-decoration: none;
+#btn{text-decoration: none;
 }
 .title {
 	text-align: center;
@@ -7,12 +7,17 @@ a{text-decoration: none;
 
 .board_box {
 	width: 600px;
+	height: 800px;
 	margin: 0 auto;
 	border-bottom: 1px solid #ccc;
 	padding-top: 20px;
 	padding-bottom: 30px;
 	overflow-y: scroll;	/* 세로 스크롤 */ 
 	word-break : break-all; /* 텍스트가 가로 사이즈보다 넘어가면 자동으로 줄바꿈 */
+	-ms-overflow-style: none;
+ }
+::-webkit-scrollbar {
+  display: none;
 }
 
 .user_profile {
@@ -270,7 +275,7 @@ body {
 /* 모달창 크기 */
 .modal-window > div {
   width: 500px;
-  height: 600px;
+  height: 715px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -421,7 +426,6 @@ small {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   max-height: calc(100vh - 70px);
-	overflow-y: auto;
 }
 .model-open .custom-model-inner {
   -webkit-transform: translate(0, 0);
@@ -469,5 +473,18 @@ small {
 	}
 }
 @media screen and (max-width:799px){
-  .custom-model-inner{margin-top: 45px;}
+  .custom-model-inner{
+  margin-top: 45px;}
+}
+#edit{
+	margin: 10px 167px;
+    width: 108px;
+        background-color: unset;
+    border: 4px double darkgray;
+}
+#insert{
+	display: flex;
+}
+.performance{
+	height: 20px;
 }

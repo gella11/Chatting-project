@@ -28,7 +28,8 @@ public class adminDao extends SuperDao_B{
 						rs.getInt(1), rs.getString(2),
 						rs.getString(3), rs.getString(4),
 						rs.getString(5), rs.getString(8), 
-						rs.getString(9), rs.getString(10));
+						rs.getString(9), rs.getString(10),
+						rs.getString(11));
 				list.add(dto);
 			}
 			
@@ -48,7 +49,8 @@ public class adminDao extends SuperDao_B{
 						rs.getInt(1), rs.getString(2),
 						rs.getString(3), rs.getString(4),
 						rs.getString(5), rs.getString(8), 
-						rs.getString(9), rs.getString(10));
+						rs.getString(9), rs.getString(10),
+						rs.getString(11));
 				return dto;
 			}
 		} catch (Exception e) {System.out.println("관리자 회원수정 개인 호출 오류 adminDao"+e);}
@@ -106,16 +108,56 @@ public class adminDao extends SuperDao_B{
 				JSONObject object = new JSONObject();
 				object.put("user_num", rs.getInt(1));
 				object.put("user_name", rs.getString(2));
-				object.put("user_department", rs.getString(1));
-				object.put("user_birth", rs.getString(1));
-				object.put("user_date", rs.getString(1));
+				object.put("user_department", rs.getString(8));
+				object.put("user_position", rs.getString(9));
+				object.put("user_birth", rs.getString(10));
+				object.put("user_date", rs.getString(11));
+				object.put("user_vacation", rs.getString(12));
+				object.put("user_usevacation", rs.getString(13));
 				array.add(object);
+				System.out.println("다오오오오오당"+array);
 				return array;
 			}
 		} catch (Exception e) {System.out.println("개인정보호출 오류"+e);}
 		return null;
 	}
+	//[2022-11-11 인사관리 실적 입력 메소드]
+	public boolean Preformace(String preformace, int user_num) {
+		String sql= "insert into Performance values(? , now(), ?)";
+		try {
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, user_num);
+			ps.setString(2, preformace);
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {System.out.println("인사관리 실적입력 오류"+e);}
+		return false;
+	}
+	//[2022-11-11 인사관리 실적 출력 메소드]
 	
+	public ArrayList<Integer> chart(int user_num){
+		ArrayList<Integer> list = new ArrayList<>();
+		for(int i =1; i<=12 ;i++) {	
+		String sql=null;
+			if(i<10) {
+				sql="select count(*) from Performance where user_num=? and Performance like '%2022-0"+i+"%';";
+			}else {
+				sql="select count(*) from Performance where user_num=? and Performance like '%2022-"+i+"%';";
+			}
+			try {
+				ps=con.prepareStatement(sql);
+				ps.setInt(1, user_num);
+				rs=ps.executeQuery();
+				if(rs.next()) {
+					int count = rs.getInt(1);
+					list.add(count);
+					continue;
+				}
+			} catch (Exception e) {System.out.println("실적출력 오류"+e);}
+			break;
+		}
+		return list;
+	}
 	
 	
 	
