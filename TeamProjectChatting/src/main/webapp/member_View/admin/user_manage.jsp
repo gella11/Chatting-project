@@ -35,7 +35,6 @@
 	response.sendRedirect("/TeamProjectChatting/member_View/login.jsp");
 	}
 	%>
-	<button onclick="pagechange2('+admin/user_manage+')"> 관리자 페이지 </button>
 	<div class="c_container">
 		<!--  컨테이너  -->
 		<div class="chatting_rbox">
@@ -47,6 +46,7 @@
 		<!-- 채팅방 박스 e -->
 
 		<div class="board_box">
+					<button id="boardbox" class="button2" onclick="goback()"> 돌아가기 </button>
 			<!-- 게시판 -->
 			<div>
 				<div class="board_title">

@@ -97,7 +97,7 @@ function socket(){
    let str = mid+","+roomnumber;
    if (mid != 'null') {
       // 웹소켓에 서버소켓으로 연결[매핑]
-      clientsocket = new WebSocket('ws://192.168.17.14:8080/TeamProjectChatting/chatting/'+str);
+      clientsocket = new WebSocket('ws://192.168.17.123:8080/TeamProjectChatting/chatting/'+str);
       // 아래에서 구현 메소드를 객체에 대입
       clientsocket.onopen = function(e) { onopen(e) }
       clientsocket.onclose = function(e) { onclose(e) }

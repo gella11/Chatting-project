@@ -13,7 +13,7 @@
 	
 </head>
 <body>
-	
+	<div class="tab_list2 aaa"><a onclick="pagechange2('board/list2.jsp')"><i class="fas comment">←</i></a></div>
 	<%@include file="../header.jsp"%>
 
 	<div class="webbox"> 

@@ -345,9 +345,13 @@ $(".close-btn, .bg-overlay").click(function() {
 });
 
 
+function pagechange2( page ){
+	$("#boardbox").load( page ) // 특정 태그에 해당 파일 로드 [ jquery ]
+}
 
-
-
+function goback(){
+	location.href='../dash.jsp'
+}
 
 
 

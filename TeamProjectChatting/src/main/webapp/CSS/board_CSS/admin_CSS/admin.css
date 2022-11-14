@@ -488,3 +488,6 @@ small {
 .performance{
 	height: 20px;
 }
+#boardbox{
+	margin: 0px 0px 12px;
+}

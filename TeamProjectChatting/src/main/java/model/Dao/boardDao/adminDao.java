@@ -145,6 +145,7 @@ public class adminDao extends SuperDao_B{
 				sql="select count(*) from Performance where user_num=? and Performance like '%2022-"+i+"%';";
 			}
 			try {
+				System.out.println("차트넘버///"+user_num);
 				ps=con.prepareStatement(sql);
 				ps.setInt(1, user_num);
 				rs=ps.executeQuery();

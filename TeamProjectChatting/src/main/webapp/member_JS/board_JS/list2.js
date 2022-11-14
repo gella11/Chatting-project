@@ -29,6 +29,7 @@ function list( page, c_no ){
 				let l = list[i];
 				let profile = l.user_profile
 				if(profile === null){
+					console.log(l.b_title)
 					profile = "user.png"
 					html += '<div class="boder">'
 					+ '<div class="list_profile">'
