@@ -46,3 +46,5 @@
 - CSS 보완
 - 노션 추가
 - PPT 작성
+<br><hr>
+### [Notion](https://better-colby-39d.notion.site/Company-Management-JSP-Web-Project-3250a8aba2fb4c4e90083e2da66ac3aa)
