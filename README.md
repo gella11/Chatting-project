@@ -1,6 +1,7 @@
 
 # 🗨 Company Management - JSP Web Project
-
+## [Notion](https://better-colby-39d.notion.site/Company-Management-JSP-Web-Project-3250a8aba2fb4c4e90083e2da66ac3aa) <br>
+## [youtube](https://www.youtube.com/watch?v=gCBzZfvebfI)
 <br><br>
 ## <mark>주제 선정 사유</mark>
 
@@ -46,7 +47,3 @@
 - CSS 보완
 - 노션 추가
 - PPT 작성
-
-
-## [Notion](https://better-colby-39d.notion.site/Company-Management-JSP-Web-Project-3250a8aba2fb4c4e90083e2da66ac3aa) <br>
-## [youtube](https://www.youtube.com/watch?v=gCBzZfvebfI)
