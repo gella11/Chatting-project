@@ -1,49 +1,40 @@
 
-# 🗨 Company Management - JSP Web Project
-## [Notion](https://better-colby-39d.notion.site/Company-Management-JSP-Web-Project-3250a8aba2fb4c4e90083e2da66ac3aa) <br>
-## [youtube](https://www.youtube.com/watch?v=gCBzZfvebfI)
-<br><br>
-## <mark>주제 선정 사유</mark>
+# 🖥 Company Management <img src="https://img.shields.io/badge/JSP-EF2D5E?style=flat-square&logo=Java&logoColor=white">
+<br>
 
-### 회사 업무 시 꼭 필요하며, 회사 내부 직원들만 사용할 수 있는 메신저 및 게시판 기능을<br> 구현하고자 선정하게 되었습니다.<br>
-### 주요 기능으로는 웹 소켓을 사용하여 1:1 및 1:N 사원들의 실시간 소통 및 회의 등을<br> 진행할 수 있도록 구현 하였으며, MVC 패턴 및 CRUD 를 사용한 계층 형 게시판으로<br>
-### 부서별 회사 내부 공지 및 일정 관리를 구현하였습니다.
+## 📍 노션 및 시연 영상 링크
+- [Notion](https://better-colby-39d.notion.site/Company-Management-JSP-Web-Project-3250a8aba2fb4c4e90083e2da66ac3aa)
+- [youtube](https://www.youtube.com/watch?v=gCBzZfvebfI)
 
 <br>
 
-### 📅  프로젝트 일정
+## 📢 프로젝트 소개
+- 프로젝트 명 : 사내 메신저 및 사원관리 웹 사이트
+- 개발 기간 : 10/24 ~ 11/13 [3주]
+- 기획 배경 : 업무 시 부서나 개인별 소통을 위한 메신저와 공지 등록과 사원 관리 기능을 함께 갖춘 프로그램의 필요성의 의한 기획  
+- 서비스 타겟 : 사내 메신저 및 통합 사원 관리가 필요한 회사
 
----
-### 📌 [ 10/24 ~ 10/28 ] 회원 가입, 로그인 구현 및 친구 목록 출력
----
-- 중복 검사 및 유효성 검사
----
 
-### 📌 [ 10/31 ~ 11/4 ] 1:1 채팅 및 친구 추가 구현
----
-- 1:1 채팅
-- 친구 리스트
-- 친구 추가
-- 채팅 리스트
-- 채팅 방 중복 검사
-- 전체 CSS 레이아웃
----
+<br>
 
-### 📌 [ 11/7 ~ 11/9 ] 오류 수정 및 단체 채팅 방 구현
----
-- 단체 채팅 방 구현
-- 사내 게시판 구현
-- 부서 별 게시판 출력
-- 게시 글 작성, 수정, 삭제
-- 관리자 기능 구현
-- 사원 정보 수정, 삭제 및 관리
-- 부서 추가, 수정, 삭제 관리
-- 인사 관리
----
 
-### 📌  [ 11/10 ~ 11/11 ]
----
-- 기능 테스트 및 오류 수정
-- CSS 보완
-- 노션 추가
-- PPT 작성
+## 💡 개발 환경 및 기술 세부 스택
+<img src="https://camo.githubusercontent.com/a0f9c9f1295e65f8c081e5e6073840e309726163c310542f8c0acb5aa60ba5ad/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4a4156412d3030373339363f7374796c653d666f722d7468652d6261646765266c6f676f3d6a617661266c6f676f436f6c6f723d7768697465"> <img src="https://img.shields.io/badge/JSS-F7DF1E?style=for-the-badge&logo=JSS&logoColor=black"> <img src="https://img.shields.io/badge/Eclipse IDE-2C2255?style=for-the-badge&logo=Eclipse IDE&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=for-the-badge&logo=Apache Tomcat&logoColor=black"> <br>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"> <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white">
+
+
+<br>
+
+
+## 👨‍👨‍👧‍👦 역할 분담
+- 김도현 : 채팅 기능 1:1, 1:N
+- 김원종 : 로그인, 관리자, 프론트
+- 윤상진 : 채팅 기능, 게시판, Git&Branch 관리
+- 허혜영 : 회원 가입, 게시판, 프론트
+
+<br>
+
+## 📚 ERD
+
+
+
