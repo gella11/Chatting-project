@@ -26,3 +26,16 @@ function login() {//로그인 메소드[ 2022-10-26 김원종]
 function Signup(){
 location.href="/TeamProjectChatting/member_View/singUp.jsp"
 }
+
+
+
+
+const toastTrigger = document.getElementById('liveToastBtn')
+const toastLiveExample = document.getElementById('liveToast')
+if (toastTrigger) {
+  toastTrigger.addEventListener('click', () => {
+    const toast = new bootstrap.Toast(toastLiveExample)
+
+    toast.show()
+  })
+}

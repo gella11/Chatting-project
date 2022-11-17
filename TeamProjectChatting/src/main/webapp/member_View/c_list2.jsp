@@ -24,10 +24,15 @@
 
 </head>
 <body class="bodybg">
+
    <%@include file="header.jsp"%>
    
    <div class="c_container"> <!--  컨테이너  -->
       <div class="chatting_rbox"> <!-- 채팅방 박스 -->
+      
+      
+      
+      
       
          <div class="friend_box"> <!-- 친구 목록 출력 -->
                <div class="friend_title">
@@ -59,34 +64,37 @@
       
       
       <!-- Button trigger modal -->
-      <button type="button" style='display: none' class="btn btn-primary modalbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-         강제클릭버튼 안보이는부분.
-      </button>
+     
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         																																	<!-- 모달 구분 위함 1 넣음  -->
+         <button style='color=red; display: none' type="button" class="modalbtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+        단톡방
+      </button>    
+      <!-- Modal -->			<!-- 모달 구분 위함 1 넣음  -->
+      <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel"> Chatting </h1>
-              <button type="button" class="btn-close" onclick='socketclose()' data-bs-dismiss="modal" aria-label="Close"></button>
+              <h1 class="modal-title fs-5" id="staticBackdropLabel"> Chatting </h1>
+              <button type="button"  onclick='socketclose()' class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <div class='contentbox'>
+            <div class='contentbox'>
               </div>
               <textarea onkeyup="enterkey()" class='msgbox form-control' rows="" cols=""></textarea>
-              
-              <button class="sendbox form-control" type="button" onclick="send()">보내기</button>
+               <button class="sendbox form-control" type="button" onclick="send()">보내기</button>
               <button style='background-color: #ff9866; ' class="form-control" type="button" onclick="chattingout()">채팅방 나가기</button>
             </div>
           </div>
         </div>
-      </div>
+      </div>  
          
-      <button style='color=red; display: none' type="button" class="groupchatbtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+         																																<!-- 모달 구분 위함 2 넣음  -->
+      <button style='color=red; display: none' type="button" class="groupchatbtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
         단톡방
       </button>    
-      <!-- Modal -->
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <!-- Modal -->			<!-- 모달 구분 위함 2 넣음  -->
+      <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -120,13 +128,25 @@
          
       </div> <!-- 채팅방 박스 e -->
       
-    
+
 
 		
 		
    </div> <!--  컨테이너 e  -->
    
-   
+       <button style="display: none" type="button" class="toastbtn btn-primary" id="liveToastBtn">Show live toast</button>
+
+		<div class="toast-container position-fixed bottom-0 end-0 p-3">
+		  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+		    <div class="toast-header">
+		      <strong class="me-auto">Bootstrap</strong>
+		      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+		    </div>
+		    <div class="toast-body">
+		      
+		    </div>
+		  </div>
+		</div>
 
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
