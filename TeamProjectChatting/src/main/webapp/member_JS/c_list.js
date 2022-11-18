@@ -14,9 +14,9 @@ let html = '';
 let msgcontent = '';
 
 let lastno= 1;			// 채팅방 들어왔을 때 c_list 처음 켜지는 구분 [ 아래 세부 설명 참조]
-// 마지막 메시지 전역변수
-let lastmsg='';			// 채팅방 들어왔을 때 c_list 처음 켜지는 구분 [ 아래 세부 설명 참조]
 
+// 마지막 메시지 전역변수
+let map = new Map();	// 채팅방 들어왔을 때 c_list 처음 켜지는 구분 [ 아래 세부 설명 참조]
 
 // 카톡알림 토스트 부트스트랩 
 const toastTrigger = document.getElementById('liveToastBtn')
@@ -24,7 +24,6 @@ const toastLiveExample = document.getElementById('liveToast')
 if (toastTrigger) {
   toastTrigger.addEventListener('click', () => {
     const toast = new bootstrap.Toast(toastLiveExample)
-
     toast.show()
   })
 }
@@ -52,7 +51,7 @@ function myprofile(){
 c_list() 
 // 600 밀리초 마다 c_list 실행
 // c_list()만 반복 실행. 롤폴링 역할
-let timer = setInterval( () => c_list(), 600);
+let timer = setInterval( () => c_list(), 2000);
 function c_list(){
    $.ajax({
       url : "/TeamProjectChatting/F_list",
@@ -61,10 +60,8 @@ function c_list(){
       type:"POST",
       success : function(re){
          let json = JSON.parse(re)
-         console.log(json)
          json.forEach(c=>{
          let c_num = c.c_num
-         console.log(c_num)
          	// 채팅목록에 나의 채팅방의 이름, 내 채팅방 번호 뿌리기
             html+=    '<div class="friend_list roomnumber" onclick="gochat('+c.c_num+')">'
                + '<div class="friend_con_box">'            
@@ -96,23 +93,25 @@ function c_list(){
                      // 채팅 알람인데
                      // 채팅방 목록 페이지[ ]c_list.jsp ]로 화면 전환할 때 마다 채팅 하지도 않았는데 알람이 떠서 조건을 줌
                      // DB에서 가져온 마지막 말 re 
-                     // 첫 js 읽힐 때 전역변수로 선언한 lastmasg='';비교
-                     // 첫 js 읽힐 때 전역변수로 선언한 lastno = 1 
-                     if(lastmsg!==re && lastno>1){
-						lastmsg=re;
+                     // 첫 js 읽힐 때 채팅방에 맞는 마지막 대화 저장만
+                     if(lastno<=1){
+						map.set(c_num,re);
+					 }
+					 // 채팅방마다 내역을 확인하여 기존 대화와 같지않으면 토스트메시지 팝업
+                     if(map.get(c_num)!==re && lastno>1){
+						map.set(c_num,re); 
 						document.querySelector('.me-auto').innerHTML = c.c_name; // 알람창에 보내는 이 입력
-                        document.querySelector('.toast-body').innerHTML = lastmsg; // 알람창에 메시지 입력
+                        document.querySelector('.toast-body').innerHTML = re; // 알람창에 메시지 입력
                         document.querySelector('.toastbtn').click(); // 알람 모달 강제 클릭
                      	
                   }
-                  lastmsg=re;
-                  lastno++;
                }
               }
             })                   
            })
          document.querySelector('.clist').innerHTML = html;
-         
+         //한번 나의 채팅리스트 다 돌았으면 한바퀴돌았다 표시 lastno++;
+         lastno++;
          html='';
       }
    })
@@ -140,10 +139,9 @@ function gochat(c_num){
 }
 // 11/1 도현 채팅소켓여는함수
 function socket(){
-   let str = mid+","+roomnumber;
    if (mid != 'null') {
       // 웹소켓에 서버소켓으로 연결[매핑]
-      clientsocket = new WebSocket('ws://192.168.17.134:8080/TeamProjectChatting/chatting/'+str);
+      clientsocket = new WebSocket('ws://192.168.17.14:8080/TeamProjectChatting/chatting/'+roomnumber);
       // 아래에서 구현 메소드를 객체에 대입
       clientsocket.onopen = function(e) { onopen(e)}
       clientsocket.onclose = function(e) { onclose(e) }
